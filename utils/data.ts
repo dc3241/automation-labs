@@ -1,4 +1,4 @@
-import { supabase, BlogPost, AITool } from './supabase';
+import { supabase, BlogPost, AITool, ContactSubmission } from './supabase';
 
 // Blog Posts Data Fetching Functions
 export const fetchBlogPosts = async (limit?: number): Promise<BlogPost[]> => {
@@ -173,5 +173,64 @@ export const searchAITools = async (searchTerm: string, limit?: number): Promise
   } catch (error) {
     console.error('Error searching AI tools:', error);
     return [];
+  }
+};
+
+// Contact Submissions Functions
+export const submitContactForm = async (submission: Omit<ContactSubmission, 'id' | 'status' | 'created_at' | 'updated_at'>): Promise<{ success: boolean; error?: string }> => {
+  try {
+    const { data, error } = await supabase
+      .from('contact_submissions')
+      .insert([submission])
+      .select()
+      .single();
+
+    if (error) {
+      console.error('Error submitting contact form:', error);
+      return { success: false, error: error.message };
+    }
+
+    return { success: true };
+  } catch (error) {
+    console.error('Error submitting contact form:', error);
+    return { success: false, error: 'An unexpected error occurred' };
+  }
+};
+
+export const fetchContactSubmissions = async (): Promise<ContactSubmission[]> => {
+  try {
+    const { data, error } = await supabase
+      .from('contact_submissions')
+      .select('*')
+      .order('created_at', { ascending: false });
+
+    if (error) {
+      console.error('Error fetching contact submissions:', error);
+      return [];
+    }
+
+    return data || [];
+  } catch (error) {
+    console.error('Error fetching contact submissions:', error);
+    return [];
+  }
+};
+
+export const updateContactSubmissionStatus = async (id: number, status: ContactSubmission['status']): Promise<{ success: boolean; error?: string }> => {
+  try {
+    const { error } = await supabase
+      .from('contact_submissions')
+      .update({ status, updated_at: new Date().toISOString() })
+      .eq('id', id);
+
+    if (error) {
+      console.error('Error updating contact submission status:', error);
+      return { success: false, error: error.message };
+    }
+
+    return { success: true };
+  } catch (error) {
+    console.error('Error updating contact submission status:', error);
+    return { success: false, error: 'An unexpected error occurred' };
   }
 };

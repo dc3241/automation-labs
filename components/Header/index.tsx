@@ -41,12 +41,7 @@ export default function Header() {
             >
               Blog
             </Link>
-            <Link 
-              href="/our-mission" 
-              className="text-gray-700 hover:text-gray-900 font-medium transition-colors duration-200"
-            >
-              Our Mission
-            </Link>
+
             <Link 
               href="/newsletter" 
               className="text-gray-700 hover:text-gray-900 font-medium transition-colors duration-200"
@@ -103,13 +98,7 @@ export default function Header() {
               >
                 Blog
               </Link>
-              <Link 
-                href="/our-mission" 
-                className="block px-3 py-2 text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-md font-medium transition-colors duration-200"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Our Mission
-              </Link>
+
               <Link 
                 href="/newsletter" 
                 className="block px-3 py-2 text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-md font-medium transition-colors duration-200"

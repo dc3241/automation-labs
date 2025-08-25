@@ -77,3 +77,48 @@ CREATE POLICY "Blog posts are publicly readable"
 ON blog_posts FOR SELECT 
 TO public 
 USING (true);
+
+-- Create contact_submissions table
+CREATE TABLE IF NOT EXISTS contact_submissions (
+    id SERIAL PRIMARY KEY,
+    first_name VARCHAR(100) NOT NULL,
+    last_name VARCHAR(100) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    company VARCHAR(255),
+    message TEXT NOT NULL,
+    status VARCHAR(50) DEFAULT 'new',
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
+-- Create indexes for contact_submissions
+CREATE INDEX IF NOT EXISTS idx_contact_submissions_email ON contact_submissions(email);
+CREATE INDEX IF NOT EXISTS idx_contact_submissions_status ON contact_submissions(status);
+CREATE INDEX IF NOT EXISTS idx_contact_submissions_created_at ON contact_submissions(created_at);
+
+-- Enable Row Level Security for contact_submissions
+ALTER TABLE contact_submissions ENABLE ROW LEVEL SECURITY;
+
+-- Create policies for contact_submissions
+-- Allow public to insert new submissions
+CREATE POLICY "Anyone can insert contact submissions" 
+ON contact_submissions FOR INSERT 
+TO public 
+WITH CHECK (true);
+
+-- Allow public to read their own submissions (optional - for future features)
+CREATE POLICY "Users can read their own submissions" 
+ON contact_submissions FOR SELECT 
+TO public 
+USING (true);
+
+-- Insert sample contact submission for testing
+INSERT INTO contact_submissions (first_name, last_name, email, company, message, status) VALUES
+(
+    'John',
+    'Doe',
+    'john.doe@example.com',
+    'Tech Corp',
+    'I would like to discuss automation opportunities for our company. We are looking to streamline our customer service processes.',
+    'new'
+);

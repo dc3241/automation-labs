@@ -90,3 +90,15 @@ export interface AITool {
   created_at: string;
   updated_at: string;
 }
+
+export interface ContactSubmission {
+  id: number;
+  first_name: string;
+  last_name: string;
+  email: string;
+  company?: string;
+  message: string;
+  status: 'new' | 'replied' | 'closed';
+  created_at: string;
+  updated_at: string;
+}
