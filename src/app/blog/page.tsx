@@ -1,4 +1,4 @@
-import { supabase, BlogPost, testSupabaseConnection } from '../../../utils/supabase';
+import { supabase, BlogPost, testSupabaseConnection } from '../../utils/supabase';
 
 function getCategoryColor(category: string): { bg: string; text: string; accent: string } {
   const colors = {
@@ -16,6 +16,19 @@ async function getBlogPosts(): Promise<{ posts: BlogPost[]; error?: string; debu
   console.log('🔄 Starting blog posts fetch...');
   
   try {
+    // Check if environment variables are configured
+    if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+      console.error('❌ Supabase environment variables not configured');
+      return { 
+        posts: [], 
+        error: 'Supabase configuration is missing. Please check your environment variables.',
+        debug: { 
+          urlExists: !!process.env.NEXT_PUBLIC_SUPABASE_URL,
+          keyExists: !!process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+        }
+      };
+    }
+
     // First, test the connection
     const connectionTest = await testSupabaseConnection();
     if (!connectionTest.success) {
@@ -59,12 +72,13 @@ async function getBlogPosts(): Promise<{ posts: BlogPost[]; error?: string; debu
 export default async function Blog() {
   console.log('🚀 Blog page component rendering...');
   
-  const { posts: blogPosts, error, debug } = await getBlogPosts();
+  try {
+    const { posts: blogPosts, error, debug } = await getBlogPosts();
 
-  // Debug information (only in development)
-  if (process.env.NODE_ENV === 'development' && debug) {
-    console.log('🔍 Debug information:', debug);
-  }
+    // Debug information (only in development)
+    if (process.env.NODE_ENV === 'development' && debug) {
+      console.log('🔍 Debug information:', debug);
+    }
 
   return (
     <div className="bg-gray-50 min-h-screen">
@@ -182,4 +196,42 @@ export default async function Blog() {
       </div>
     </div>
   );
+  } catch (error) {
+    console.error('❌ Critical error in Blog component:', error);
+    return (
+      <div className="bg-gray-50 min-h-screen">
+        <div className="container mx-auto px-4 py-16">
+          <div className="text-center">
+            <div className="bg-red-50 border border-red-200 rounded-lg p-6">
+              <div className="flex items-center justify-center">
+                <div className="flex-shrink-0">
+                  <svg className="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                  </svg>
+                </div>
+                <div className="ml-3">
+                  <h3 className="text-sm font-medium text-red-800">
+                    Critical Error
+                  </h3>
+                  <div className="mt-2 text-sm text-red-700">
+                    <p>An unexpected error occurred while loading the blog page. Please try again later.</p>
+                    {process.env.NODE_ENV === 'development' && (
+                      <details className="mt-2">
+                        <summary className="cursor-pointer text-red-600 hover:text-red-800">
+                          Show error details
+                        </summary>
+                        <pre className="mt-2 text-xs bg-red-100 p-2 rounded overflow-auto">
+                          {error instanceof Error ? error.message : 'Unknown error'}
+                        </pre>
+                      </details>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 }
