@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { submitContactForm } from '../../../utils/data';
+import { submitContactForm } from '../../utils/data';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
