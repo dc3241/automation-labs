@@ -2,8 +2,14 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 
 export default function Home() {
+  const [email, setEmail] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [message, setMessage] = useState('');
+  const [messageType, setMessageType] = useState<'success' | 'error'>('success');
+
   const scrollToNewsletter = () => {
     const newsletterSection = document.getElementById('newsletter-section');
     if (newsletterSection) {
@@ -15,6 +21,54 @@ export default function Home() {
     const toolsSection = document.getElementById('tools-section');
     if (toolsSection) {
       toolsSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const handleNewsletterSignup = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!email.trim()) {
+      setMessage('Please enter your email address');
+      setMessageType('error');
+      return;
+    }
+
+    // Basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setMessage('Please enter a valid email address');
+      setMessageType('error');
+      return;
+    }
+
+    setIsLoading(true);
+    setMessage('');
+
+    try {
+      const response = await fetch('/api/newsletter-signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email: email.trim() }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setMessage(data.message || 'Thanks for subscribing! Check your email to confirm.');
+        setMessageType('success');
+        setEmail(''); // Clear form on success
+      } else {
+        setMessage(data.error || 'Something went wrong. Please try again.');
+        setMessageType('error');
+      }
+    } catch (error) {
+      console.error('Newsletter signup error:', error);
+      setMessage('Connection error. Please check your internet and try again.');
+      setMessageType('error');
+    } finally {
+      setIsLoading(false);
     }
   };
   return (
@@ -214,16 +268,44 @@ export default function Home() {
             </p>
 
             {/* Email Signup Form */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
+            <form onSubmit={handleNewsletterSignup} className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
               <input
                 type="email"
                 placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className="w-full sm:w-80 px-4 py-3 border-0 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none text-gray-900 bg-white placeholder-gray-500"
+                disabled={isLoading}
               />
-              <button className="w-full sm:w-auto bg-white text-gray-800 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors duration-200 whitespace-nowrap">
-                Subscribe Now
+              <button 
+                type="submit"
+                disabled={isLoading}
+                className="w-full sm:w-auto bg-white text-gray-800 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors duration-200 whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
+              >
+                {isLoading ? (
+                  <>
+                    <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-gray-800" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Subscribing...
+                  </>
+                ) : (
+                  'Subscribe Now'
+                )}
               </button>
-            </div>
+            </form>
+
+            {/* Message Display */}
+            {message && (
+              <div className={`mb-6 p-4 rounded-lg ${
+                messageType === 'success' 
+                  ? 'bg-green-100 text-green-800 border border-green-200' 
+                  : 'bg-red-100 text-red-800 border border-red-200'
+              }`}>
+                {message}
+              </div>
+            )}
 
             {/* Privacy Notice */}
             <p className="text-sm text-gray-400">
