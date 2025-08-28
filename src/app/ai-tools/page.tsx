@@ -127,7 +127,8 @@ export default function AITools() {
       description: 'AI writing assistant that helps create high-quality content for blogs, emails, social media, and marketing materials.',
       categories: ['Content Creation'],
       pricing: 'Freemium $9+/mo',
-      icon: '✍️'
+      icon: '✍️',
+      url: 'https://rytr.me/?via=ai-comparison'
     },
     {
       id: 36,
@@ -137,7 +138,8 @@ export default function AITools() {
       description: 'AI video creation platform that automatically generates engaging videos from long-form content and blog posts.',
       categories: ['Content Creation', 'Design & Creative'],
       pricing: 'Paid $23+/mo',
-      icon: '🎬'
+      icon: '🎬',
+      url: 'https://pictory.ai?ref=dominic20'
     },
     {
       id: 37,
@@ -147,7 +149,8 @@ export default function AITools() {
       description: 'AI video generation platform that creates professional videos with virtual presenters and customizable avatars.',
       categories: ['Content Creation', 'Design & Creative'],
       pricing: 'Paid $30+/mo',
-      icon: '🎭'
+      icon: '🎭',
+      url: 'https://www.synthesia.io/?via=ai-comparison'
     },
     {
       id: 38,
@@ -157,7 +160,8 @@ export default function AITools() {
       description: 'AI-powered creative design platform that generates visual content, graphics, and marketing materials.',
       categories: ['Content Creation', 'Design & Creative'],
       pricing: 'Paid $15+/mo',
-      icon: '🎨'
+      icon: '🎨',
+      url: 'https://creatify.ai/?via=autolabs'
     },
     {
       id: 39,
@@ -167,7 +171,8 @@ export default function AITools() {
       description: 'AI-powered social media management platform that automates content creation, scheduling, and analytics.',
       categories: ['Marketing', 'Social Media', 'Content Creation'],
       pricing: 'Paid $25+/mo',
-      icon: '🔥'
+      icon: '🔥',
+      url: 'https://blaze.ai?ref=thz3j'
     },
     {
       id: 40,
@@ -177,7 +182,8 @@ export default function AITools() {
       description: 'AI-powered SEO content optimization platform that helps create search-engine friendly content and improve rankings.',
       categories: ['Website & SEO'],
       pricing: 'Paid $39+/mo',
-      icon: '🔍'
+      icon: '🔍',
+      url: 'https://scalenut.com/?fpr=ai-comparison'
     },
     {
       id: 41,
@@ -187,7 +193,8 @@ export default function AITools() {
       description: 'AI content writer that creates SEO-optimized articles and blog posts with advanced keyword research.',
       categories: ['Website & SEO'],
       pricing: 'Paid $9+/mo',
-      icon: '🐨'
+      icon: '🐨',
+      url: 'https://koala.sh/?via=innovativeai'
     },
     {
       id: 42,
@@ -197,7 +204,8 @@ export default function AITools() {
       description: 'AI-powered content optimization tool that provides SEO recommendations and helps improve content rankings.',
       categories: ['Website & SEO'],
       pricing: 'Paid $19+/mo',
-      icon: '🧠'
+      icon: '🧠',
+      url: 'https://app.neuronwriter.com/ar/93a253c123916e18fa3e3d603ec3c8b4'
     },
     {
       id: 43,
@@ -207,7 +215,8 @@ export default function AITools() {
       description: 'AI content optimization platform that helps create SEO-friendly content and answer user search intent.',
       categories: ['Website & SEO'],
       pricing: 'Paid $44+/mo',
-      icon: '📊'
+      icon: '📊',
+      url: 'https://www.frase.io/?via=innovativeai'
     },
     {
       id: 44,
@@ -217,7 +226,8 @@ export default function AITools() {
       description: 'AI-powered SEO tool that provides keyword research, content optimization, and competitive analysis.',
       categories: ['Website & SEO'],
       pricing: 'Paid $29+/mo',
-      icon: '🎯'
+      icon: '🎯',
+      url: 'https://www.tely.ai/?via=autolabs'
     },
     {
       id: 45,
@@ -227,7 +237,8 @@ export default function AITools() {
       description: 'AI chatbot platform that creates custom chatbots for websites using your own knowledge base and documents.',
       categories: ['Customer Support'],
       pricing: 'Paid $20+/mo',
-      icon: '💬'
+      icon: '💬',
+      url: 'https://www.chatbase.co/?via=autolabs'
     },
     {
       id: 46,
@@ -237,7 +248,8 @@ export default function AITools() {
       description: 'AI-powered documentation chatbot that answers questions based on your documentation and knowledge base.',
       categories: ['Customer Support'],
       pricing: 'Paid $15+/mo',
-      icon: '📚'
+      icon: '📚',
+      url: 'https://docsbot.ai?via=autolabs'
     },
     {
       id: 47,
@@ -247,7 +259,8 @@ export default function AITools() {
       description: 'AI website chatbot that provides instant customer support and answers based on your website content.',
       categories: ['Customer Support'],
       pricing: 'Paid $25+/mo',
-      icon: '🌐'
+      icon: '🌐',
+      url: 'https://sitespeak.ai/?via=ai-comparison'
     },
     {
       id: 48,
@@ -257,7 +270,8 @@ export default function AITools() {
       description: 'AI-powered website builder that creates professional websites with SEO optimization and modern design.',
       categories: ['Website & SEO'],
       pricing: 'Paid $12+/mo',
-      icon: '🏗️'
+      icon: '🏗️',
+      url: 'https://www.createanything.com/?via=iab'
     },
     {
       id: 49,
@@ -267,7 +281,8 @@ export default function AITools() {
       description: 'AI social media content generator that creates engaging posts, captions, and visual content for multiple platforms.',
       categories: ['Social Media', 'Marketing'],
       pricing: 'Paid $18+/mo',
-      icon: '📱'
+      icon: '📱',
+      url: 'https://predis.ai?ref=dominic51'
     },
     {
       id: 50,
@@ -277,7 +292,8 @@ export default function AITools() {
       description: 'AI-powered project management and collaboration platform that automates workflows and team coordination.',
       categories: ['Automation'],
       pricing: 'Freemium $20+/mo',
-      icon: '✅'
+      icon: '✅',
+      url: 'https://taskade.com/?via=8pbsp'
     }
   ];
 
@@ -412,12 +428,26 @@ export default function AITools() {
                   {/* Pricing and Visit Button */}
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-gray-600">{tool.pricing}</span>
-                    <button className="px-4 py-2 bg-black text-white rounded-lg font-medium hover:bg-gray-800 transition-colors duration-200 flex items-center space-x-2">
-                      <span>Visit</span>
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                      </svg>
-                    </button>
+                    {tool.url ? (
+                      <a 
+                        href={tool.url}
+                        target="_blank"
+                        rel="noopener"
+                        className="px-4 py-2 bg-black text-white rounded-lg font-medium hover:bg-gray-800 transition-colors duration-200 flex items-center space-x-2"
+                      >
+                        <span>Visit</span>
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                      </a>
+                    ) : (
+                      <button className="px-4 py-2 bg-black text-white rounded-lg font-medium hover:bg-gray-800 transition-colors duration-200 flex items-center space-x-2">
+                        <span>Visit</span>
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                      </button>
+                    )}
                   </div>
                 </div>
               ))}
