@@ -15,50 +15,10 @@ export default function AITools() {
     'Design & Creative',
     'Email Marketing',
     'Website & SEO',
-    'HR & Team Management'
+    'Automation'
   ];
 
   const tools = [
-    {
-      id: 1,
-      name: 'ChatGPT',
-      featured: true,
-      rating: 4.9,
-      description: 'Advanced AI language model for content creation, coding assistance, and creative writing.',
-      categories: ['Content Creation', 'Ecommerce'],
-      pricing: 'Freemium $20/mo',
-      icon: '🤖'
-    },
-    {
-      id: 2,
-      name: 'Jasper AI',
-      featured: true,
-      rating: 4.7,
-      description: 'AI writing assistant that helps create marketing copy, blog posts, and social media content.',
-      categories: ['Content Creation', 'Marketing', 'Ecommerce'],
-      pricing: 'Paid $49/mo',
-      icon: '✨'
-    },
-    {
-      id: 3,
-      name: 'Copy.ai',
-      featured: false,
-      rating: 4.6,
-      description: 'AI-powered copywriting tool for marketing teams and content creators.',
-      categories: ['Marketing', 'Content Creation', 'Ecommerce'],
-      pricing: 'Freemium $36/mo',
-      icon: '📝'
-    },
-    {
-      id: 4,
-      name: 'Midjourney',
-      featured: true,
-      rating: 4.8,
-      description: 'AI art generation tool for creating unique visuals and creative content.',
-      categories: ['Design & Creative'],
-      pricing: 'Paid $30/mo',
-      icon: '🎨'
-    },
     {
       id: 5,
       name: 'Hootsuite',
@@ -80,94 +40,14 @@ export default function AITools() {
       icon: '💬'
     },
     {
-      id: 7,
-      name: 'Klaviyo',
-      featured: true,
-      rating: 4.6,
-      description: 'AI-powered email marketing platform designed specifically for ecommerce businesses with advanced segmentation and automation.',
-      categories: ['Marketing', 'Email Marketing'],
-      pricing: 'Paid $20+/mo',
-      icon: '📧'
-    },
-    {
-      id: 8,
-      name: 'HubSpot Marketing Hub',
-      featured: false,
-      rating: 4.5,
-      description: 'Comprehensive inbound marketing platform with AI-driven lead scoring and marketing automation for B2B companies.',
-      categories: ['Marketing', 'Analytics & Data'],
-      pricing: 'Paid $45+/mo',
-      icon: '🎯'
-    },
-    {
-      id: 9,
-      name: 'Mailchimp',
-      featured: false,
-      rating: 4.3,
-      description: 'Popular email marketing platform with AI-powered content optimization and audience insights for small businesses.',
-      categories: ['Email Marketing', 'Marketing'],
-      pricing: 'Freemium $10+/mo',
-      icon: '📬'
-    },
-    {
-      id: 10,
-      name: 'Drift',
-      featured: true,
-      rating: 4.4,
-      description: 'Conversational marketing platform with AI chatbots that qualify leads and drive sales conversations in real-time.',
-      categories: ['Marketing', 'Customer Support'],
-      pricing: 'Paid $50+/mo',
-      icon: '💬'
-    },
-    {
-      id: 11,
-      name: 'Salesforce Marketing Cloud',
-      featured: false,
-      rating: 4.2,
-      description: 'Enterprise-level marketing automation platform with AI-driven customer journey orchestration and analytics.',
-      categories: ['Marketing', 'Analytics & Data'],
-      pricing: 'Contact pricing',
-      icon: '☁️'
-    },
-    {
       id: 12,
       name: 'Zendesk Answer Bot',
       featured: false,
       rating: 4.1,
       description: 'AI-powered customer service bot that automatically resolves common support issues and escalates complex queries.',
-      categories: ['Customer Support'],
+      categories: ['Customer Support', 'Automation'],
       pricing: 'Paid $49+/mo',
       icon: '🤖'
-    },
-    {
-      id: 13,
-      name: 'Freshworks Freddy AI',
-      featured: false,
-      rating: 4.3,
-      description: 'Intelligent customer support platform with AI-powered ticket routing and automated response suggestions.',
-      categories: ['Customer Support'],
-      pricing: 'Paid $15+/mo',
-      icon: '🦊'
-    },
-    {
-      id: 14,
-      name: 'Ada',
-      featured: true,
-      rating: 4.5,
-      description: 'No-code AI chatbot platform that helps businesses automate customer support and improve response times.',
-      categories: ['Customer Support'],
-      pricing: 'Paid $99+/mo',
-      icon: '👩'
-    },
-    {
-      id: 15,
-      name: 'LivePerson',
-      featured: false,
-      rating: 4.0,
-      description: 'Enterprise conversational AI platform for customer service automation and messaging across multiple channels.',
-      categories: ['Customer Support'],
-      pricing: 'Contact pricing',
-      icon: '💬'
     },
     {
       id: 16,
@@ -175,99 +55,9 @@ export default function AITools() {
       featured: false,
       rating: 4.4,
       description: 'AI-powered chatbots and live chat solution designed specifically for ecommerce websites to boost conversions.',
-      categories: ['Customer Support'],
+      categories: ['Customer Support', 'Automation'],
       pricing: 'Paid $18+/mo',
       icon: '💬'
-    },
-    {
-      id: 17,
-      name: 'Writesonic',
-      featured: false,
-      rating: 4.3,
-      description: 'AI content creation platform specializing in ecommerce product descriptions, ads, and marketing copy.',
-      categories: ['Content Creation', 'Marketing'],
-      pricing: 'Paid $12+/mo',
-      icon: '✍️'
-    },
-    {
-      id: 18,
-      name: 'Phrasee',
-      featured: false,
-      rating: 4.2,
-      description: 'AI-powered email subject line and copy optimization tool that improves open rates and click-through rates.',
-      categories: ['Content Creation', 'Email Marketing'],
-      pricing: 'Contact pricing',
-      icon: '📝'
-    },
-    {
-      id: 19,
-      name: 'Persado',
-      featured: false,
-      rating: 4.1,
-      description: 'Marketing language optimization platform that uses AI to create emotionally resonant marketing messages.',
-      categories: ['Content Creation', 'Marketing'],
-      pricing: 'Contact pricing',
-      icon: '🧠'
-    },
-    {
-      id: 20,
-      name: 'MarketMuse',
-      featured: false,
-      rating: 4.0,
-      description: 'AI content planning and optimization platform that helps create comprehensive content strategies for SEO.',
-      categories: ['Content Creation', 'Website & SEO'],
-      pricing: 'Paid $99+/mo',
-      icon: '📊'
-    },
-    {
-      id: 21,
-      name: 'Surfer SEO',
-      featured: true,
-      rating: 4.4,
-      description: 'AI-powered content optimization tool that provides real-time SEO recommendations and keyword analysis.',
-      categories: ['Content Creation', 'Website & SEO'],
-      pricing: 'Paid $59+/mo',
-      icon: '🏄'
-    },
-    {
-      id: 22,
-      name: 'Sprout Social',
-      featured: false,
-      rating: 4.3,
-      description: 'Social media management platform with AI-powered analytics and content optimization for brand engagement.',
-      categories: ['Social Media', 'Analytics & Data'],
-      pricing: 'Paid $99+/mo',
-      icon: '🌱'
-    },
-    {
-      id: 23,
-      name: 'Later',
-      featured: false,
-      rating: 4.2,
-      description: 'AI-powered social media scheduling platform with visual content planning and automated posting.',
-      categories: ['Social Media'],
-      pricing: 'Paid $15+/mo',
-      icon: '⏰'
-    },
-    {
-      id: 24,
-      name: 'Buffer',
-      featured: false,
-      rating: 4.1,
-      description: 'Social media automation platform with AI-driven content suggestions and optimal posting time recommendations.',
-      categories: ['Social Media'],
-      pricing: 'Paid $6+/mo',
-      icon: '📱'
-    },
-    {
-      id: 25,
-      name: 'Socialbakers',
-      featured: false,
-      rating: 4.0,
-      description: 'Social media intelligence platform with AI-powered competitor analysis and content performance insights.',
-      categories: ['Social Media', 'Analytics & Data'],
-      pricing: 'Contact pricing',
-      icon: '📈'
     },
     {
       id: 26,
@@ -278,36 +68,6 @@ export default function AITools() {
       categories: ['Analytics & Data'],
       pricing: 'Paid $25+/mo',
       icon: '📊'
-    },
-    {
-      id: 27,
-      name: 'Hotjar',
-      featured: false,
-      rating: 4.3,
-      description: 'Website optimization platform with AI-powered heatmaps and user behavior analysis to improve conversion rates.',
-      categories: ['Analytics & Data', 'Website & SEO'],
-      pricing: 'Paid $32+/mo',
-      icon: '🔥'
-    },
-    {
-      id: 28,
-      name: 'Google Analytics Intelligence',
-      featured: false,
-      rating: 4.2,
-      description: 'AI-powered web analytics with automated insights and anomaly detection for website performance monitoring.',
-      categories: ['Analytics & Data'],
-      pricing: 'Free',
-      icon: '📈'
-    },
-    {
-      id: 29,
-      name: 'Segment',
-      featured: false,
-      rating: 4.1,
-      description: 'Customer data platform with AI-powered data collection and integration for unified customer analytics.',
-      categories: ['Analytics & Data'],
-      pricing: 'Paid $120+/mo',
-      icon: '🔗'
     },
     {
       id: 30,
@@ -325,7 +85,7 @@ export default function AITools() {
       featured: false,
       rating: 4.3,
       description: 'AI-powered email automation platform designed for creators and small businesses with advanced segmentation.',
-      categories: ['Email Marketing'],
+      categories: ['Email Marketing', 'Automation'],
       pricing: 'Paid $29+/mo',
       icon: '📧'
     },
@@ -335,7 +95,7 @@ export default function AITools() {
       featured: true,
       rating: 4.5,
       description: 'Marketing automation platform with AI-powered email personalization and customer journey optimization.',
-      categories: ['Email Marketing', 'Marketing'],
+      categories: ['Email Marketing', 'Marketing', 'Automation'],
       pricing: 'Paid $29+/mo',
       icon: '🎯'
     },
@@ -351,33 +111,173 @@ export default function AITools() {
     },
     {
       id: 34,
-      name: 'Clearscope',
+      name: 'Describely',
       featured: false,
       rating: 4.2,
-      description: 'AI-powered content optimization platform for SEO that provides comprehensive keyword research and content grading.',
-      categories: ['Website & SEO', 'Content Creation'],
-      pricing: 'Paid $170+/mo',
-      icon: '🔍'
+      description: 'AI-powered product description generator that creates compelling and SEO-optimized content for ecommerce products.',
+      categories: ['Content Creation'],
+      pricing: 'Paid $19+/mo',
+      icon: '📝'
     },
     {
       id: 35,
-      name: 'BrightEdge',
+      name: 'Rytr',
       featured: false,
-      rating: 4.1,
-      description: 'Enterprise SEO platform with AI-driven content optimization and competitive intelligence for large organizations.',
-      categories: ['Website & SEO'],
-      pricing: 'Contact pricing',
-      icon: '💡'
+      rating: 4.3,
+      description: 'AI writing assistant that helps create high-quality content for blogs, emails, social media, and marketing materials.',
+      categories: ['Content Creation'],
+      pricing: 'Freemium $9+/mo',
+      icon: '✍️'
     },
     {
       id: 36,
-      name: 'Screaming Frog',
+      name: 'Pictory',
+      featured: false,
+      rating: 4.4,
+      description: 'AI video creation platform that automatically generates engaging videos from long-form content and blog posts.',
+      categories: ['Content Creation', 'Design & Creative'],
+      pricing: 'Paid $23+/mo',
+      icon: '🎬'
+    },
+    {
+      id: 37,
+      name: 'Synthesia',
+      featured: false,
+      rating: 4.6,
+      description: 'AI video generation platform that creates professional videos with virtual presenters and customizable avatars.',
+      categories: ['Content Creation', 'Design & Creative'],
+      pricing: 'Paid $30+/mo',
+      icon: '🎭'
+    },
+    {
+      id: 38,
+      name: 'Creatify',
+      featured: false,
+      rating: 4.1,
+      description: 'AI-powered creative design platform that generates visual content, graphics, and marketing materials.',
+      categories: ['Content Creation', 'Design & Creative'],
+      pricing: 'Paid $15+/mo',
+      icon: '🎨'
+    },
+    {
+      id: 39,
+      name: 'Blaze',
       featured: false,
       rating: 4.3,
-      description: 'AI-powered SEO site auditing tool that crawls websites and identifies technical SEO issues and opportunities.',
+      description: 'AI-powered social media management platform that automates content creation, scheduling, and analytics.',
+      categories: ['Marketing', 'Social Media', 'Content Creation'],
+      pricing: 'Paid $25+/mo',
+      icon: '🔥'
+    },
+    {
+      id: 40,
+      name: 'Scalenut',
+      featured: false,
+      rating: 4.2,
+      description: 'AI-powered SEO content optimization platform that helps create search-engine friendly content and improve rankings.',
       categories: ['Website & SEO'],
-      pricing: 'Paid $259/year',
-      icon: '🐸'
+      pricing: 'Paid $39+/mo',
+      icon: '🔍'
+    },
+    {
+      id: 41,
+      name: 'Koala AI',
+      featured: false,
+      rating: 4.4,
+      description: 'AI content writer that creates SEO-optimized articles and blog posts with advanced keyword research.',
+      categories: ['Website & SEO'],
+      pricing: 'Paid $9+/mo',
+      icon: '🐨'
+    },
+    {
+      id: 42,
+      name: 'Neuron Writer',
+      featured: false,
+      rating: 4.1,
+      description: 'AI-powered content optimization tool that provides SEO recommendations and helps improve content rankings.',
+      categories: ['Website & SEO'],
+      pricing: 'Paid $19+/mo',
+      icon: '🧠'
+    },
+    {
+      id: 43,
+      name: 'Frase',
+      featured: false,
+      rating: 4.3,
+      description: 'AI content optimization platform that helps create SEO-friendly content and answer user search intent.',
+      categories: ['Website & SEO'],
+      pricing: 'Paid $44+/mo',
+      icon: '📊'
+    },
+    {
+      id: 44,
+      name: 'Tely',
+      featured: false,
+      rating: 4.0,
+      description: 'AI-powered SEO tool that provides keyword research, content optimization, and competitive analysis.',
+      categories: ['Website & SEO'],
+      pricing: 'Paid $29+/mo',
+      icon: '🎯'
+    },
+    {
+      id: 45,
+      name: 'ChatBase',
+      featured: false,
+      rating: 4.2,
+      description: 'AI chatbot platform that creates custom chatbots for websites using your own knowledge base and documents.',
+      categories: ['Customer Support'],
+      pricing: 'Paid $20+/mo',
+      icon: '💬'
+    },
+    {
+      id: 46,
+      name: 'DocsBot',
+      featured: false,
+      rating: 4.1,
+      description: 'AI-powered documentation chatbot that answers questions based on your documentation and knowledge base.',
+      categories: ['Customer Support'],
+      pricing: 'Paid $15+/mo',
+      icon: '📚'
+    },
+    {
+      id: 47,
+      name: 'SiteSpeak',
+      featured: false,
+      rating: 4.3,
+      description: 'AI website chatbot that provides instant customer support and answers based on your website content.',
+      categories: ['Customer Support'],
+      pricing: 'Paid $25+/mo',
+      icon: '🌐'
+    },
+    {
+      id: 48,
+      name: 'Create.xyz',
+      featured: false,
+      rating: 4.2,
+      description: 'AI-powered website builder that creates professional websites with SEO optimization and modern design.',
+      categories: ['Website & SEO'],
+      pricing: 'Paid $12+/mo',
+      icon: '🏗️'
+    },
+    {
+      id: 49,
+      name: 'Predis AI',
+      featured: false,
+      rating: 4.4,
+      description: 'AI social media content generator that creates engaging posts, captions, and visual content for multiple platforms.',
+      categories: ['Social Media', 'Marketing'],
+      pricing: 'Paid $18+/mo',
+      icon: '📱'
+    },
+    {
+      id: 50,
+      name: 'Taskade',
+      featured: false,
+      rating: 4.5,
+      description: 'AI-powered project management and collaboration platform that automates workflows and team coordination.',
+      categories: ['Automation'],
+      pricing: 'Freemium $20+/mo',
+      icon: '✅'
     }
   ];
 

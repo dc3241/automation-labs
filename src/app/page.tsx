@@ -115,15 +115,15 @@ export default function Home() {
             AI Tools for Online Businesses
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            {/* ChatGPT */}
+            {/* Mixpanel */}
             <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow duration-200">
               <div className="flex items-start justify-between mb-4">
                 <div className="flex items-center space-x-3">
                   <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center text-2xl">
-                    🤖
+                    📊
                   </div>
                   <div>
-                    <h3 className="font-semibold text-gray-900">ChatGPT</h3>
+                    <h3 className="font-semibold text-gray-900">Mixpanel</h3>
                     <span className="inline-block px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-full">
                       Featured
                     </span>
@@ -133,18 +133,17 @@ export default function Home() {
                   <svg className="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                   </svg>
-                  <span className="text-sm font-medium text-gray-900">4.9</span>
+                  <span className="text-sm font-medium text-gray-900">4.5</span>
                 </div>
               </div>
               <p className="text-gray-600 text-sm mb-4 leading-relaxed">
-                Advanced AI language model for content creation, coding assistance, and creative writing.
+                AI-powered product analytics platform that helps businesses understand user behavior and optimize conversions.
               </p>
               <div className="flex flex-wrap gap-2 mb-4">
-                <span className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-full">Content Creation</span>
-                <span className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-full">Ecommerce</span>
+                <span className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-full">Analytics & Data</span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-sm text-gray-600">Freemium $20/mo</span>
+                <span className="text-sm text-gray-600">Paid $25+/mo</span>
                 <button className="px-4 py-2 bg-black text-white rounded-lg font-medium hover:bg-gray-800 transition-colors duration-200 flex items-center space-x-2">
                   <span>Visit</span>
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -154,18 +153,54 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Jasper AI */}
+            {/* ActiveCampaign */}
             <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow duration-200">
               <div className="flex items-start justify-between mb-4">
                 <div className="flex items-center space-x-3">
                   <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center text-2xl">
-                    ✨
+                    🎯
                   </div>
                   <div>
-                    <h3 className="font-semibold text-gray-900">Jasper AI</h3>
+                    <h3 className="font-semibold text-gray-900">ActiveCampaign</h3>
                     <span className="inline-block px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-full">
                       Featured
                     </span>
+                  </div>
+                </div>
+                <div className="flex items-center space-x-1">
+                  <svg className="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                  <span className="text-sm font-medium text-gray-900">4.5</span>
+                </div>
+              </div>
+              <p className="text-gray-600 text-sm mb-4 leading-relaxed">
+                Marketing automation platform with AI-powered email personalization and customer journey optimization.
+              </p>
+              <div className="flex flex-wrap gap-2 mb-4">
+                <span className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-full">Email Marketing</span>
+                <span className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-full">Marketing</span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-sm text-gray-600">Paid $29+/mo</span>
+                <button className="px-4 py-2 bg-black text-white rounded-lg font-medium hover:bg-gray-800 transition-colors duration-200 flex items-center space-x-2">
+                  <span>Visit</span>
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            {/* Intercom */}
+            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow duration-200">
+              <div className="flex items-start justify-between mb-4">
+                <div className="flex items-center space-x-3">
+                  <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center text-2xl">
+                    💬
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-gray-900">Intercom</h3>
                   </div>
                 </div>
                 <div className="flex items-center space-x-1">
@@ -176,52 +211,13 @@ export default function Home() {
                 </div>
               </div>
               <p className="text-gray-600 text-sm mb-4 leading-relaxed">
-                AI writing assistant that helps create marketing copy, blog posts, and social media content.
+                AI-powered customer service and communication platform.
               </p>
               <div className="flex flex-wrap gap-2 mb-4">
-                <span className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-full">Content Creation</span>
-                <span className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-full">Marketing</span>
-                <span className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-full">Ecommerce</span>
+                <span className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-full">Customer Support</span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-sm text-gray-600">Paid $49/mo</span>
-                <button className="px-4 py-2 bg-black text-white rounded-lg font-medium hover:bg-gray-800 transition-colors duration-200 flex items-center space-x-2">
-                  <span>Visit</span>
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                  </svg>
-                </button>
-              </div>
-            </div>
-
-            {/* Copy.ai */}
-            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow duration-200">
-              <div className="flex items-start justify-between mb-4">
-                <div className="flex items-center space-x-3">
-                  <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center text-2xl">
-                    📝
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-gray-900">Copy.ai</h3>
-                  </div>
-                </div>
-                <div className="flex items-center space-x-1">
-                  <svg className="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                  </svg>
-                  <span className="text-sm font-medium text-gray-900">4.6</span>
-                </div>
-              </div>
-              <p className="text-gray-600 text-sm mb-4 leading-relaxed">
-                AI-powered copywriting tool for marketing teams and content creators.
-              </p>
-              <div className="flex flex-wrap gap-2 mb-4">
-                <span className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-full">Marketing</span>
-                <span className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-full">Content Creation</span>
-                <span className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-full">Ecommerce</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-sm text-gray-600">Freemium $36/mo</span>
+                <span className="text-sm text-gray-600">Paid $39/mo</span>
                 <button className="px-4 py-2 bg-black text-white rounded-lg font-medium hover:bg-gray-800 transition-colors duration-200 flex items-center space-x-2">
                   <span>Visit</span>
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
