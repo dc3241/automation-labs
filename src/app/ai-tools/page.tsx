@@ -5,6 +5,7 @@ import { useState } from 'react';
 export default function AITools() {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+  const [sortBy, setSortBy] = useState<'name' | 'rating' | 'featured'>('rating');
 
   const categories = [
     'Marketing',
@@ -311,155 +312,242 @@ export default function AITools() {
     const matchesCategory = selectedCategories.length === 0 || 
                            tool.categories.some(cat => selectedCategories.includes(cat));
     return matchesSearch && matchesCategory;
+  }).sort((a, b) => {
+    switch (sortBy) {
+      case 'name':
+        return a.name.localeCompare(b.name);
+      case 'rating':
+        return b.rating - a.rating;
+      case 'featured':
+        return b.featured ? 1 : a.featured ? -1 : 0;
+      default:
+        return 0;
+    }
   });
 
   return (
     <div className="bg-gray-50 min-h-screen">
-      <div className="container mx-auto px-4 py-8">
-        <div className="text-center mb-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        
+        {/* Header */}
+        <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
             AI Tools for Online Businesses
           </h1>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            Discover and compare the best AI automation tools for your business. 
+            Each tool has been tested and recommended by our automation experts.
+          </p>
         </div>
 
-        <div className="flex flex-col lg:flex-row gap-8">
-          {/* Left Sidebar - Filters */}
-          <div className="lg:w-80 flex-shrink-0">
-            <div className="bg-white rounded-lg shadow-sm p-6 sticky top-24">
-              <h2 className="text-xl font-bold text-gray-900 mb-6">Filters</h2>
-              
-              {/* Search Bar */}
-              <div className="mb-6">
-                <div className="relative">
-                  <svg className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                  </svg>
-                  <input
-                    type="text"
-                    placeholder="Search tools..."
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  />
-                </div>
+        {/* Filters */}
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+            
+            {/* Search */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Search Tools
+              </label>
+              <div className="relative">
+                <svg className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+                <input
+                  type="text"
+                  placeholder="Search tools..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                />
               </div>
+            </div>
 
-              {/* Categories */}
-              <div className="mb-6">
-                <h3 className="font-bold text-gray-900 mb-4">Categories</h3>
-                <div className="space-y-3">
-                  {categories.map((category) => (
-                    <label key={category} className="flex items-center space-x-3 cursor-pointer">
-                      <input
-                        type="checkbox"
-                        checked={selectedCategories.includes(category)}
-                        onChange={() => handleCategoryToggle(category)}
-                        className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
-                      />
-                      <span className="text-gray-700">{category}</span>
-                    </label>
-                  ))}
-                </div>
-              </div>
+            {/* Category Filter */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Categories
+              </label>
+              <select
+                value={selectedCategories.length > 0 ? selectedCategories[0] : 'all'}
+                onChange={(e) => {
+                  const value = e.target.value;
+                  if (value === 'all') {
+                    setSelectedCategories([]);
+                  } else {
+                    setSelectedCategories([value]);
+                  }
+                }}
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              >
+                <option value="all">All Categories</option>
+                {categories.map(category => (
+                  <option key={category} value={category}>
+                    {category}
+                  </option>
+                ))}
+              </select>
+            </div>
 
-              {/* Pricing */}
-              <div>
-                <h3 className="font-bold text-gray-900 mb-4">Pricing</h3>
-                <div className="space-y-3">
-                  <label className="flex items-center space-x-3 cursor-pointer">
-                    <input type="checkbox" className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500" />
-                    <span className="text-gray-700">Free</span>
-                  </label>
-                  <label className="flex items-center space-x-3 cursor-pointer">
-                    <input type="checkbox" className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500" />
-                    <span className="text-gray-700">Freemium</span>
-                  </label>
-                  <label className="flex items-center space-x-3 cursor-pointer">
-                    <input type="checkbox" className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500" />
-                    <span className="text-gray-700">Paid</span>
-                  </label>
-                </div>
-              </div>
+            {/* Sort */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Sort By
+              </label>
+              <select
+                value={sortBy}
+                onChange={(e) => setSortBy(e.target.value as 'name' | 'rating' | 'featured')}
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              >
+                <option value="rating">Highest Rated</option>
+                <option value="featured">Featured First</option>
+                <option value="name">Alphabetical</option>
+              </select>
+            </div>
+
+            {/* Clear Filters */}
+            <div className="flex items-end">
+              {(selectedCategories.length > 0 || searchTerm) && (
+                <button
+                  onClick={() => {
+                    setSelectedCategories([]);
+                    setSearchTerm('');
+                  }}
+                  className="w-full px-4 py-2 text-sm text-blue-600 hover:text-blue-700 font-medium border border-blue-300 rounded-lg hover:bg-blue-50 transition-colors duration-200"
+                >
+                  Clear Filters
+                </button>
+              )}
             </div>
           </div>
 
-          {/* Main Content Area - Tools Grid */}
-          <div className="flex-1">
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-              {filteredTools.map((tool) => (
-                <div key={tool.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow duration-200">
-                  {/* Tool Header */}
-                  <div className="flex items-start justify-between mb-4">
-                    <div className="flex items-center space-x-3">
-                      <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center text-2xl">
-                        {tool.icon}
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-gray-900">{tool.name}</h3>
-                        {tool.featured && (
-                          <span className="inline-block px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-full">
-                            Featured
-                          </span>
-                        )}
-                      </div>
-                    </div>
-                    <div className="flex items-center space-x-1">
-                      <svg className="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+          {/* Results Count */}
+          <div className="mt-4 flex items-center justify-between">
+            <p className="text-sm text-gray-600">
+              Showing {filteredTools.length} of {tools.length} tools
+            </p>
+            
+            {/* Category Pills */}
+            {selectedCategories.length > 0 && (
+              <div className="flex flex-wrap gap-2">
+                {selectedCategories.map((category) => (
+                  <span 
+                    key={category}
+                    className="inline-flex items-center px-3 py-1 rounded-full text-sm bg-blue-100 text-blue-800"
+                  >
+                    {category}
+                    <button
+                      onClick={() => setSelectedCategories(prev => prev.filter(c => c !== category))}
+                      className="ml-2 text-blue-600 hover:text-blue-800"
+                    >
+                      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                       </svg>
-                      <span className="text-sm font-medium text-gray-900">{tool.rating}</span>
-                    </div>
-                  </div>
-
-                  {/* Description */}
-                  <p className="text-gray-600 text-sm mb-4 leading-relaxed">
-                    {tool.description}
-                  </p>
-
-                  {/* Categories */}
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {tool.categories.map((category) => (
-                      <span key={category} className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-full">
-                        {category}
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* Pricing and Visit Button */}
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-gray-600">{tool.pricing}</span>
-                    {tool.url ? (
-                      <a 
-                        href={tool.url}
-                        target="_blank"
-                        rel="noopener"
-                        className="px-4 py-2 bg-black text-white rounded-lg font-medium hover:bg-gray-800 transition-colors duration-200 flex items-center space-x-2"
-                      >
-                        <span>Visit</span>
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                        </svg>
-                      </a>
-                    ) : (
-                      <button className="px-4 py-2 bg-black text-white rounded-lg font-medium hover:bg-gray-800 transition-colors duration-200 flex items-center space-x-2">
-                        <span>Visit</span>
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                        </svg>
-                      </button>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {filteredTools.length === 0 && (
-              <div className="text-center py-12">
-                <p className="text-gray-500">No tools found matching your criteria.</p>
+                    </button>
+                  </span>
+                ))}
               </div>
             )}
           </div>
         </div>
+
+        {/* Tools Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filteredTools.map((tool) => (
+            <div key={tool.id} className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow duration-200">
+              <div className="p-6">
+                {/* Tool Header */}
+                <div className="flex items-start justify-between mb-4">
+                  <div className="flex items-center space-x-3">
+                    <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center text-2xl">
+                      {tool.icon}
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-gray-900">{tool.name}</h3>
+                      <span className="text-sm text-gray-500">
+                        {tool.categories[0]}
+                      </span>
+                    </div>
+                  </div>
+                  
+                  {tool.featured && (
+                    <span className="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">
+                      Featured
+                    </span>
+                  )}
+                </div>
+
+                {/* Description */}
+                <p className="text-gray-600 text-sm mb-4 leading-relaxed">
+                  {tool.description}
+                </p>
+
+                {/* Rating */}
+                <div className="flex items-center mb-4 text-sm text-gray-500">
+                  <svg className="w-4 h-4 text-yellow-400 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                  <span>{tool.rating}</span>
+                </div>
+
+                {/* Categories */}
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {tool.categories.map((category) => (
+                    <span key={category} className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-full">
+                      {category}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Pricing and Action */}
+                <div className="flex items-center justify-between">
+                  <span className="text-sm text-gray-600">{tool.pricing}</span>
+                  {tool.url ? (
+                    <a
+                      href={tool.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition-colors duration-200 flex items-center space-x-2"
+                    >
+                      <span>Try Tool</span>
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                      </svg>
+                    </a>
+                  ) : (
+                    <button className="px-4 py-2 bg-gray-300 text-gray-500 text-sm font-medium rounded-lg cursor-not-allowed">
+                      Coming Soon
+                    </button>
+                  )}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* No Results */}
+        {filteredTools.length === 0 && (
+          <div className="text-center py-12">
+            <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg className="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+            </div>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">No tools found</h3>
+            <p className="text-gray-600 mb-4">
+              Try adjusting your filters or search terms to find what you're looking for.
+            </p>
+            <button
+              onClick={() => {
+                setSelectedCategories([]);
+                setSearchTerm('');
+              }}
+              className="bg-blue-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-blue-700 transition-colors duration-200"
+            >
+              Clear All Filters
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
