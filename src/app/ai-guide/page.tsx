@@ -2,8 +2,39 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { BUSINESS_TYPES, GUIDE_CONTENT } from '@/lib/guide-content';
-import { guideAnalytics } from '@/lib/guide-analytics';
+// Simple business types for email series
+const BUSINESS_TYPES = [
+  {
+    id: 'ecommerce',
+    name: 'E-commerce',
+    description: 'Online store or marketplace',
+    icon: '🛒'
+  },
+  {
+    id: 'agency',
+    name: 'Marketing Agency',
+    description: 'Client-based marketing services',
+    icon: '🎯'
+  },
+  {
+    id: 'saas',
+    name: 'SaaS/Software',
+    description: 'Software as a service product',
+    icon: '💻'
+  },
+  {
+    id: 'influencer',
+    name: 'Creator/Influencer',
+    description: 'Content creator or influencer',
+    icon: '📱'
+  },
+  {
+    id: 'other',
+    name: 'Other',
+    description: 'Different type of business',
+    icon: '🏢'
+  }
+];
 
 export default function GuideLanding() {
   const [selectedBusinessType, setSelectedBusinessType] = useState<string>('');
@@ -52,8 +83,7 @@ export default function GuideLanding() {
         setMessage(data.message || 'Welcome to the guide! Check your email to get started.');
         setMessageType('success');
         
-        // Track successful signup
-        guideAnalytics.trackFormSubmit(email, 'guide-landing', 'email-capture');
+        // Email signup successful
         
         // Clear form
         setEmail('');
@@ -152,33 +182,94 @@ export default function GuideLanding() {
               What You'll Learn in 7 Days
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Each day focuses on a specific area of automation, with actionable steps and proven tools.
+              Daily emails with actionable steps and proven tools to automate your business.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {GUIDE_CONTENT.map((day, index) => (
-              <div key={day.id} className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg transition-shadow duration-200">
-                <div className="flex items-center mb-4">
-                  <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
-                    <span className="text-blue-600 font-bold">{day.id}</span>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-gray-900">{day.title}</h3>
-                    <p className="text-sm text-gray-500">{day.timeEstimate}</p>
-                  </div>
+            <div className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg transition-shadow duration-200">
+              <div className="flex items-center mb-4">
+                <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                  <span className="text-blue-600 font-bold">1</span>
                 </div>
-                <p className="text-gray-600 text-sm mb-4">{day.overview}</p>
-                <div className="flex items-center justify-between">
-                  <span className="text-xs px-2 py-1 bg-gray-100 text-gray-700 rounded-full">
-                    {day.difficulty}
-                  </span>
-                  <span className="text-xs text-gray-500">
-                    {day.tools.length} tools
-                  </span>
+                <div>
+                  <h3 className="font-semibold text-gray-900">AI Opportunity Assessment</h3>
+                  <p className="text-sm text-gray-500">Day 1</p>
                 </div>
               </div>
-            ))}
+              <p className="text-gray-600 text-sm mb-4">Identify automation opportunities in your business</p>
+              <div className="flex items-center justify-between">
+                <span className="text-xs px-2 py-1 bg-gray-100 text-gray-700 rounded-full">
+                  Beginner
+                </span>
+                <span className="text-xs text-gray-500">
+                  3 tools
+                </span>
+              </div>
+            </div>
+
+            <div className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg transition-shadow duration-200">
+              <div className="flex items-center mb-4">
+                <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                  <span className="text-blue-600 font-bold">2</span>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-gray-900">Content Creation Automation</h3>
+                  <p className="text-sm text-gray-500">Day 2</p>
+                </div>
+              </div>
+              <p className="text-gray-600 text-sm mb-4">Automate your content creation workflow</p>
+              <div className="flex items-center justify-between">
+                <span className="text-xs px-2 py-1 bg-gray-100 text-gray-700 rounded-full">
+                  Beginner
+                </span>
+                <span className="text-xs text-gray-500">
+                  4 tools
+                </span>
+              </div>
+            </div>
+
+            <div className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg transition-shadow duration-200">
+              <div className="flex items-center mb-4">
+                <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                  <span className="text-blue-600 font-bold">3</span>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-gray-900">Social Media Management</h3>
+                  <p className="text-sm text-gray-500">Day 3</p>
+                </div>
+              </div>
+              <p className="text-gray-600 text-sm mb-4">Streamline social media posting and engagement</p>
+              <div className="flex items-center justify-between">
+                <span className="text-xs px-2 py-1 bg-gray-100 text-gray-700 rounded-full">
+                  Beginner
+                </span>
+                <span className="text-xs text-gray-500">
+                  3 tools
+                </span>
+              </div>
+            </div>
+
+            <div className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg transition-shadow duration-200">
+              <div className="flex items-center mb-4">
+                <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                  <span className="text-blue-600 font-bold">4-7</span>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-gray-900">Advanced Automation</h3>
+                  <p className="text-sm text-gray-500">Days 4-7</p>
+                </div>
+              </div>
+              <p className="text-gray-600 text-sm mb-4">Customer communication, sales, operations & analytics</p>
+              <div className="flex items-center justify-between">
+                <span className="text-xs px-2 py-1 bg-gray-100 text-gray-700 rounded-full">
+                  Intermediate
+                </span>
+                <span className="text-xs text-gray-500">
+                  8+ tools
+                </span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -292,7 +383,7 @@ export default function GuideLanding() {
         </div>
       </section>
 
-      {/* Preview Section */}
+      {/* What You Get Section */}
       <section id="preview" className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
@@ -300,71 +391,39 @@ export default function GuideLanding() {
               Here's What You Get
             </h2>
             <p className="text-lg text-gray-600">
-              A complete roadmap with tools, templates, and step-by-step instructions.
+              Daily emails with actionable steps, tools, and templates delivered straight to your inbox.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Preview Content */}
-            <div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">
-                Day 1: AI Opportunity Assessment
-              </h3>
-              <div className="space-y-4 mb-8">
-                <div className="flex items-start">
-                  <svg className="w-5 h-5 text-green-500 mr-3 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                  </svg>
-                  <span className="text-gray-700">Business process audit worksheet</span>
-                </div>
-                <div className="flex items-start">
-                  <svg className="w-5 h-5 text-green-500 mr-3 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                  </svg>
-                  <span className="text-gray-700">Time cost calculator</span>
-                </div>
-                <div className="flex items-start">
-                  <svg className="w-5 h-5 text-green-500 mr-3 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                  </svg>
-                  <span className="text-gray-700">Quick wins identification framework</span>
-                </div>
-                <div className="flex items-start">
-                  <svg className="w-5 h-5 text-green-500 mr-3 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                  </svg>
-                  <span className="text-gray-700">ROI calculation templates</span>
-                </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="text-center">
+              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
               </div>
-              
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
-                <h4 className="font-semibold text-blue-900 mb-2">Featured Tools:</h4>
-                <div className="flex flex-wrap gap-2">
-                  <span className="px-2 py-1 bg-blue-100 text-blue-800 text-sm rounded">Zapier</span>
-                  <span className="px-2 py-1 bg-blue-100 text-blue-800 text-sm rounded">Process Street</span>
-                  <span className="px-2 py-1 bg-blue-100 text-blue-800 text-sm rounded">Toggl Track</span>
-                </div>
-              </div>
-
-              <Link 
-                href="/ai-guide/day/1"
-                className="inline-flex items-center text-blue-600 font-medium hover:text-blue-700 transition-colors duration-200"
-              >
-                Start Day 1 →
-              </Link>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">Daily Email Series</h3>
+              <p className="text-gray-600">7 days of actionable automation strategies delivered to your inbox</p>
             </div>
 
-            {/* Preview Image/Video Placeholder */}
-            <div className="bg-gradient-to-br from-blue-100 to-indigo-100 rounded-lg p-8 text-center">
-              <div className="w-full h-64 bg-white rounded-lg shadow-sm flex items-center justify-center">
-                <div className="text-center">
-                  <svg className="w-16 h-16 text-blue-500 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                  </svg>
-                  <p className="text-gray-600 font-medium">Interactive Guide Preview</p>
-                  <p className="text-sm text-gray-500 mt-1">Step-by-step walkthrough</p>
-                </div>
+            <div className="text-center">
+              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
               </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">Ready-to-Use Tools</h3>
+              <p className="text-gray-600">Curated list of AI tools with setup guides and best practices</p>
+            </div>
+
+            <div className="text-center">
+              <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">Templates & Checklists</h3>
+              <p className="text-gray-600">Downloadable templates to implement automation in your business</p>
             </div>
           </div>
         </div>
