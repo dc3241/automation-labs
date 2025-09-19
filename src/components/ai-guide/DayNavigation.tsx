@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { guideAnalytics } from '../../lib/guide-analytics';
+import { guideAnalytics } from '@/lib/guide-analytics';
 
 interface DayNavigationProps {
   currentDay: number;

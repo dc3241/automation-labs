@@ -1,8 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { guideAnalytics } from '../../../../lib/guide-analytics';
-import ToolRecommendationCard from '../../../../components/ai-guide/ToolRecommendationCard';
+import { guideAnalytics } from '@/lib/guide-analytics';
+import ToolRecommendationCard from '@/components/ai-guide/ToolRecommendationCard';
 
 interface Tool {
   id: string;

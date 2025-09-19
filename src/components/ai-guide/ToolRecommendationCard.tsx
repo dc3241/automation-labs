@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { guideAnalytics } from '../../lib/guide-analytics';
+import { guideAnalytics } from '@/lib/guide-analytics';
 
 interface ToolRecommendationCardProps {
   tool: {

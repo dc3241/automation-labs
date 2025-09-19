@@ -2,8 +2,8 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { BUSINESS_TYPES, GUIDE_CONTENT } from '../../../lib/guide-content';
-import { guideAnalytics } from '../../../lib/guide-analytics';
+import { BUSINESS_TYPES, GUIDE_CONTENT } from '@/lib/guide-content';
+import { guideAnalytics } from '@/lib/guide-analytics';
 
 export default function GuideLanding() {
   const [selectedBusinessType, setSelectedBusinessType] = useState<string>('');

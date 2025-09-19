@@ -1,7 +1,7 @@
 // AI Automation Guide Analytics Utilities
 // Track user engagement and conversion metrics
 
-import { supabase } from '../src/utils/supabase';
+import { supabase } from '@/utils/supabase';
 
 export interface AnalyticsEvent {
   userId: string;

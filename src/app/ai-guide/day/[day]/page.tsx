@@ -3,13 +3,13 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
-import { getDayContent, getPersonalizedRecommendations } from '../../../../lib/guide-content';
-import { guideAnalytics } from '../../../../lib/guide-analytics';
-import ProgressTracker from '../../../../components/ai-guide/ProgressTracker';
-import DayNavigation from '../../../../components/ai-guide/DayNavigation';
-import ToolRecommendationCard from '../../../../components/ai-guide/ToolRecommendationCard';
-import ImplementationChecklist from '../../../../components/ai-guide/ImplementationChecklist';
-import UpsellCTA from '../../../../components/ai-guide/UpsellCTA';
+import { getDayContent, getPersonalizedRecommendations } from '@/lib/guide-content';
+import { guideAnalytics } from '@/lib/guide-analytics';
+import ProgressTracker from '@/components/ai-guide/ProgressTracker';
+import DayNavigation from '@/components/ai-guide/DayNavigation';
+import ToolRecommendationCard from '@/components/ai-guide/ToolRecommendationCard';
+import ImplementationChecklist from '@/components/ai-guide/ImplementationChecklist';
+import UpsellCTA from '@/components/ai-guide/UpsellCTA';
 
 export default function DayPage() {
   const params = useParams();

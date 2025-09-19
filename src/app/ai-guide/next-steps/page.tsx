@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { guideAnalytics } from '../../../../lib/guide-analytics';
+import { guideAnalytics } from '@/lib/guide-analytics';
 
 export default function NextStepsPage() {
   const [userProgress, setUserProgress] = useState({
