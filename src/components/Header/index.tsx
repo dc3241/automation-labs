@@ -30,6 +30,12 @@ export default function Header() {
               Home
             </Link>
             <Link 
+              href="/ai-guide" 
+              className="text-gray-700 hover:text-gray-900 font-medium transition-colors duration-200"
+            >
+              AI Guide
+            </Link>
+            <Link 
               href="/ai-tools" 
               className="text-gray-700 hover:text-gray-900 font-medium transition-colors duration-200"
             >
@@ -83,6 +89,13 @@ export default function Header() {
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Home
+              </Link>
+              <Link 
+                href="/ai-guide" 
+                className="block px-3 py-2 text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-md font-medium transition-colors duration-200"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                AI Guide
               </Link>
               <Link 
                 href="/ai-tools" 
