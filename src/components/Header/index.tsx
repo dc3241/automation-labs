@@ -1,10 +1,27 @@
 'use client';
 
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 
+function pathMatchesHref(pathname: string, href: string) {
+  if (href === '/') return pathname === '/';
+  return pathname === href || pathname.startsWith(`${href}/`);
+}
+
 export default function Header() {
+  const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const desktopLinkClass = (href: string) =>
+    pathMatchesHref(pathname, href)
+      ? 'text-gray-900 font-semibold transition-colors duration-200'
+      : 'text-gray-700 hover:text-gray-900 font-medium transition-colors duration-200';
+
+  const mobileLinkClass = (href: string) =>
+    pathMatchesHref(pathname, href)
+      ? 'block px-3 py-2 text-gray-900 bg-gray-50 rounded-md font-semibold transition-colors duration-200'
+      : 'block px-3 py-2 text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-md font-medium transition-colors duration-200';
 
   return (
     <header className="bg-white shadow-sm fixed top-0 left-0 right-0 z-50">
@@ -23,41 +40,26 @@ export default function Header() {
 
           {/* Desktop Navigation - Center */}
           <nav className="hidden md:flex items-center justify-center flex-1 space-x-8">
-            <Link 
-              href="/" 
-              className="text-gray-700 hover:text-gray-900 font-medium transition-colors duration-200"
-            >
+            <Link href="/" className={desktopLinkClass('/')}>
               Home
             </Link>
-            <Link 
-              href="/ai-guide" 
-              className="text-gray-700 hover:text-gray-900 font-medium transition-colors duration-200"
-            >
+            <Link href="/services" className={desktopLinkClass('/services')}>
+              Services
+            </Link>
+            <Link href="/ai-guide" className={desktopLinkClass('/ai-guide')}>
               AI Guide
             </Link>
-            <Link 
-              href="/ai-tools" 
-              className="text-gray-700 hover:text-gray-900 font-medium transition-colors duration-200"
-            >
+            <Link href="/ai-tools" className={desktopLinkClass('/ai-tools')}>
               AI Tools
             </Link>
-            <Link 
-              href="/blog" 
-              className="text-gray-700 hover:text-gray-900 font-medium transition-colors duration-200"
-            >
+            <Link href="/blog" className={desktopLinkClass('/blog')}>
               Blog
             </Link>
 
-            <Link 
-              href="/newsletter" 
-              className="text-gray-700 hover:text-gray-900 font-medium transition-colors duration-200"
-            >
+            <Link href="/newsletter" className={desktopLinkClass('/newsletter')}>
               Newsletter
             </Link>
-            <Link 
-              href="/contact" 
-              className="text-gray-700 hover:text-gray-900 font-medium transition-colors duration-200"
-            >
+            <Link href="/contact" className={desktopLinkClass('/contact')}>
               Contact
             </Link>
           </nav>
@@ -83,45 +85,52 @@ export default function Header() {
         {isMobileMenuOpen && (
           <div className="md:hidden border-t border-gray-200">
             <div className="px-2 pt-2 pb-3 space-y-1 bg-white">
-              <Link 
-                href="/" 
-                className="block px-3 py-2 text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-md font-medium transition-colors duration-200"
+              <Link
+                href="/"
+                className={mobileLinkClass('/')}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Home
               </Link>
-              <Link 
-                href="/ai-guide" 
-                className="block px-3 py-2 text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-md font-medium transition-colors duration-200"
+              <Link
+                href="/services"
+                className={mobileLinkClass('/services')}
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Services
+              </Link>
+              <Link
+                href="/ai-guide"
+                className={mobileLinkClass('/ai-guide')}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 AI Guide
               </Link>
-              <Link 
-                href="/ai-tools" 
-                className="block px-3 py-2 text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-md font-medium transition-colors duration-200"
+              <Link
+                href="/ai-tools"
+                className={mobileLinkClass('/ai-tools')}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 AI Tools
               </Link>
-              <Link 
-                href="/blog" 
-                className="block px-3 py-2 text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-md font-medium transition-colors duration-200"
+              <Link
+                href="/blog"
+                className={mobileLinkClass('/blog')}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Blog
               </Link>
 
-              <Link 
-                href="/newsletter" 
-                className="block px-3 py-2 text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-md font-medium transition-colors duration-200"
+              <Link
+                href="/newsletter"
+                className={mobileLinkClass('/newsletter')}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Newsletter
               </Link>
-              <Link 
-                href="/contact" 
-                className="block px-3 py-2 text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-md font-medium transition-colors duration-200"
+              <Link
+                href="/contact"
+                className={mobileLinkClass('/contact')}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Contact
