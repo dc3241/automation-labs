@@ -3,9 +3,15 @@ import ServicesHero from "@/components/ServicesHero";
 import ServicesIntakeForm from "@/components/ServicesIntakeForm";
 
 export const metadata: Metadata = {
-  title: "Automation Services | Automation Labs",
+  title: "Ecommerce Automation Services | Automation Labs",
   description:
-    "Custom-coded automation systems for ecommerce brands and marketing agencies.",
+    "Custom-coded automation systems built specifically for ecommerce brands. Order intelligence, review pipelines, SKU profitability tracking — deployed and running in 2-3 weeks. You own the code.",
+  openGraph: {
+    title: "Ecommerce Automation Services | Automation Labs",
+    description:
+      "Custom-coded automation systems built specifically for ecommerce brands. Order intelligence, review pipelines, SKU profitability tracking — deployed and running in 2-3 weeks. You own the code.",
+    type: "website",
+  },
 };
 
 export default function ServicesPage() {
@@ -14,21 +20,21 @@ export default function ServicesPage() {
       <ServicesHero />
       <section
         className="w-full py-12 sm:py-16 lg:py-20 bg-gray-50"
-        aria-label="How typical automation agencies fall short"
+        aria-label="Why shortcut-heavy automation builds fail ecommerce teams"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center space-y-6 sm:space-y-8 text-lg sm:text-xl font-bold text-gray-900 leading-relaxed px-1 sm:px-0">
             <p>
-              Most automation agencies hand you a Zapier workflow and a prayer.
-              You end up with a fragile system duct-taped together across five
-              platforms — each charging you a monthly fee — that breaks the
-              moment an API changes a field name.
+              Most ecommerce brands are running their operations across four or
+              five disconnected tools — and nobody&apos;s talking to each other.
+              Orders live in Shopify. Fulfillment lives in a 3PL portal. Ad spend
+              lives in Meta and Google. Returns live somewhere else entirely.
             </p>
             <p>
-              We build differently. Every automation we deliver is clean,
-              custom Python code deployed on its own server. No middleware
-              dependency. No surprise subscription bills. Just a system that
-              runs quietly in the background while you focus on your business.
+              We build custom Python automations that connect your actual stack,
+              surface the insights you need daily, and run on their own in the
+              background. No Make.com. No Zapier. No middleware subscription. Just
+              clean code that works.
             </p>
           </div>
         </div>
@@ -43,7 +49,7 @@ export default function ServicesPage() {
               <p className="text-sm font-semibold text-gray-500 mb-2">Step 1</p>
               <h3 className="text-lg font-semibold text-gray-900 mb-3">Apply</h3>
               <p className="text-gray-600 text-sm leading-relaxed">
-                Fill out a short intake form telling us about your business, your
+                Fill out a short intake form telling us about your ecommerce brand, your
                 ops, and where you&apos;re losing the most time.
               </p>
             </div>
@@ -124,24 +130,25 @@ export default function ServicesPage() {
                 </p>
               </div>
             </article>
-            <article className="bg-white rounded-lg shadow-sm border border-gray-200 p-8 hover:shadow-md transition-shadow duration-200">
+            <article className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 sm:p-8 hover:shadow-md transition-shadow duration-200">
               <p className="text-sm font-semibold text-gray-500 mb-2">
-                Package 03 — For marketing agencies
+                Package 03 — For ecommerce brands
               </p>
               <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-4">
-                Client Reporting Autopilot
+                SKU Profitability Engine
               </h3>
               <p className="text-gray-600 text-sm leading-relaxed mb-6">
-                Your team spends hours every month pulling numbers, building
-                slides, and chasing down data across Google Ads, Meta, and GA4.
-                We automate the entire pipeline — branded PDF reports go out to
-                each client automatically, on schedule, without anyone touching a
-                spreadsheet. Agencies with 10+ clients save 20–40 hours a month.
-                Reports go out on time. Every time.
+                Most ecommerce brands are making inventory and ad spend decisions
+                based on revenue numbers that don&apos;t tell the full story. We
+                build a system that pulls your Shopify sales data, ad spend
+                across Meta and Google, and your fulfillment costs — and
+                calculates your true margin per SKU automatically. A clean weekly
+                report lands in your inbox showing exactly which products are
+                making money and which ones are quietly bleeding it.
               </p>
               <div className="pt-4 border-t border-gray-100">
                 <p className="text-lg font-semibold text-gray-900">
-                  $3,000 – $5,000
+                  $3,000 – $4,500
                 </p>
                 <p className="text-sm text-gray-600 mt-1">
                   + optional $400/mo maintenance
@@ -193,11 +200,11 @@ export default function ServicesPage() {
             </div>
             <aside className="rounded-lg border border-gray-200 bg-gray-50 px-5 py-5 sm:px-6 sm:py-6 md:px-8 md:py-7">
               <p className="text-sm text-gray-700 leading-relaxed">
-                Built by an operator, not an agency. Automation Labs is run by
+                Built by an operator who ships systems, not slide decks. Automation Labs is run by
                 someone who has spent years inside ecommerce and tech operations
                 — building QA systems, Python automations, and multi-channel
                 workflows from scratch. We build what we&apos;d want running our
-                own business.
+                own ecommerce brand.
               </p>
             </aside>
           </div>

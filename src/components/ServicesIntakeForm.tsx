@@ -33,7 +33,7 @@ export default function ServicesIntakeForm() {
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
       next.email = 'Please enter a valid email address';
     }
-    if (!formData.businessType) next.businessType = 'Please select a business type';
+    if (!formData.businessType) next.businessType = 'Please select how you sell';
     if (!formData.packageInterest) {
       next.packageInterest = 'Please select a package';
     }
@@ -75,7 +75,7 @@ export default function ServicesIntakeForm() {
               Ready to stop doing it manually?
             </h2>
             <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto">
-              Tell us about your business and where automation would make the
+              Tell us about your ecommerce brand and where automation would make the
               biggest difference. We&apos;ll follow up within 24 hours.
             </p>
           </div>
@@ -158,7 +158,7 @@ export default function ServicesIntakeForm() {
                   htmlFor="intake-business-type"
                   className="block text-sm font-medium text-gray-700 mb-2"
                 >
-                  Business type *
+                  How do you primarily sell? *
                 </label>
                 <select
                   id="intake-business-type"
@@ -169,10 +169,12 @@ export default function ServicesIntakeForm() {
                     errors.businessType ? 'border-red-300' : 'border-gray-300'
                   }`}
                 >
-                  <option value="">Select business type</option>
-                  <option value="ecommerce">Ecommerce</option>
-                  <option value="marketing-agency">Marketing Agency</option>
-                  <option value="other">Other</option>
+                  <option value="">Select an option</option>
+                  <option value="ecommerce-dtc">DTC ecommerce (own site)</option>
+                  <option value="ecommerce-marketplace">Marketplace-led ecommerce</option>
+                  <option value="ecommerce-subscription">Subscription or replenishment</option>
+                  <option value="ecommerce-omnichannel">Omnichannel ecommerce</option>
+                  <option value="ecommerce-other">Other ecommerce model</option>
                 </select>
                 {errors.businessType && (
                   <p className="mt-1 text-sm text-red-600">
@@ -204,10 +206,12 @@ export default function ServicesIntakeForm() {
                   <option value="review-intelligence">
                     Review Intelligence Pipeline
                   </option>
-                  <option value="client-reporting">
-                    Client Reporting Autopilot
+                  <option value="sku-profitability">
+                    SKU Profitability Engine
                   </option>
-                  <option value="not-sure">Not sure yet</option>
+                  <option value="not-sure">
+                    Not sure yet — I need a recommendation
+                  </option>
                 </select>
                 {errors.packageInterest && (
                   <p className="mt-1 text-sm text-red-600">

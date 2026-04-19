@@ -1,6 +1,5 @@
 'use client';
 
-import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -77,16 +76,16 @@ export default function Home() {
       <section className="bg-white py-20">
         <div className="container mx-auto px-4 text-center">
           <div className="mb-8">
-            <p className="text-gray-600 text-lg mb-6">Transform Your Business with AI</p>
+            <p className="text-gray-600 text-lg mb-6">Transform Your Ecommerce Brand with AI</p>
             <h1 className="text-6xl font-bold text-gray-900 mb-4">
-              Automate Your Business.
+              Automate Your Operations.
             </h1>
             <h2 className="text-6xl font-bold text-gray-500 mb-8">
               Amplify Your Results.
             </h2>
           </div>
           <p className="text-xl text-gray-600 mb-12 max-w-3xl mx-auto">
-            Helping online businesses learn how to navigate and implement AI and automations.
+            Helping ecommerce brands implement AI and automation systems that run their operations.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button 
@@ -112,7 +111,7 @@ export default function Home() {
       <section id="tools-section" className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-bold text-center mb-12 text-gray-900">
-            AI Tools for Online Businesses
+            AI Tools for Ecommerce Brands
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {/* Mixpanel */}
@@ -137,7 +136,7 @@ export default function Home() {
                 </div>
               </div>
               <p className="text-gray-600 text-sm mb-4 leading-relaxed">
-                AI-powered product analytics platform that helps businesses understand user behavior and optimize conversions.
+                AI-powered product analytics platform that helps ecommerce brands understand shopper behavior and optimize conversions.
               </p>
               <div className="flex flex-wrap gap-2 mb-4">
                 <span className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-full">Analytics & Data</span>
@@ -260,7 +259,7 @@ export default function Home() {
 
             {/* Description */}
             <p className="text-lg text-white mb-8 leading-relaxed">
-              Join our weekly newsletter and receive curated automation ideas, AI business news, and expert insights every Monday. Be the first to know about emerging trends and practical applications.
+              Join our weekly newsletter and receive curated automation ideas, AI news for ecommerce operators, and expert insights every Monday. Be the first to know about emerging trends and practical applications.
             </p>
 
             {/* Email Signup Form */}
@@ -319,7 +318,7 @@ export default function Home() {
               Latest Insights
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Stay updated with the latest trends and insights in business automation and AI technology.
+              Stay updated with the latest trends and insights in ecommerce automation and AI technology.
             </p>
           </div>
 
@@ -338,10 +337,10 @@ export default function Home() {
                   <span className="text-sm text-gray-500">March 15, 2024</span>
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                  10 Ways AI is Transforming Small Businesses
+                  10 Ways AI is Transforming Ecommerce Brands
                 </h3>
                 <p className="text-gray-600 text-sm leading-relaxed">
-                  Discover how artificial intelligence is making small businesses more competitive and efficient than ever before.
+                  Discover how artificial intelligence is helping ecommerce brands run leaner ops and convert more profitably.
                 </p>
               </div>
             </article>
@@ -362,7 +361,7 @@ export default function Home() {
                   The Future of Work Automation
                 </h3>
                 <p className="text-gray-600 text-sm leading-relaxed">
-                  Explore how automation is reshaping workplace dynamics and what it means for your business.
+                  Explore how automation is reshaping ecommerce ops teams and what it means for your brand.
                 </p>
               </div>
             </article>
@@ -380,10 +379,10 @@ export default function Home() {
                   <span className="text-sm text-gray-500">March 10, 2024</span>
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                  Building a Digital-First Business Strategy
+                  Building a Digital-First Ecommerce Strategy
                 </h3>
                 <p className="text-gray-600 text-sm leading-relaxed">
-                  Learn how to transform your traditional business model into a digital powerhouse.
+                  Learn how to tighten merchandising, fulfillment, and retention systems so your ecommerce brand scales with less manual work.
                 </p>
               </div>
             </article>
@@ -446,7 +445,7 @@ export default function Home() {
                   The Rise of AI-Powered Analytics
                 </h3>
                 <p className="text-gray-600 text-sm leading-relaxed">
-                  How AI is revolutionizing business analytics and decision-making processes.
+                  How AI is revolutionizing ecommerce analytics and decision-making across merchandising, ads, and inventory.
                 </p>
               </div>
             </article>

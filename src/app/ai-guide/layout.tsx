@@ -12,11 +12,11 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "7-Day AI Automation Quick Start Guide | Automation Labs",
-  description: "Transform your business with our comprehensive 7-day AI automation guide. Learn to automate processes, increase efficiency, and scale your business with proven AI tools and strategies.",
-  keywords: "AI automation, business automation, AI tools, automation guide, productivity, business efficiency",
+  description: "Transform your ecommerce brand with our comprehensive 7-day AI automation guide. Learn to automate ops, increase efficiency, and scale with proven AI tools and strategies.",
+  keywords: "AI automation, ecommerce automation, AI tools, automation guide, productivity, ecommerce operations",
   openGraph: {
     title: "7-Day AI Automation Quick Start Guide",
-    description: "Transform your business with AI automation in just 7 days",
+    description: "Transform your ecommerce brand with AI automation in just 7 days",
     type: "website",
   },
 };

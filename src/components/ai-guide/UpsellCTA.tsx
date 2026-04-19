@@ -75,7 +75,7 @@ export default function UpsellCTA({ upsell, dayNumber, userId, businessType }: U
             Want to Skip the DIY?
           </h3>
           <p className="text-gray-600 mb-4">
-            Our experts can implement everything for you while you focus on running your business.
+            Our experts can implement everything for you while you focus on running your ecommerce brand.
           </p>
           <button
             onClick={handleView}
@@ -136,7 +136,7 @@ export default function UpsellCTA({ upsell, dayNumber, userId, businessType }: U
         {businessType && (
           <div className="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
             <h4 className="font-semibold text-blue-900 mb-2">
-              Perfect for {businessType} businesses
+              Perfect for ecommerce brands
             </h4>
             <p className="text-sm text-blue-800">
               {getBusinessTypeBenefit(businessType, upsell.title)}
@@ -207,7 +207,7 @@ export default function UpsellCTA({ upsell, dayNumber, userId, businessType }: U
 function getIncludedItems(title: string): string[] {
   const items: Record<string, string[]> = {
     'audit': [
-      'Complete business process analysis',
+      'Complete ecommerce operations analysis',
       'Time and cost audit report',
       'ROI calculation for each opportunity',
       'Prioritized automation roadmap',
@@ -290,28 +290,19 @@ function getTimeline(title: string): string {
 
 function getBusinessTypeBenefit(businessType: string, title: string): string {
   const benefits: Record<string, Record<string, string>> = {
-    'ecommerce': {
-      'communication': 'Automate order confirmations, shipping updates, and customer support to reduce manual work by 70%',
-      'social': 'Increase social media engagement and drive more traffic to your online store',
-      'operations': 'Streamline inventory management and order processing for faster fulfillment'
+    ecommerce: {
+      communication:
+        'Automate order confirmations, shipping updates, and customer support to reduce manual work by 70%',
+      social: 'Increase social engagement and drive more qualified traffic to your storefront',
+      operations: 'Streamline inventory management and order processing for faster fulfillment',
     },
-    'agency': {
-      'content': 'Scale your content creation for multiple clients without hiring additional writers',
-      'sales': 'Automate proposal generation and follow-up sequences to close more deals',
-      'operations': 'Streamline client reporting and project management workflows'
-    },
-    'saas': {
-      'communication': 'Improve user onboarding and reduce churn with automated email sequences',
-      'operations': 'Automate user analytics and feature adoption tracking',
-      'sales': 'Implement lead scoring and automated nurturing for better conversion rates'
-    },
-    'influencer': {
-      'content': 'Maintain consistent posting schedule across all platforms with minimal effort',
-      'social': 'Increase engagement and build stronger relationships with your audience',
-      'operations': 'Automate brand partnership management and content scheduling'
-    }
   };
 
-  const titleKey = Object.keys(benefits[businessType] || {}).find(k => title.toLowerCase().includes(k));
-  return titleKey ? benefits[businessType][titleKey] : `Specifically designed for ${businessType} businesses to maximize ROI and efficiency`;
+  const key = businessType.startsWith('ecommerce') ? 'ecommerce' : businessType;
+  const titleKey = Object.keys(benefits[key] || {}).find((k) =>
+    title.toLowerCase().includes(k)
+  );
+  return titleKey
+    ? benefits[key][titleKey]
+    : 'Specifically designed for ecommerce brands to maximize ROI and efficiency';
 }

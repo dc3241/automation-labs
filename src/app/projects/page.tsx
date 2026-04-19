@@ -7,7 +7,7 @@ export default function Projects() {
             Our Projects
           </h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Explore our latest automation projects and innovative solutions that are transforming industries.
+            Explore sample automation builds we ship for ecommerce brands — from data pipelines to always-on ops workflows.
           </p>
         </div>
 
@@ -16,13 +16,13 @@ export default function Projects() {
           <div className="bg-white rounded-lg shadow-md overflow-hidden">
             <div className="h-48 bg-gradient-to-br from-blue-400 to-blue-600"></div>
             <div className="p-6">
-              <h3 className="text-xl font-semibold mb-2 text-gray-900">Smart Manufacturing</h3>
+              <h3 className="text-xl font-semibold mb-2 text-gray-900">Order & Fulfillment Control Tower</h3>
               <p className="text-gray-600 mb-4">
-                Automated production line optimization with real-time monitoring and predictive maintenance.
+                A daily digest that pulls Shopify, 3PL, and returns signals into one place so ops teams catch delays before customers do.
               </p>
               <div className="flex flex-wrap gap-2">
-                <span className="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">IoT</span>
-                <span className="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full">ML</span>
+                <span className="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">Shopify</span>
+                <span className="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full">3PL</span>
                 <span className="px-3 py-1 bg-purple-100 text-purple-800 text-sm rounded-full">Automation</span>
               </div>
             </div>
@@ -32,14 +32,14 @@ export default function Projects() {
           <div className="bg-white rounded-lg shadow-md overflow-hidden">
             <div className="h-48 bg-gradient-to-br from-green-400 to-green-600"></div>
             <div className="p-6">
-              <h3 className="text-xl font-semibold mb-2 text-gray-900">Data Pipeline</h3>
+              <h3 className="text-xl font-semibold mb-2 text-gray-900">SKU Profitability Engine</h3>
               <p className="text-gray-600 mb-4">
-                End-to-end data processing automation with ETL workflows and quality validation.
+                Connects sales, ad spend, and fulfillment costs to calculate true margin per SKU and email a weekly profitability snapshot.
               </p>
               <div className="flex flex-wrap gap-2">
-                <span className="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">ETL</span>
-                <span className="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full">Data</span>
-                <span className="px-3 py-1 bg-purple-100 text-purple-800 text-sm rounded-full">Pipeline</span>
+                <span className="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">Finance</span>
+                <span className="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full">Ads</span>
+                <span className="px-3 py-1 bg-purple-100 text-purple-800 text-sm rounded-full">Inventory</span>
               </div>
             </div>
           </div>
@@ -48,13 +48,13 @@ export default function Projects() {
           <div className="bg-white rounded-lg shadow-md overflow-hidden">
             <div className="h-48 bg-gradient-to-br from-purple-400 to-purple-600"></div>
             <div className="p-6">
-              <h3 className="text-xl font-semibold mb-2 text-gray-900">Testing Framework</h3>
+              <h3 className="text-xl font-semibold mb-2 text-gray-900">Review Intelligence Pipeline</h3>
               <p className="text-gray-600 mb-4">
-                Automated testing suite with continuous integration and deployment capabilities.
+                Ingests product reviews, classifies issues, routes fixes to the right team, and drafts on-brand responses for support to send.
               </p>
               <div className="flex flex-wrap gap-2">
-                <span className="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">CI/CD</span>
-                <span className="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full">Testing</span>
+                <span className="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">NLP</span>
+                <span className="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full">CX</span>
                 <span className="px-3 py-1 bg-purple-100 text-purple-800 text-sm rounded-full">Automation</span>
               </div>
             </div>

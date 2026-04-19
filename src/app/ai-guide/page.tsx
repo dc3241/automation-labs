@@ -2,37 +2,37 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-// Simple business types for email series
+// Ecommerce brand models for email series personalization
 const BUSINESS_TYPES = [
   {
-    id: 'ecommerce',
-    name: 'E-commerce',
-    description: 'Online store or marketplace',
+    id: 'ecommerce-dtc',
+    name: 'DTC ecommerce brand',
+    description: 'Mostly selling through your own site (for example, Shopify)',
     icon: '🛒'
   },
   {
-    id: 'agency',
-    name: 'Marketing Agency',
-    description: 'Client-based marketing services',
-    icon: '🎯'
+    id: 'ecommerce-marketplace',
+    name: 'Marketplace-led brand',
+    description: 'Strong Amazon, Walmart, or similar marketplace mix',
+    icon: '📦'
   },
   {
-    id: 'saas',
-    name: 'SaaS/Software',
-    description: 'Software as a service product',
-    icon: '💻'
+    id: 'ecommerce-subscription',
+    name: 'Subscription or replenishment',
+    description: 'Membership, subscribe-and-save, or repeat replenishment products',
+    icon: '🔄'
   },
   {
-    id: 'influencer',
-    name: 'Creator/Influencer',
-    description: 'Content creator or influencer',
-    icon: '📱'
+    id: 'ecommerce-omnichannel',
+    name: 'Omnichannel ecommerce',
+    description: 'Online plus wholesale or retail partners; still product-led',
+    icon: '🏬'
   },
   {
-    id: 'other',
-    name: 'Other',
-    description: 'Different type of business',
-    icon: '🏢'
+    id: 'ecommerce-other',
+    name: 'Other ecommerce model',
+    description: 'A different ecommerce motion (tell us more in your reply emails)',
+    icon: '🏷️'
   }
 ];
 
@@ -48,7 +48,7 @@ export default function GuideLanding() {
     e.preventDefault();
     
     if (!email.trim() || !selectedBusinessType) {
-      setMessage('Please enter your email and select your business type');
+      setMessage('Please enter your email and select your ecommerce model');
       setMessageType('error');
       return;
     }
@@ -122,12 +122,12 @@ export default function GuideLanding() {
             </div>
             
             <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
-              Transform Your Business with
+              Transform Your Ecommerce Brand with
               <span className="block text-blue-600">AI Automation</span>
             </h1>
             
             <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
-              Join thousands of business owners who've automated their operations and 
+              Join thousands of ecommerce operators who&apos;ve automated their operations and 
               increased efficiency by 300%+ in just 7 days. No technical experience required.
             </p>
 
@@ -182,7 +182,7 @@ export default function GuideLanding() {
               What You'll Learn in 7 Days
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Daily emails with actionable steps and proven tools to automate your business.
+              Daily emails with actionable steps and proven tools to automate your ecommerce operations.
             </p>
           </div>
 
@@ -197,7 +197,7 @@ export default function GuideLanding() {
                   <p className="text-sm text-gray-500">Day 1</p>
                 </div>
               </div>
-              <p className="text-gray-600 text-sm mb-4">Identify automation opportunities in your business</p>
+              <p className="text-gray-600 text-sm mb-4">Identify automation opportunities across your ecommerce stack</p>
               <div className="flex items-center justify-between">
                 <span className="text-xs px-2 py-1 bg-gray-100 text-gray-700 rounded-full">
                   Beginner
@@ -282,7 +282,7 @@ export default function GuideLanding() {
               Get Your Personalized Guide
             </h2>
             <p className="text-lg text-gray-600">
-              Tell us about your business and we'll customize the guide with the most relevant tools and strategies.
+              Tell us about your ecommerce brand and we&apos;ll customize the guide with the most relevant tools and strategies.
             </p>
           </div>
 
@@ -290,7 +290,7 @@ export default function GuideLanding() {
             {/* Business Type Selection */}
             <div className="mb-8">
               <h3 className="text-xl font-semibold text-gray-900 mb-6">
-                What type of business do you run?
+                Which ecommerce model best describes you?
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {BUSINESS_TYPES.map((type) => (
@@ -376,7 +376,7 @@ export default function GuideLanding() {
               )}
 
               <p className="text-sm text-gray-500 text-center">
-                Join 25,000+ business owners. No spam, unsubscribe anytime.
+                Join 25,000+ ecommerce operators. No spam, unsubscribe anytime.
               </p>
             </form>
           </div>
@@ -423,7 +423,7 @@ export default function GuideLanding() {
                 </svg>
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-2">Templates & Checklists</h3>
-              <p className="text-gray-600">Downloadable templates to implement automation in your business</p>
+              <p className="text-gray-600">Downloadable templates to implement automation in your ecommerce operations</p>
             </div>
           </div>
         </div>
@@ -434,10 +434,10 @@ export default function GuideLanding() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Join Thousands of Successful Business Owners
+              Join Thousands of Successful Ecommerce Operators
             </h2>
             <p className="text-lg text-gray-600">
-              See how others have transformed their businesses with AI automation.
+              See how other ecommerce brands have tightened ops with AI automation.
             </p>
           </div>
 
@@ -450,7 +450,7 @@ export default function GuideLanding() {
                 </div>
                 <div>
                   <h4 className="font-semibold text-gray-900">Sarah Martinez</h4>
-                  <p className="text-sm text-gray-600">E-commerce Owner</p>
+                  <p className="text-sm text-gray-600">Ecommerce founder</p>
                 </div>
               </div>
               <p className="text-gray-700 mb-4">
@@ -473,7 +473,7 @@ export default function GuideLanding() {
                 </div>
                 <div>
                   <h4 className="font-semibold text-gray-900">James Davis</h4>
-                  <p className="text-sm text-gray-600">Marketing Agency</p>
+                  <p className="text-sm text-gray-600">Head of ecommerce ops</p>
                 </div>
               </div>
               <p className="text-gray-700 mb-4">
@@ -496,11 +496,11 @@ export default function GuideLanding() {
                 </div>
                 <div>
                   <h4 className="font-semibold text-gray-900">Alex Chen</h4>
-                  <p className="text-sm text-gray-600">SaaS Founder</p>
+                  <p className="text-sm text-gray-600">DTC brand operator</p>
                 </div>
               </div>
               <p className="text-gray-700 mb-4">
-                "Finally, a guide that actually works. I automated my entire customer onboarding process and reduced churn by 30% in the first month."
+                "Finally, a guide that actually works. I automated post-purchase updates and returns routing — support tickets dropped and repeat purchase rate climbed within the first month."
               </p>
               <div className="flex text-yellow-400">
                 {[...Array(5)].map((_, i) => (
@@ -518,10 +518,10 @@ export default function GuideLanding() {
       <section className="py-16 bg-blue-600">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold text-white mb-4">
-            Ready to Transform Your Business?
+            Ready to Transform Your Ecommerce Brand?
           </h2>
           <p className="text-xl text-blue-100 mb-8">
-            Join 25,000+ business owners who've automated their operations and increased efficiency by 300%+.
+            Join 25,000+ ecommerce operators who&apos;ve automated their operations and increased efficiency by 300%+.
           </p>
           <button 
             onClick={scrollToSignup}

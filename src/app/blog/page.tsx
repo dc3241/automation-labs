@@ -8,6 +8,7 @@ function getCategoryColor(category: string): { bg: string; text: string; accent:
     'Technology': { bg: 'from-orange-400 to-orange-600', text: 'bg-orange-100 text-orange-800', accent: 'text-orange-600 hover:text-orange-700' },
     'Tutorial': { bg: 'from-red-400 to-red-600', text: 'bg-red-100 text-red-800', accent: 'text-red-600 hover:text-red-700' },
     'Industry News': { bg: 'from-indigo-400 to-indigo-600', text: 'bg-indigo-100 text-indigo-800', accent: 'text-indigo-600 hover:text-indigo-700' },
+    'Ecommerce News': { bg: 'from-indigo-400 to-indigo-600', text: 'bg-indigo-100 text-indigo-800', accent: 'text-indigo-600 hover:text-indigo-700' },
   };
   return colors[category as keyof typeof colors] || { bg: 'from-gray-400 to-gray-600', text: 'bg-gray-100 text-gray-800', accent: 'text-gray-600 hover:text-gray-700' };
 }
@@ -88,7 +89,7 @@ export default async function Blog() {
             Automation Insights Blog
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Stay updated with the latest trends, tips, and insights in AI and business automation.
+            Stay updated with the latest trends, tips, and insights in AI and ecommerce automation.
           </p>
         </div>
 

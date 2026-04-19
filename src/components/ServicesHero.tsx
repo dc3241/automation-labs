@@ -20,8 +20,8 @@ export default function ServicesHero() {
           </h2>
         </div>
         <p className="text-lg sm:text-xl text-gray-600 mb-10 sm:mb-12 max-w-3xl mx-auto px-1 sm:px-0">
-          Custom-coded automation systems for ecommerce brands and marketing
-          agencies. No Make.com. No monthly middleware. You own it.
+          Custom-coded automation systems for ecommerce brands. No Make.com. No
+          monthly middleware. You own it.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <button

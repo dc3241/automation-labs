@@ -87,7 +87,7 @@ export default function Newsletter() {
               Stay Ahead with AI Automation
             </h1>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Join thousands of business leaders who receive our weekly insights on 
+              Join thousands of ecommerce operators who receive our weekly insights on 
               AI automation trends, tools, and strategies.
             </p>
           </div>
@@ -116,7 +116,7 @@ export default function Newsletter() {
                     <svg className="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                     </svg>
-                    <span className="text-gray-700">Industry case studies</span>
+                    <span className="text-gray-700">Ecommerce case studies</span>
                   </div>
                   <div className="flex items-center space-x-3">
                     <svg className="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
@@ -249,7 +249,7 @@ export default function Newsletter() {
                   AI-Powered Customer Service Revolution
                 </h3>
                 <p className="text-gray-600 mb-4">
-                  Case studies showing how businesses are transforming customer support 
+                  Case studies showing how ecommerce brands are transforming customer support 
                   with intelligent automation and chatbots.
                 </p>
                 <button className="text-blue-600 font-medium hover:text-blue-700 transition-colors duration-200">

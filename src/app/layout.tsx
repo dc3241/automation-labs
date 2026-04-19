@@ -13,7 +13,8 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "Automation Labs",
-  description: "Automation laboratory for testing and development",
+  description:
+    "Automation Labs builds AI and automation systems for ecommerce brands — from tooling guides to custom-coded ops workflows.",
 };
 
 export default function RootLayout({

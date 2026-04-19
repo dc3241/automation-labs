@@ -42,9 +42,9 @@ export interface BusinessType {
 
 export const BUSINESS_TYPES: BusinessType[] = [
   {
-    id: 'ecommerce',
-    name: 'E-commerce',
-    description: 'Online stores selling physical or digital products',
+    id: 'ecommerce-dtc',
+    name: 'DTC ecommerce brand',
+    description: 'Mostly selling through your own site (for example, Shopify)',
     icon: '🛒',
     painPoints: [
       'Manual order processing',
@@ -60,75 +60,75 @@ export const BUSINESS_TYPES: BusinessType[] = [
     ]
   },
   {
-    id: 'agency',
-    name: 'Marketing Agency',
-    description: 'Agencies providing marketing services to clients',
-    icon: '🎯',
+    id: 'ecommerce-marketplace',
+    name: 'Marketplace-led brand',
+    description: 'Strong Amazon, Walmart, or similar marketplace mix',
+    icon: '📦',
     painPoints: [
-      'Client reporting',
-      'Content scheduling',
-      'Lead management',
-      'Proposal generation'
+      'Listing and catalog updates',
+      'Fee and payout reconciliation',
+      'Inventory sync across channels',
+      'Returns volume spikes'
     ],
     quickWins: [
-      'Automated reports',
-      'Content calendar automation',
-      'CRM integration',
-      'Template systems'
+      'Automated listing alerts',
+      'Payout reconciliation summaries',
+      'Inventory sync checks',
+      'Returns routing rules'
     ]
   },
   {
-    id: 'saas',
-    name: 'SaaS Company',
-    description: 'Software-as-a-Service companies with recurring revenue',
-    icon: '💻',
+    id: 'ecommerce-subscription',
+    name: 'Subscription or replenishment',
+    description: 'Membership, subscribe-and-save, or repeat replenishment products',
+    icon: '🔄',
     painPoints: [
-      'User onboarding',
-      'Feature adoption',
-      'Churn prevention',
-      'Support scaling'
+      'Churn and failed payments',
+      'Fulfillment timing by cohort',
+      'Retention reporting',
+      'Support load from subscription changes'
     ],
     quickWins: [
-      'Onboarding sequences',
-      'Usage analytics',
-      'Automated support',
-      'Feature announcements'
+      'Dunning and retry notifications',
+      'Cohort fulfillment digests',
+      'Retention snapshots',
+      'Subscription change auto-responses'
     ]
   },
   {
-    id: 'influencer',
-    name: 'Content Creator',
-    description: 'Influencers and content creators building personal brands',
-    icon: '📱',
+    id: 'ecommerce-omnichannel',
+    name: 'Omnichannel ecommerce',
+    description: 'Online plus wholesale or retail partners; still product-led',
+    icon: '🏬',
     painPoints: [
-      'Content planning',
-      'Cross-platform posting',
-      'Engagement management',
-      'Brand partnerships'
+      'Split inventory visibility',
+      'Wholesale order workflows',
+      'Channel-specific pricing updates',
+      'Ops reporting across channels'
     ],
     quickWins: [
-      'Content automation',
-      'Social media scheduling',
-      'Engagement bots',
-      'Partnership tracking'
+      'Daily ops digest across channels',
+      'Low-stock alerts by channel',
+      'Partner order status notifications',
+      'Margin snapshot reminders'
     ]
   },
   {
-    id: 'other',
-    name: 'Other Business',
-    description: 'Service businesses or other types not listed above',
-    icon: '🏢',
+    id: 'ecommerce-other',
+    name: 'Other ecommerce model',
+    description: 'A different ecommerce motion (tell us more in your reply emails)',
+    icon: '🏷️',
     painPoints: [
-      'Process efficiency',
-      'Customer communication',
-      'Time management',
-      'Growth scaling'
+      'Ops complexity unique to your model',
+      'Customer communication load',
+      'Manual reporting',
+      'Tool sprawl across your stack'
     ],
     quickWins: [
       'Workflow automation',
       'Communication tools',
       'Task automation',
-      'Growth tracking'
+      'Weekly KPI digests'
     ]
   }
 ];
@@ -137,14 +137,14 @@ export const GUIDE_CONTENT: DayContent[] = [
   {
     id: 1,
     title: 'AI Opportunity Assessment',
-    subtitle: 'Audit your business and identify automation opportunities',
-    overview: 'Start your AI automation journey by conducting a comprehensive business audit. We\'ll help you map your current processes, identify time drains, and pinpoint the highest-impact automation opportunities.',
+    subtitle: 'Audit your ecommerce operations and identify automation opportunities',
+    overview: 'Start your AI automation journey by conducting a comprehensive ecommerce ops audit. We\'ll help you map your current processes, identify time drains, and pinpoint the highest-impact automation opportunities.',
     timeEstimate: '2-3 hours',
     difficulty: 'Beginner',
     sections: [
       {
-        title: 'Business Process Audit',
-        content: 'Map out your current business processes and identify bottlenecks. Use our worksheet to document time spent on repetitive tasks.',
+        title: 'Ecommerce Operations Audit',
+        content: 'Map out your current ecommerce workflows and identify bottlenecks. Use our worksheet to document time spent on repetitive tasks.',
         checklist: [
           'Document your daily workflow',
           'Identify tasks taking >30 minutes daily',
@@ -180,9 +180,9 @@ export const GUIDE_CONTENT: DayContent[] = [
       {
         name: 'Process Street',
         category: 'Process Management',
-        description: 'Create and track business processes with AI-powered workflow automation',
+        description: 'Create and track operational processes with AI-powered workflow automation',
         pricing: 'Paid $25+/mo',
-        bestFor: ['ecommerce', 'agency', 'saas'],
+        bestFor: ['ecommerce'],
         diyTime: '2-3 hours',
         doneForYou: true
       },
@@ -191,7 +191,7 @@ export const GUIDE_CONTENT: DayContent[] = [
         category: 'Workflow Automation',
         description: 'Connect 5,000+ apps with automated workflows',
         pricing: 'Freemium $20+/mo',
-        bestFor: ['ecommerce', 'agency', 'saas', 'influencer'],
+        bestFor: ['ecommerce'],
         diyTime: '1-2 hours'
       },
       {
@@ -199,13 +199,13 @@ export const GUIDE_CONTENT: DayContent[] = [
         category: 'Time Tracking',
         description: 'AI-powered time tracking and productivity insights',
         pricing: 'Freemium $10+/mo',
-        bestFor: ['agency', 'saas'],
+        bestFor: ['ecommerce'],
         diyTime: '30 minutes'
       }
     ],
     upsell: {
-      title: 'Professional Business Audit',
-      description: 'Let our experts conduct a comprehensive audit of your business processes and create a custom automation roadmap.',
+      title: 'Professional Ecommerce Ops Audit',
+      description: 'Let our experts conduct a comprehensive audit of your ecommerce operations and create a custom automation roadmap.',
       cta: 'Get Your Custom Audit',
       price: '$497'
     }
@@ -258,7 +258,7 @@ export const GUIDE_CONTENT: DayContent[] = [
         category: 'Content Creation',
         description: 'AI writing assistant for marketing copy, blog posts, and social media',
         pricing: 'Freemium $36+/mo',
-        bestFor: ['ecommerce', 'agency', 'influencer'],
+        bestFor: ['ecommerce'],
         diyTime: '1-2 hours'
       },
       {
@@ -266,7 +266,7 @@ export const GUIDE_CONTENT: DayContent[] = [
         category: 'Content Creation',
         description: 'Advanced AI writing tool for long-form content and marketing materials',
         pricing: 'Paid $49+/mo',
-        bestFor: ['agency', 'saas'],
+        bestFor: ['ecommerce'],
         diyTime: '2-3 hours'
       },
       {
@@ -274,7 +274,7 @@ export const GUIDE_CONTENT: DayContent[] = [
         category: 'Social Media',
         description: 'Social media scheduling and analytics with AI insights',
         pricing: 'Freemium $6+/mo',
-        bestFor: ['ecommerce', 'agency', 'influencer'],
+        bestFor: ['ecommerce'],
         diyTime: '1 hour'
       },
       {
@@ -282,7 +282,7 @@ export const GUIDE_CONTENT: DayContent[] = [
         category: 'Social Media',
         description: 'Visual content calendar and Instagram automation',
         pricing: 'Freemium $18+/mo',
-        bestFor: ['ecommerce', 'influencer'],
+        bestFor: ['ecommerce'],
         diyTime: '1 hour'
       }
     ],
@@ -341,7 +341,7 @@ export const GUIDE_CONTENT: DayContent[] = [
         category: 'Social Media',
         description: 'Complete social media management platform with AI analytics',
         pricing: 'Paid $49+/mo',
-        bestFor: ['ecommerce', 'agency'],
+        bestFor: ['ecommerce'],
         diyTime: '2-3 hours'
       },
       {
@@ -349,7 +349,7 @@ export const GUIDE_CONTENT: DayContent[] = [
         category: 'Social Media',
         description: 'Enterprise social media management with advanced automation',
         pricing: 'Paid $249+/mo',
-        bestFor: ['agency', 'saas'],
+        bestFor: ['ecommerce'],
         diyTime: '3-4 hours'
       },
       {
@@ -357,7 +357,7 @@ export const GUIDE_CONTENT: DayContent[] = [
         category: 'Chat Automation',
         description: 'Build chatbots and automated conversations for social media',
         pricing: 'Freemium $15+/mo',
-        bestFor: ['ecommerce', 'agency'],
+        bestFor: ['ecommerce'],
         diyTime: '2-3 hours'
       }
     ],
@@ -416,7 +416,7 @@ export const GUIDE_CONTENT: DayContent[] = [
         category: 'Email Marketing',
         description: 'Marketing automation with AI-powered personalization',
         pricing: 'Paid $29+/mo',
-        bestFor: ['ecommerce', 'agency', 'saas'],
+        bestFor: ['ecommerce'],
         diyTime: '3-4 hours'
       },
       {
@@ -424,7 +424,7 @@ export const GUIDE_CONTENT: DayContent[] = [
         category: 'Customer Support',
         description: 'AI-powered customer service and communication platform',
         pricing: 'Paid $39+/mo',
-        bestFor: ['saas', 'ecommerce'],
+        bestFor: ['ecommerce'],
         diyTime: '2-3 hours'
       },
       {
@@ -432,7 +432,7 @@ export const GUIDE_CONTENT: DayContent[] = [
         category: 'Live Chat',
         description: 'AI chatbots and live chat for ecommerce websites',
         pricing: 'Paid $18+/mo',
-        bestFor: ['ecommerce', 'agency'],
+        bestFor: ['ecommerce'],
         diyTime: '1-2 hours'
       },
       {
@@ -440,7 +440,7 @@ export const GUIDE_CONTENT: DayContent[] = [
         category: 'Review Management',
         description: 'Automated review collection and reputation management',
         pricing: 'Paid $199+/mo',
-        bestFor: ['ecommerce', 'agency'],
+        bestFor: ['ecommerce'],
         diyTime: '1 hour'
       }
     ],
@@ -499,7 +499,7 @@ export const GUIDE_CONTENT: DayContent[] = [
         category: 'CRM',
         description: 'Sales CRM with AI-powered lead scoring and automation',
         pricing: 'Paid $15+/mo',
-        bestFor: ['agency', 'saas'],
+        bestFor: ['ecommerce'],
         diyTime: '2-3 hours'
       },
       {
@@ -507,7 +507,7 @@ export const GUIDE_CONTENT: DayContent[] = [
         category: 'Marketing Hub',
         description: 'Complete inbound marketing platform with automation',
         pricing: 'Freemium $45+/mo',
-        bestFor: ['saas', 'agency'],
+        bestFor: ['ecommerce'],
         diyTime: '3-4 hours'
       },
       {
@@ -515,7 +515,7 @@ export const GUIDE_CONTENT: DayContent[] = [
         category: 'Document Automation',
         description: 'Automated proposal and contract generation',
         pricing: 'Paid $19+/mo',
-        bestFor: ['agency', 'saas'],
+        bestFor: ['ecommerce'],
         diyTime: '1-2 hours'
       }
     ],
@@ -529,7 +529,7 @@ export const GUIDE_CONTENT: DayContent[] = [
   {
     id: 6,
     title: 'Operations & Admin',
-    subtitle: 'Streamline your business operations with automation',
+    subtitle: 'Streamline your ecommerce operations with automation',
     overview: 'Automate your back-office operations including invoicing, project management, and team coordination. Reduce administrative overhead and improve efficiency.',
     timeEstimate: '2-3 hours',
     difficulty: 'Beginner',
@@ -574,7 +574,7 @@ export const GUIDE_CONTENT: DayContent[] = [
         category: 'Accounting',
         description: 'Automated invoicing and financial management',
         pricing: 'Paid $30+/mo',
-        bestFor: ['ecommerce', 'agency', 'saas'],
+        bestFor: ['ecommerce'],
         diyTime: '1-2 hours'
       },
       {
@@ -582,7 +582,7 @@ export const GUIDE_CONTENT: DayContent[] = [
         category: 'Project Management',
         description: 'Work management platform with AI-powered insights',
         pricing: 'Freemium $11+/mo',
-        bestFor: ['agency', 'saas'],
+        bestFor: ['ecommerce'],
         diyTime: '2-3 hours'
       },
       {
@@ -590,13 +590,13 @@ export const GUIDE_CONTENT: DayContent[] = [
         category: 'Team Communication',
         description: 'Team collaboration with automated workflows',
         pricing: 'Freemium $7+/mo',
-        bestFor: ['agency', 'saas'],
+        bestFor: ['ecommerce'],
         diyTime: '1 hour'
       }
     ],
     upsell: {
       title: 'Complete Operations Overhaul',
-      description: 'Our operations experts will audit your current systems and implement a complete operational automation overhaul to streamline your business.',
+      description: 'Our operations experts will audit your current systems and implement a complete operational automation overhaul to streamline your ecommerce brand.',
       cta: 'Get Operations Overhaul',
       price: '$3,497'
     }
@@ -649,7 +649,7 @@ export const GUIDE_CONTENT: DayContent[] = [
         category: 'Analytics',
         description: 'Advanced web analytics with AI insights',
         pricing: 'Free',
-        bestFor: ['ecommerce', 'agency', 'saas', 'influencer'],
+        bestFor: ['ecommerce'],
         diyTime: '1-2 hours'
       },
       {
@@ -657,7 +657,7 @@ export const GUIDE_CONTENT: DayContent[] = [
         category: 'Product Analytics',
         description: 'AI-powered product analytics and user behavior tracking',
         pricing: 'Paid $25+/mo',
-        bestFor: ['saas', 'ecommerce'],
+        bestFor: ['ecommerce'],
         diyTime: '2-3 hours'
       },
       {
@@ -665,7 +665,7 @@ export const GUIDE_CONTENT: DayContent[] = [
         category: 'User Experience',
         description: 'Heatmaps and user behavior analytics',
         pricing: 'Freemium $39+/mo',
-        bestFor: ['ecommerce', 'saas'],
+        bestFor: ['ecommerce'],
         diyTime: '1 hour'
       }
     ],
@@ -692,8 +692,9 @@ export function getToolsForDay(dayNumber: number, businessType?: string) {
   
   if (!businessType) return dayContent.tools;
   
-  return dayContent.tools.filter(tool => 
-    tool.bestFor.includes(businessType) || tool.bestFor.includes('other')
+  return dayContent.tools.filter(tool =>
+    tool.bestFor.includes(businessType) ||
+    (businessType.startsWith('ecommerce') && tool.bestFor.includes('ecommerce'))
   );
 }
 
@@ -704,8 +705,8 @@ export function getPersonalizedRecommendations(businessType: string, dayNumber: 
   return {
     tools,
     businessInfo,
-    personalizedMessage: businessInfo ? 
-      `Based on your ${businessInfo.name.toLowerCase()} business, here are the tools that will have the biggest impact:` :
-      'Here are the recommended tools for this day:'
+    personalizedMessage: businessInfo
+      ? `Based on your ${businessInfo.name.toLowerCase()}, here are the tools that will have the biggest impact:`
+      : 'Here are the recommended tools for this day:'
   };
 }

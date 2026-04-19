@@ -65,7 +65,7 @@ export default function AITools() {
       name: 'Mixpanel',
       featured: true,
       rating: 4.5,
-      description: 'AI-powered product analytics platform that helps businesses understand user behavior and optimize conversions.',
+      description: 'AI-powered product analytics platform that helps ecommerce brands understand shopper behavior and optimize conversions.',
       categories: ['Analytics & Data'],
       pricing: 'Paid $25+/mo',
       icon: '📊'
@@ -85,7 +85,7 @@ export default function AITools() {
       name: 'ConvertKit',
       featured: false,
       rating: 4.3,
-      description: 'AI-powered email automation platform designed for creators and small businesses with advanced segmentation.',
+      description: 'AI-powered email automation platform designed for ecommerce brands with advanced segmentation.',
       categories: ['Email Marketing', 'Automation'],
       pricing: 'Paid $29+/mo',
       icon: '📧'
@@ -105,7 +105,7 @@ export default function AITools() {
       name: 'Constant Contact',
       featured: false,
       rating: 4.0,
-      description: 'Email marketing platform for small businesses with AI-powered templates and automation workflows.',
+      description: 'Email marketing platform for ecommerce brands with AI-powered templates and automation workflows.',
       categories: ['Email Marketing'],
       pricing: 'Paid $20+/mo',
       icon: '📬'
@@ -332,10 +332,10 @@ export default function AITools() {
         {/* Header */}
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            AI Tools for Online Businesses
+            AI Tools for Ecommerce Brands
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Discover and compare the best AI automation tools for your business. 
+            Discover and compare the best AI automation tools for your ecommerce brand. 
             Each tool has been tested and recommended by our automation experts.
           </p>
         </div>

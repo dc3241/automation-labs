@@ -22,13 +22,13 @@ export async function POST(request: NextRequest) {
     // Parse request body
     const body: GuideSubscriptionRequest = await request.json();
     const { email, name, businessType } = body;
-    
+
     console.log('Request body:', { email, name, businessType });
 
     // Validate required fields
     if (!email || !businessType) {
       return NextResponse.json(
-        { error: 'Email and business type are required' },
+        { error: 'Email and ecommerce model are required' },
         { status: 400 }
       );
     }
@@ -42,14 +42,22 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Validate business type
-    const validBusinessTypes = ['ecommerce', 'agency', 'saas', 'influencer', 'other'];
+    // Validate ecommerce model (stored as "ecommerce" in DB for schema compatibility)
+    const validBusinessTypes = [
+      'ecommerce-dtc',
+      'ecommerce-marketplace',
+      'ecommerce-subscription',
+      'ecommerce-omnichannel',
+      'ecommerce-other',
+    ];
     if (!validBusinessTypes.includes(businessType)) {
       return NextResponse.json(
-        { error: 'Invalid business type' },
+        { error: 'Invalid ecommerce model' },
         { status: 400 }
       );
     }
+
+    const dbBusinessType = 'ecommerce';
 
     // Check if user already exists in guide_users
     const { data: existingUser, error: userCheckError } = await supabase
@@ -79,7 +87,7 @@ export async function POST(request: NextRequest) {
         .from('guide_users')
         .update({ 
           last_active: new Date().toISOString(),
-          business_type: businessType,
+          business_type: dbBusinessType,
           name: name || existingUser.name
         })
         .eq('id', guideUserId);
@@ -92,7 +100,7 @@ export async function POST(request: NextRequest) {
         .insert({
           email,
           name,
-          business_type: businessType,
+          business_type: dbBusinessType,
           current_day: 1,
           completed_days: [false, false, false, false, false, false, false],
           conversion_score: 0
