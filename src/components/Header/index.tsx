@@ -43,9 +43,6 @@ export default function Header() {
             <Link href="/" className={desktopLinkClass('/')}>
               Home
             </Link>
-            <Link href="/services" className={desktopLinkClass('/services')}>
-              Services
-            </Link>
             <Link href="/ai-guide" className={desktopLinkClass('/ai-guide')}>
               AI Guide
             </Link>
@@ -91,13 +88,6 @@ export default function Header() {
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Home
-              </Link>
-              <Link
-                href="/services"
-                className={mobileLinkClass('/services')}
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Services
               </Link>
               <Link
                 href="/ai-guide"
