@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 
 interface NewsletterSignupRequest {
   email: string;
+  department?: string;
   company?: string;
   role?: string;
 }
@@ -22,9 +23,9 @@ export async function POST(request: NextRequest) {
   try {
     // Parse request body
     const body: NewsletterSignupRequest = await request.json();
-    const { email, company, role } = body;
+    const { email, department, company, role } = body;
     
-    console.log('Request body:', { email, company, role });
+    console.log('Request body:', { email, department, company, role });
 
     // Validate required fields
     if (!email) {
@@ -82,11 +83,32 @@ export async function POST(request: NextRequest) {
       utm_campaign: 'newsletter_signup'
     };
 
-    // Add custom fields if provided
-    if (company || role) {
+    const validDepartments = [
+      'hr',
+      'sales',
+      'marketing',
+      'operations',
+      'finance',
+      'customer-service',
+      'cross-functional',
+    ];
+
+    if (department && !validDepartments.includes(department)) {
+      return NextResponse.json(
+        { error: 'Invalid department' },
+        { status: 400 }
+      );
+    }
+
+    if (department || company || role) {
       beehiivBody.custom_fields = {};
+      if (department) beehiivBody.custom_fields.primary_department = department;
       if (company) beehiivBody.custom_fields.company = company;
       if (role) beehiivBody.custom_fields.role = role;
+    }
+
+    if (department) {
+      beehiivBody.tags = ['newsletter-subscriber', `department-${department}`];
     }
 
     // Make API call to Beehiiv

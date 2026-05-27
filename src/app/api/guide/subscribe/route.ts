@@ -28,7 +28,7 @@ export async function POST(request: NextRequest) {
     // Validate required fields
     if (!email || !businessType) {
       return NextResponse.json(
-        { error: 'Email and ecommerce model are required' },
+        { error: 'Email and department are required' },
         { status: 400 }
       );
     }
@@ -42,22 +42,24 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Validate ecommerce model (stored as "ecommerce" in DB for schema compatibility)
-    const validBusinessTypes = [
-      'ecommerce-dtc',
-      'ecommerce-marketplace',
-      'ecommerce-subscription',
-      'ecommerce-omnichannel',
-      'ecommerce-other',
+    const validDepartments = [
+      'hr',
+      'sales',
+      'marketing',
+      'operations',
+      'finance',
+      'customer-service',
+      'cross-functional',
     ];
-    if (!validBusinessTypes.includes(businessType)) {
+    if (!validDepartments.includes(businessType)) {
       return NextResponse.json(
-        { error: 'Invalid ecommerce model' },
+        { error: 'Invalid department' },
         { status: 400 }
       );
     }
 
-    const dbBusinessType = 'ecommerce';
+    // Stored as "other" until DB schema supports department values
+    const dbBusinessType = 'other';
 
     // Check if user already exists in guide_users
     const { data: existingUser, error: userCheckError } = await supabase
@@ -136,14 +138,14 @@ export async function POST(request: NextRequest) {
           utm_campaign: 'guide-signup',
           custom_fields: {
             guide_signup: true,
-            business_type: businessType,
+            primary_department: businessType,
             current_day: 1,
-            signup_source: 'ai-automation-guide',
+            signup_source: 'automation-audit-guide',
             guide_user_id: guideUserId
           },
           tags: [
-            'ai-guide-subscriber',
-            `business-${businessType}`,
+            'automation-audit-subscriber',
+            `department-${businessType}`,
             'guide-day-1'
           ]
         };
@@ -200,7 +202,7 @@ export async function POST(request: NextRequest) {
           page: 'guide-landing',
           metadata: {
             formType: 'guide-signup',
-            businessType,
+            primaryDepartment: businessType,
             beehiivSubscribed: !!beehiivSubscriberId
           }
         });
@@ -213,7 +215,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(
       { 
         success: true,
-        message: 'Welcome to the AI Automation Guide! Check your email for Day 1 access.',
+        message: 'Welcome to the 7-Day Automation Audit! Check your email for Day 1.',
         userId: guideUserId,
         redirectUrl: '/ai-guide/day/1'
       },

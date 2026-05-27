@@ -91,12 +91,22 @@ export interface AITool {
   updated_at: string;
 }
 
+export type ContactInquiryType =
+  | 'workflow-automation'
+  | 'custom-build'
+  | 'brand-deal'
+  | 'other';
+
+export type ContactCompanySize = '1-10' | '11-50' | '51-200' | '200+';
+
 export interface ContactSubmission {
   id: number;
   first_name: string;
   last_name: string;
   email: string;
   company?: string;
+  company_size?: ContactCompanySize;
+  inquiry_type?: ContactInquiryType;
   message: string;
   status: 'new' | 'replied' | 'closed';
   created_at: string;

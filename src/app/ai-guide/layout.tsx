@@ -11,12 +11,15 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "7-Day AI Automation Quick Start Guide | Automation Labs",
-  description: "Transform your ecommerce brand with our comprehensive 7-day AI automation guide. Learn to automate ops, increase efficiency, and scale with proven AI tools and strategies.",
-  keywords: "AI automation, ecommerce automation, AI tools, automation guide, productivity, ecommerce operations",
+  title: "The 7-Day Automation Audit | Automation Labs",
+  description:
+    "Find the automation opportunities hiding in your team's work. A free 7-day guide covering one department per day — HR, Sales, Marketing, Operations, Finance, Customer Service.",
+  keywords:
+    "automation audit, SMB automation, HR automation, sales automation, marketing automation, operations automation, finance automation, customer service automation",
   openGraph: {
-    title: "7-Day AI Automation Quick Start Guide",
-    description: "Transform your ecommerce brand with AI automation in just 7 days",
+    title: "The 7-Day Automation Audit | Automation Labs",
+    description:
+      "Find the automation opportunities hiding in your team's work. One department per day for seven days.",
     type: "website",
   },
 };

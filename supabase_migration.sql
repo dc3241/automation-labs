@@ -85,6 +85,8 @@ CREATE TABLE IF NOT EXISTS contact_submissions (
     last_name VARCHAR(100) NOT NULL,
     email VARCHAR(255) NOT NULL,
     company VARCHAR(255),
+    company_size VARCHAR(20),
+    inquiry_type VARCHAR(50),
     message TEXT NOT NULL,
     status VARCHAR(50) DEFAULT 'new',
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),

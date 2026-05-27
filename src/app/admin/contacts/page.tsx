@@ -53,6 +53,21 @@ export default function AdminContacts() {
     return new Date(dateString).toLocaleString();
   };
 
+  const getInquiryLabel = (type?: string) => {
+    switch (type) {
+      case 'workflow-automation':
+        return 'Workflow automation';
+      case 'custom-build':
+        return 'Custom build';
+      case 'brand-deal':
+        return 'Brand deal / sponsorship';
+      case 'other':
+        return 'Something else';
+      default:
+        return type || '—';
+    }
+  };
+
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'new':
@@ -142,10 +157,22 @@ export default function AdminContacts() {
                           <p className="text-gray-900">{submission.company}</p>
                         </div>
                       )}
+                      {submission.inquiry_type && (
+                        <div>
+                          <p className="text-sm text-gray-600">Looking for</p>
+                          <p className="text-gray-900 font-medium">{getInquiryLabel(submission.inquiry_type)}</p>
+                        </div>
+                      )}
+                      {submission.company_size && (
+                        <div>
+                          <p className="text-sm text-gray-600">Company size</p>
+                          <p className="text-gray-900">{submission.company_size}</p>
+                        </div>
+                      )}
                     </div>
                     
                     <div className="mb-4">
-                      <p className="text-sm text-gray-600 mb-2">Message</p>
+                      <p className="text-sm text-gray-600 mb-2">Problem to solve</p>
                       <div className="bg-gray-50 rounded-lg p-4">
                         <p className="text-gray-900 whitespace-pre-wrap">{submission.message}</p>
                       </div>
