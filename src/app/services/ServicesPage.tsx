@@ -102,9 +102,7 @@ export default function ServicesPage() {
               <p className="text-sm text-gray-600 mb-6 flex-1">
                 Best for: teams who want to figure out their own automation stack.
               </p>
-              <Link href="/ai-tools" className="text-gray-900 font-semibold hover:text-gray-700 inline-flex items-center">
-                Browse the directory →
-              </Link>
+              <p className="text-sm text-gray-500">Tools directory coming soon.</p>
             </div>
 
             <div className="bg-white rounded-lg border-2 border-blue-500 shadow-md p-8 flex flex-col relative">

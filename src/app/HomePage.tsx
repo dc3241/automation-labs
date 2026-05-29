@@ -92,10 +92,10 @@ export default function HomePage() {
               </svg>
             </button>
             <Link 
-              href="/ai-tools"
+              href="/services"
               className="border border-gray-300 text-gray-700 px-8 py-3 rounded-lg font-semibold hover:bg-gray-50 transition-colors duration-200 flex items-center justify-center"
             >
-              See the Tools Directory
+              View Services
             </Link>
           </div>
         </div>
@@ -111,14 +111,15 @@ export default function HomePage() {
             <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8">
               <h3 className="text-xl font-semibold text-gray-900 mb-4">Smart Tools</h3>
               <p className="text-gray-600 mb-6 leading-relaxed">
-                Hand-picked AI and automation tools, organized by department. Read the
-                reviews, pick what fits, get back to work.
+                Hand-picked AI and automation tools, organized by department — delivered
+                to your inbox, not buried in a spreadsheet. One department per week. One
+                tool worth trying, plus five more your team should know about.
               </p>
               <Link
-                href="/ai-tools"
+                href="/newsletter"
                 className="text-gray-900 font-semibold hover:text-gray-700 inline-flex items-center"
               >
-                Browse the Tools Directory
+                Get the weekly tool picks
                 <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>

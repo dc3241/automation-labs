@@ -11,6 +11,10 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  robots: {
+    index: false,
+    follow: false,
+  },
   title: "The 7-Day Automation Audit | Automation Labs",
   description:
     "Find the automation opportunities hiding in your team's work. A free 7-day guide covering one department per day — HR, Sales, Marketing, Operations, Finance, Customer Service.",
