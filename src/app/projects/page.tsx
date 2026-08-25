@@ -61,13 +61,13 @@ export default function ProjectsPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-2">
             <Link
               href="/services"
-              className="bg-black text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-800 transition-colors duration-200 inline-flex items-center justify-center"
+              className="btn-press bg-black text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-800 inline-flex items-center justify-center"
             >
               View services &amp; pricing
             </Link>
             <Link
               href="/contact"
-              className="border border-gray-300 text-gray-700 px-8 py-3 rounded-lg font-semibold hover:bg-white transition-colors duration-200 inline-flex items-center justify-center"
+              className="btn-press border border-gray-300 text-gray-700 px-8 py-3 rounded-lg font-semibold hover:bg-white inline-flex items-center justify-center"
             >
               Get in touch
             </Link>

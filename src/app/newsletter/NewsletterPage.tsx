@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { Reveal } from '@/components/Reveal';
 
 const DEPARTMENTS = [
   { id: 'hr', label: 'HR' },
@@ -112,7 +113,7 @@ export default function NewsletterPage() {
                   id="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="field-focus w-full px-4 py-3 border border-gray-300 rounded-lg"
                   placeholder="your@email.com"
                   required
                   disabled={isLoading}
@@ -126,7 +127,7 @@ export default function NewsletterPage() {
                   id="department"
                   value={department}
                   onChange={(e) => setDepartment(e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-gray-900"
+                  className="field-focus w-full px-4 py-3 border border-gray-300 rounded-lg bg-white text-gray-900"
                   disabled={isLoading}
                 >
                   <option value="">Select a department</option>
@@ -140,7 +141,7 @@ export default function NewsletterPage() {
               <button
                 type="submit"
                 disabled={isLoading || !department}
-                className="w-full bg-black text-white py-3 px-6 rounded-lg font-semibold hover:bg-gray-800 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
+                className="btn-press w-full bg-black text-white py-3 px-6 rounded-lg font-semibold hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
               >
                 {isLoading ? (
                   <>
@@ -163,7 +164,7 @@ export default function NewsletterPage() {
 
             {message && (
               <div
-                className={`mt-5 p-4 rounded-lg ${
+                className={`fade-in mt-5 p-4 rounded-lg ${
                   messageType === 'success'
                     ? 'bg-green-100 text-green-800 border border-green-200'
                     : 'bg-red-100 text-red-800 border border-red-200'
@@ -184,8 +185,8 @@ export default function NewsletterPage() {
               What&apos;s in every issue.
             </h2>
             <ul className="space-y-4 max-w-xl mx-auto">
-              {ISSUE_BENEFITS.map((benefit) => (
-                <li key={benefit} className="flex items-start gap-3">
+              {ISSUE_BENEFITS.map((benefit, i) => (
+                <Reveal key={benefit} index={i} as="li" className="flex items-start gap-3">
                   <svg
                     className="w-5 h-5 text-green-600 shrink-0 mt-0.5"
                     fill="currentColor"
@@ -199,7 +200,7 @@ export default function NewsletterPage() {
                     />
                   </svg>
                   <span className="text-gray-700">{benefit}</span>
-                </li>
+                </Reveal>
               ))}
             </ul>
           </div>

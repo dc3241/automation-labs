@@ -1,5 +1,7 @@
 import Link from "next/link";
 import type { Build } from "@/data/builds";
+import { Reveal } from "@/components/Reveal";
+import { SignalFlowDiagram } from "@/components/SignalFlowDiagram";
 
 type BuildVisualSlotProps = {
   build: Build;
@@ -23,16 +25,13 @@ export function BuildVisualSlot({ build, priority = false }: BuildVisualSlotProp
   }
 
   return (
-    <figure
-      className="flex min-h-[220px] sm:min-h-[280px] items-center justify-center rounded-lg border border-dashed border-gray-300 bg-gradient-to-br from-gray-100 via-gray-50 to-gray-200 px-6 py-10"
-      aria-label={`${visual.alt} — placeholder`}
-    >
-      <div className="max-w-md text-center space-y-2">
-        <p className="text-sm font-semibold text-gray-700">Visual coming soon</p>
-        <p className="text-xs sm:text-sm text-gray-500 leading-relaxed">
+    <figure aria-label={`${visual.alt} — placeholder`}>
+      <SignalFlowDiagram />
+      {visual.placeholderHint ? (
+        <p className="mt-2 text-xs sm:text-sm text-gray-500 text-center leading-relaxed">
           {visual.placeholderHint}
         </p>
-      </div>
+      ) : null}
     </figure>
   );
 }
@@ -47,7 +46,8 @@ export function BuildCaseStudy({
   priorityVisual = false,
 }: BuildCaseStudyProps) {
   return (
-    <article
+    <Reveal
+      as="article"
       id={build.slug}
       className="scroll-mt-24 border-b border-gray-200 last:border-b-0 py-12 sm:py-16 first:pt-0 last:pb-0"
     >
@@ -113,24 +113,28 @@ export function BuildCaseStudy({
             Want something like this for your team?{" "}
             <Link
               href={build.cta.href}
-              className="font-semibold text-gray-900 underline underline-offset-2 hover:text-gray-700"
+              className="font-semibold text-gray-900 underline underline-offset-2 hover:text-gray-700 arrow-link"
             >
-              {build.cta.label} →
+              {build.cta.label}
+              <span aria-hidden className="arrow ml-0.5">
+                →
+              </span>
             </Link>
           </p>
         </div>
       </div>
-    </article>
+    </Reveal>
   );
 }
 
 type BuildTeaserCardProps = {
   build: Build;
+  index?: number;
 };
 
-export function BuildTeaserCard({ build }: BuildTeaserCardProps) {
+export function BuildTeaserCard({ build, index }: BuildTeaserCardProps) {
   return (
-    <article className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 sm:p-8 hover:shadow-md transition-shadow duration-200 flex flex-col">
+    <Reveal index={index} as="article" className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 sm:p-8 hover:shadow-md transition-shadow duration-200 flex flex-col h-full">
       <p className="text-sm font-semibold text-gray-500 mb-2">
         {build.department} · {build.engagementType}
       </p>
@@ -142,13 +146,13 @@ export function BuildTeaserCard({ build }: BuildTeaserCardProps) {
       </p>
       <Link
         href={`/projects#${build.slug}`}
-        className="text-sm font-semibold text-gray-900 hover:text-gray-700 inline-flex items-center"
+        className="text-sm font-semibold text-gray-900 hover:text-gray-700 inline-flex items-center arrow-link"
       >
         Read the case study
-        <span aria-hidden className="ml-1">
+        <span aria-hidden className="arrow ml-1">
           →
         </span>
       </Link>
-    </article>
+    </Reveal>
   );
 }

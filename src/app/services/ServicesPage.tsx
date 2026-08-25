@@ -1,6 +1,122 @@
 import Link from 'next/link';
 import { BuildTeaserCard } from '@/components/builds/BuildCaseStudy';
+import { ProcessRail } from '@/components/ProcessRail';
+import { Reveal } from '@/components/Reveal';
 import { builds } from '@/data/builds';
+
+const WORKFLOW_STEPS = [
+  {
+    title: 'Discovery call (30 min, free)',
+    description:
+      'You describe the workflow, we ask the questions that surface the gotchas.',
+  },
+  {
+    title: 'Scoped proposal (within 2 business days)',
+    description: 'Fixed price, fixed timeline, clear deliverable.',
+  },
+  {
+    title: 'Build (typically 3-7 business days)',
+    description:
+      'We build the workflow, test it on real data, and document it.',
+  },
+  {
+    title: 'Handoff and 30-day support',
+    description:
+      'Walkthrough call, written docs, and a month of free fixes if anything breaks.',
+  },
+  {
+    title: 'Ongoing retainer (optional)',
+    description:
+      'After handoff, you can add a monthly retainer to keep things running and evolving. No obligation — cancel anytime.',
+  },
+];
+
+const BUILD_STEPS = [
+  {
+    title: 'Discovery call (45 min, free)',
+    description:
+      'We walk through the problem, the current workflow, and what success looks like.',
+  },
+  {
+    title: 'Proposal and design brief (within 5 business days)',
+    description:
+      'Scope, timeline, milestone-based pricing, and a design direction.',
+  },
+  {
+    title: 'Build (typically 2-6 weeks)',
+    description:
+      'Iterative milestones with check-ins. You see progress weekly, not at the end.',
+  },
+  {
+    title: 'Launch and 60-day support',
+    description:
+      'Deployment, team training, and two months of free fixes and tweaks.',
+  },
+  {
+    title: 'Ongoing retainer (optional)',
+    description:
+      'After handoff, you can add a monthly retainer to keep things running and evolving. No obligation — cancel anytime.',
+  },
+];
+
+const TIER_CARDS = [
+  {
+    key: 'tools',
+    emoji: '🔍',
+    title: 'Smart Tools',
+    subtitle: 'Free, hand-picked recommendations.',
+    price: 'Free',
+    bestFor: 'Best for: teams who want to figure out their own automation stack.',
+    footer: <p className="text-sm text-gray-500">Tools directory coming soon.</p>,
+    className: 'bg-white rounded-lg border border-gray-200 p-8 flex flex-col',
+    dark: false,
+  },
+  {
+    key: 'workflow',
+    emoji: '⚙️',
+    title: 'Workflow Automation',
+    subtitle: 'We wire your tools together to solve a specific problem.',
+    price: 'Starting at $1,500 per project',
+    bestFor:
+      "Best for: teams who know what they want automated but don't have time to build it.",
+    footer: (
+      <a
+        href="#workflow-details"
+        className="text-blue-600 font-semibold hover:text-blue-700 inline-flex items-center arrow-link"
+      >
+        See how it works
+        <span aria-hidden className="arrow ml-1">
+          →
+        </span>
+      </a>
+    ),
+    className:
+      'bg-white rounded-lg border-2 border-blue-500 shadow-md p-8 flex flex-col relative',
+    dark: false,
+  },
+  {
+    key: 'builds',
+    emoji: '🏗️',
+    title: 'Custom Builds',
+    subtitle: 'Internal tools and dashboards built for how your team works.',
+    price: 'Custom quote',
+    bestFor: 'Best for: teams hitting the limits of off-the-shelf software.',
+    footer: (
+      <a
+        href="#build-details"
+        className="text-white font-semibold hover:text-gray-200 inline-flex items-center arrow-link"
+      >
+        See how it works
+        <span aria-hidden className="arrow ml-1">
+          →
+        </span>
+      </a>
+    ),
+    className:
+      'bg-gray-900 text-white rounded-lg border border-gray-800 p-8 flex flex-col',
+    dark: true,
+  },
+] as const;
 
 function WorkflowVisualPlaceholder() {
   return (
@@ -71,13 +187,13 @@ export default function ServicesPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/contact?type=workflow"
-              className="bg-black text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-800 transition-colors duration-200 text-center"
+              className="btn-press bg-black text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-800 text-center"
             >
               Start a workflow project
             </Link>
             <Link
               href="/contact?type=build"
-              className="border border-gray-300 text-gray-700 px-8 py-3 rounded-lg font-semibold hover:bg-gray-50 transition-colors duration-200 text-center"
+              className="btn-press border border-gray-300 text-gray-700 px-8 py-3 rounded-lg font-semibold hover:bg-gray-50 text-center"
             >
               Start a custom build
             </Link>
@@ -96,42 +212,38 @@ export default function ServicesPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-            <div className="bg-white rounded-lg border border-gray-200 p-8 flex flex-col">
-              <span className="text-3xl mb-4" aria-hidden>🔍</span>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">Smart Tools</h3>
-              <p className="text-gray-600 mb-4">Free, hand-picked recommendations.</p>
-              <p className="text-lg font-semibold text-gray-900 mb-4">Free</p>
-              <p className="text-sm text-gray-600 mb-6 flex-1">
-                Best for: teams who want to figure out their own automation stack.
-              </p>
-              <p className="text-sm text-gray-500">Tools directory coming soon.</p>
-            </div>
-
-            <div className="bg-white rounded-lg border-2 border-blue-500 shadow-md p-8 flex flex-col relative">
-              <span className="text-3xl mb-4" aria-hidden>⚙️</span>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">Workflow Automation</h3>
-              <p className="text-gray-600 mb-4">We wire your tools together to solve a specific problem.</p>
-              <p className="text-lg font-semibold text-gray-900 mb-4">Starting at $1,500 per project</p>
-              <p className="text-sm text-gray-600 mb-6 flex-1">
-                Best for: teams who know what they want automated but don&apos;t have time to build it.
-              </p>
-              <a href="#workflow-details" className="text-blue-600 font-semibold hover:text-blue-700 inline-flex items-center">
-                See how it works →
-              </a>
-            </div>
-
-            <div className="bg-gray-900 text-white rounded-lg border border-gray-800 p-8 flex flex-col">
-              <span className="text-3xl mb-4" aria-hidden>🏗️</span>
-              <h3 className="text-xl font-semibold mb-2">Custom Builds</h3>
-              <p className="text-gray-300 mb-4">Internal tools and dashboards built for how your team works.</p>
-              <p className="text-lg font-semibold mb-4">Custom quote</p>
-              <p className="text-sm text-gray-300 mb-6 flex-1">
-                Best for: teams hitting the limits of off-the-shelf software.
-              </p>
-              <a href="#build-details" className="text-white font-semibold hover:text-gray-200 inline-flex items-center">
-                See how it works →
-              </a>
-            </div>
+            {TIER_CARDS.map((card, i) => (
+              <Reveal key={card.key} index={i} className={`${card.className} h-full`}>
+                <span className="text-3xl mb-4" aria-hidden>
+                  {card.emoji}
+                </span>
+                <h3
+                  className={`text-xl font-semibold mb-2 ${
+                    card.dark ? '' : 'text-gray-900'
+                  }`}
+                >
+                  {card.title}
+                </h3>
+                <p className={`mb-4 ${card.dark ? 'text-gray-300' : 'text-gray-600'}`}>
+                  {card.subtitle}
+                </p>
+                <p
+                  className={`text-lg font-semibold mb-4 ${
+                    card.dark ? '' : 'text-gray-900'
+                  }`}
+                >
+                  {card.price}
+                </p>
+                <p
+                  className={`text-sm mb-6 flex-1 ${
+                    card.dark ? 'text-gray-300' : 'text-gray-600'
+                  }`}
+                >
+                  {card.bestFor}
+                </p>
+                {card.footer}
+              </Reveal>
+            ))}
           </div>
         </div>
       </section>
@@ -164,16 +276,10 @@ export default function ServicesPage() {
               </ul>
 
               <h3 className="text-lg font-semibold text-gray-900 mb-4">How it works:</h3>
-              <ol className="space-y-4 text-gray-600 mb-8 list-decimal pl-5 leading-relaxed">
-                <li><strong className="text-gray-900">Discovery call (30 min, free)</strong> — You describe the workflow, we ask the questions that surface the gotchas.</li>
-                <li><strong className="text-gray-900">Scoped proposal (within 2 business days)</strong> — Fixed price, fixed timeline, clear deliverable.</li>
-                <li><strong className="text-gray-900">Build (typically 3-7 business days)</strong> — We build the workflow, test it on real data, and document it.</li>
-                <li><strong className="text-gray-900">Handoff and 30-day support</strong> — Walkthrough call, written docs, and a month of free fixes if anything breaks.</li>
-                <li><strong className="text-gray-900">Ongoing retainer (optional)</strong> — After handoff, you can add a monthly retainer to keep things running and evolving. No obligation — cancel anytime.</li>
-              </ol>
+              <ProcessRail steps={WORKFLOW_STEPS} className="mb-8" />
 
-              <div className="mb-8">
-                <div className="bg-gray-50 border border-gray-200 rounded-lg p-6">
+              <div className="mb-8 space-y-0">
+                <Reveal index={0} className="bg-gray-50 border border-gray-200 rounded-lg p-6">
                   <p className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-2">
                     Initial build
                   </p>
@@ -182,7 +288,7 @@ export default function ServicesPage() {
                     Most projects land between $1,500 and $4,500 depending on complexity
                     and tool count. We give you a fixed price before any work begins.
                   </p>
-                </div>
+                </Reveal>
                 <div className="flex items-center gap-3 px-2 py-2" aria-hidden>
                   <div className="w-px h-4 bg-gray-300 ml-4" />
                   <span className="text-sm text-gray-400">→</span>
@@ -190,7 +296,7 @@ export default function ServicesPage() {
                     Then optional
                   </span>
                 </div>
-                <div className="bg-gray-50 border border-gray-200 border-l-4 border-l-blue-500 rounded-lg p-6">
+                <Reveal index={1} className="bg-gray-50 border border-gray-200 border-l-4 border-l-blue-500 rounded-lg p-6">
                   <p className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-2">
                     Monthly retainer
                   </p>
@@ -202,12 +308,12 @@ export default function ServicesPage() {
                     <li>Minor adjustments as your process changes</li>
                     <li>Small additions within the retainer scope</li>
                   </ul>
-                </div>
+                </Reveal>
               </div>
 
               <Link
                 href="/contact?type=workflow"
-                className="inline-block bg-black text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-800 transition-colors duration-200"
+                className="btn-press inline-block bg-black text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-800"
               >
                 Start a workflow project
               </Link>
@@ -261,16 +367,10 @@ export default function ServicesPage() {
               </ul>
 
               <h3 className="text-lg font-semibold text-gray-900 mb-4">How it works:</h3>
-              <ol className="space-y-4 text-gray-600 mb-8 list-decimal pl-5 leading-relaxed">
-                <li><strong className="text-gray-900">Discovery call (45 min, free)</strong> — We walk through the problem, the current workflow, and what success looks like.</li>
-                <li><strong className="text-gray-900">Proposal and design brief (within 5 business days)</strong> — Scope, timeline, milestone-based pricing, and a design direction.</li>
-                <li><strong className="text-gray-900">Build (typically 2-6 weeks)</strong> — Iterative milestones with check-ins. You see progress weekly, not at the end.</li>
-                <li><strong className="text-gray-900">Launch and 60-day support</strong> — Deployment, team training, and two months of free fixes and tweaks.</li>
-                <li><strong className="text-gray-900">Ongoing retainer (optional)</strong> — After handoff, you can add a monthly retainer to keep things running and evolving. No obligation — cancel anytime.</li>
-              </ol>
+              <ProcessRail steps={BUILD_STEPS} className="mb-8" />
 
-              <div className="mb-8">
-                <div className="bg-white border border-gray-200 rounded-lg p-6">
+              <div className="mb-8 space-y-0">
+                <Reveal index={0} className="bg-white border border-gray-200 rounded-lg p-6">
                   <p className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-2">
                     Initial build
                   </p>
@@ -280,7 +380,7 @@ export default function ServicesPage() {
                     $5,000 and $25,000 depending on complexity, integrations, and team size.
                     You get a clear quote before any work begins.
                   </p>
-                </div>
+                </Reveal>
                 <div className="flex items-center gap-3 px-2 py-2" aria-hidden>
                   <div className="w-px h-4 bg-gray-300 ml-4" />
                   <span className="text-sm text-gray-400">→</span>
@@ -288,7 +388,7 @@ export default function ServicesPage() {
                     Then optional
                   </span>
                 </div>
-                <div className="bg-white border border-gray-200 border-l-4 border-l-blue-500 rounded-lg p-6">
+                <Reveal index={1} className="bg-white border border-gray-200 border-l-4 border-l-blue-500 rounded-lg p-6">
                   <p className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-2">
                     Monthly retainer
                   </p>
@@ -300,12 +400,12 @@ export default function ServicesPage() {
                     <li>Up to 4 hours/month for new features or adjustments</li>
                     <li>Priority turnaround on support requests</li>
                   </ul>
-                </div>
+                </Reveal>
               </div>
 
               <Link
                 href="/contact?type=build"
-                className="inline-block bg-black text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-800 transition-colors duration-200"
+                className="btn-press inline-block bg-black text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-800"
               >
                 Start a custom build
               </Link>
@@ -356,18 +456,18 @@ export default function ServicesPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-            {builds.slice(0, 2).map((build) => (
-              <BuildTeaserCard key={build.id} build={build} />
+            {builds.slice(0, 2).map((build, i) => (
+              <BuildTeaserCard key={build.id} build={build} index={i} />
             ))}
           </div>
 
           <div className="text-center mt-8 sm:mt-10">
             <Link
               href="/projects"
-              className="text-base font-semibold text-gray-900 hover:text-gray-700 inline-flex items-center"
+              className="text-base font-semibold text-gray-900 hover:text-gray-700 inline-flex items-center arrow-link"
             >
               See all builds
-              <span aria-hidden className="ml-1">
+              <span aria-hidden className="arrow ml-1">
                 →
               </span>
             </Link>
@@ -405,10 +505,10 @@ export default function ServicesPage() {
               },
             ].map((item) => (
               <details key={item.q} className="group py-5">
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold text-gray-900 hover:text-gray-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold text-gray-900 hover:text-gray-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-400 rounded">
                   <span>{item.q}</span>
                   <svg
-                    className="w-5 h-5 shrink-0 text-gray-500 transition-transform group-open:rotate-180"
+                    className="faq-chevron w-5 h-5 shrink-0 text-gray-500"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -417,7 +517,11 @@ export default function ServicesPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>
                 </summary>
-                <p className="mt-4 text-gray-600 leading-relaxed pr-8">{item.a}</p>
+                <div className="faq-answer">
+                  <div className="faq-answer__inner">
+                    <p className="pt-4 text-gray-600 leading-relaxed pr-8">{item.a}</p>
+                  </div>
+                </div>
               </details>
             ))}
           </div>
@@ -435,13 +539,13 @@ export default function ServicesPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/contact"
-              className="bg-white text-gray-900 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors duration-200 text-center"
+              className="btn-press bg-white text-gray-900 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 text-center"
             >
               Get in touch
             </Link>
             <Link
               href="/newsletter"
-              className="border border-gray-500 text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-900 transition-colors duration-200 text-center"
+              className="btn-press border border-gray-500 text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-900 text-center"
             >
               Read the newsletter first
             </Link>

@@ -3,7 +3,29 @@
 import Link from "next/link";
 import { useState } from "react";
 import { BuildTeaserCard } from "@/components/builds/BuildCaseStudy";
+import { Reveal } from "@/components/Reveal";
 import { builds } from "@/data/builds";
+
+const HELP_CARDS = [
+  {
+    title: "Smart Tools",
+    body: "Hand-picked AI and automation tools, organized by department — delivered to your inbox, not buried in a spreadsheet. One department per week. One tool worth trying, plus five more your team should know about.",
+    href: "/newsletter",
+    cta: "Get the weekly tool picks",
+  },
+  {
+    title: "Smart Workflows",
+    body: "Step-by-step automation walkthroughs you can build yourself. Or hire us to wire it up for you.",
+    href: "/blog",
+    cta: "See the Workflows",
+  },
+  {
+    title: "Custom Builds",
+    body: "Internal tools and dashboards built specifically for how your team works. For when off-the-shelf isn't enough.",
+    href: "/projects",
+    cta: "See the Builds",
+  },
+] as const;
 
 export default function HomePage() {
   const [email, setEmail] = useState('');
@@ -86,7 +108,7 @@ export default function HomePage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button 
               onClick={scrollToNewsletter}
-              className="bg-black text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-800 transition-colors duration-200 flex items-center justify-center cursor-pointer"
+              className="btn-press bg-black text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-800 flex items-center justify-center cursor-pointer"
             >
               Join the Newsletter
               <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -95,7 +117,7 @@ export default function HomePage() {
             </button>
             <Link 
               href="/services"
-              className="border border-gray-300 text-gray-700 px-8 py-3 rounded-lg font-semibold hover:bg-gray-50 transition-colors duration-200 flex items-center justify-center"
+              className="btn-press border border-gray-300 text-gray-700 px-8 py-3 rounded-lg font-semibold hover:bg-gray-50 flex items-center justify-center"
             >
               View Services
             </Link>
@@ -110,57 +132,27 @@ export default function HomePage() {
             Three ways we help you automate.
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8">
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">Smart Tools</h3>
-              <p className="text-gray-600 mb-6 leading-relaxed">
-                Hand-picked AI and automation tools, organized by department — delivered
-                to your inbox, not buried in a spreadsheet. One department per week. One
-                tool worth trying, plus five more your team should know about.
-              </p>
-              <Link
-                href="/newsletter"
-                className="text-gray-900 font-semibold hover:text-gray-700 inline-flex items-center"
+            {HELP_CARDS.map((card, i) => (
+              <Reveal
+                key={card.title}
+                index={i}
+                className="bg-white rounded-lg shadow-sm border border-gray-200 p-8 h-full flex flex-col"
               >
-                Get the weekly tool picks
-                <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </Link>
-            </div>
-
-            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8">
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">Smart Workflows</h3>
-              <p className="text-gray-600 mb-6 leading-relaxed">
-                Step-by-step automation walkthroughs you can build yourself. Or hire us
-                to wire it up for you.
-              </p>
-              <Link
-                href="/blog"
-                className="text-gray-900 font-semibold hover:text-gray-700 inline-flex items-center"
-              >
-                See the Workflows
-                <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </Link>
-            </div>
-
-            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8">
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">Custom Builds</h3>
-              <p className="text-gray-600 mb-6 leading-relaxed">
-                Internal tools and dashboards built specifically for how your team works.
-                For when off-the-shelf isn&apos;t enough.
-              </p>
-              <Link
-                href="/projects"
-                className="text-gray-900 font-semibold hover:text-gray-700 inline-flex items-center"
-              >
-                See the Builds
-                <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </Link>
-            </div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-4">{card.title}</h3>
+                <p className="text-gray-600 mb-6 leading-relaxed flex-1">
+                  {card.body}
+                </p>
+                <Link
+                  href={card.href}
+                  className="text-gray-900 font-semibold hover:text-gray-700 inline-flex items-center arrow-link"
+                >
+                  {card.cta}
+                  <svg className="arrow ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </Link>
+              </Reveal>
+            ))}
           </div>
         </div>
       </section>
@@ -181,18 +173,18 @@ export default function HomePage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-            {builds.slice(0, 2).map((build) => (
-              <BuildTeaserCard key={build.id} build={build} />
+            {builds.slice(0, 2).map((build, i) => (
+              <BuildTeaserCard key={build.id} build={build} index={i} />
             ))}
           </div>
 
           <div className="text-center mt-10">
             <Link
               href="/projects"
-              className="text-base font-semibold text-gray-900 hover:text-gray-700 inline-flex items-center"
+              className="text-base font-semibold text-gray-900 hover:text-gray-700 inline-flex items-center arrow-link"
             >
               See all projects
-              <span aria-hidden className="ml-1">
+              <span aria-hidden className="arrow ml-1">
                 →
               </span>
             </Link>
@@ -232,13 +224,13 @@ export default function HomePage() {
                 placeholder="Enter your email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full sm:w-80 px-4 py-3 border-0 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none text-gray-900 bg-white placeholder-gray-500"
+                className="field-focus w-full sm:w-80 px-4 py-3 border border-transparent rounded-lg text-gray-900 bg-white placeholder-gray-500"
                 disabled={isLoading}
               />
               <button 
                 type="submit"
                 disabled={isLoading}
-                className="w-full sm:w-auto bg-white text-gray-800 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors duration-200 whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
+                className="btn-press w-full sm:w-auto bg-white text-gray-800 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
               >
                 {isLoading ? (
                   <>
@@ -260,7 +252,7 @@ export default function HomePage() {
             </form>
 
             {message && (
-              <div className={`mb-6 p-4 rounded-lg ${
+              <div className={`fade-in mb-6 p-4 rounded-lg ${
                 messageType === 'success' 
                   ? 'bg-green-100 text-green-800 border border-green-200' 
                   : 'bg-red-100 text-red-800 border border-red-200'

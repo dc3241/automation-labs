@@ -28,3 +28,431 @@ body {
 * {
   font-family: inherit;
 }
+
+/* ─── Scroll reveal ─── */
+.reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── Header nav underline (grows from center) ─── */
+.nav-link {
+  position: relative;
+  display: inline-block;
+}
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 1.5px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 180ms ease;
+}
+.nav-link:hover::after,
+.nav-link[aria-current="page"]::after {
+  transform: scaleX(1);
+}
+
+/* ─── Mobile menu open/close ─── */
+.mobile-menu {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition: grid-template-rows 200ms ease, opacity 200ms ease;
+}
+.mobile-menu.is-open {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+.mobile-menu__inner {
+  overflow: hidden;
+}
+
+/* ─── Primary CTA press ─── */
+.btn-press {
+  transition: transform 150ms ease, background-color 200ms ease, border-color 200ms ease, opacity 200ms ease;
+}
+.btn-press:hover:not(:disabled) {
+  transform: scale(1.02);
+}
+.btn-press:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+/* ─── Arrow link nudge ─── */
+.arrow-link .arrow {
+  display: inline-block;
+  transition: transform 150ms ease;
+}
+.arrow-link:hover .arrow {
+  transform: translateX(2px);
+}
+
+/* ─── Form field focus ─── */
+.field-focus {
+  transition: border-color 200ms ease, box-shadow 200ms ease;
+}
+.field-focus:focus {
+  outline: none;
+  border-color: #171717;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.08);
+}
+.field-focus:focus-visible {
+  outline: none;
+  border-color: #171717;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.08);
+}
+
+/* ─── Status message fade-in ─── */
+.fade-in {
+  animation: fade-in 280ms ease both;
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ─── FAQ accordion (CSS-only details) ─── */
+.faq-answer {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 220ms ease;
+}
+details[open] > .faq-answer {
+  grid-template-rows: 1fr;
+}
+.faq-answer__inner {
+  overflow: hidden;
+}
+.faq-chevron {
+  transition: transform 220ms ease;
+}
+details[open] > summary .faq-chevron {
+  transform: rotate(180deg);
+}
+
+/* ─── Process rail (one-time draw-in) ─── */
+.process-rail {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.process-rail__step {
+  position: relative;
+  display: grid;
+  grid-template-columns: 2rem 1fr;
+  column-gap: 1rem;
+  padding-bottom: 1.25rem;
+}
+.process-rail__step:last-child {
+  padding-bottom: 0;
+}
+.process-rail__node {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 9999px;
+  border: 1.5px solid #171717;
+  background: #fff;
+  color: #171717;
+  font-size: 0.75rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  opacity: 0;
+  transform: scale(0.85);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+.process-rail.is-drawn .process-rail__node {
+  opacity: 1;
+  transform: scale(1);
+}
+.process-rail__step:nth-child(1) .process-rail__node {
+  transition-delay: 0ms;
+}
+.process-rail__step:nth-child(2) .process-rail__node {
+  transition-delay: 120ms;
+}
+.process-rail__step:nth-child(3) .process-rail__node {
+  transition-delay: 240ms;
+}
+.process-rail__step:nth-child(4) .process-rail__node {
+  transition-delay: 360ms;
+}
+.process-rail__step:nth-child(5) .process-rail__node {
+  transition-delay: 480ms;
+}
+.process-rail__body {
+  padding-top: 0.15rem;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.process-rail.is-drawn .process-rail__body {
+  opacity: 1;
+  transform: translateY(0);
+}
+.process-rail__step:nth-child(1) .process-rail__body {
+  transition-delay: 40ms;
+}
+.process-rail__step:nth-child(2) .process-rail__body {
+  transition-delay: 160ms;
+}
+.process-rail__step:nth-child(3) .process-rail__body {
+  transition-delay: 280ms;
+}
+.process-rail__step:nth-child(4) .process-rail__body {
+  transition-delay: 400ms;
+}
+.process-rail__step:nth-child(5) .process-rail__body {
+  transition-delay: 520ms;
+}
+.process-rail__title {
+  display: block;
+  font-size: 0.95rem;
+  margin-bottom: 0.25rem;
+}
+.process-rail__desc {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0;
+}
+.process-rail__connector {
+  position: absolute;
+  left: 0.9375rem; /* center of 2rem node */
+  top: 2rem;
+  width: 2px;
+  height: calc(100% - 2rem);
+  overflow: visible;
+  z-index: 0;
+}
+.process-rail__stroke {
+  stroke: #171717;
+  stroke-width: 2;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 0.55s ease;
+}
+.process-rail.is-drawn .process-rail__step:nth-child(1) .process-rail__stroke {
+  stroke-dashoffset: 0;
+  transition-delay: 80ms;
+}
+.process-rail.is-drawn .process-rail__step:nth-child(2) .process-rail__stroke {
+  stroke-dashoffset: 0;
+  transition-delay: 200ms;
+}
+.process-rail.is-drawn .process-rail__step:nth-child(3) .process-rail__stroke {
+  stroke-dashoffset: 0;
+  transition-delay: 320ms;
+}
+.process-rail.is-drawn .process-rail__step:nth-child(4) .process-rail__stroke {
+  stroke-dashoffset: 0;
+  transition-delay: 440ms;
+}
+
+/* ─── Signal flow diagram (looping placeholder only) ─── */
+.signal-flow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  min-height: 220px;
+  width: 100%;
+  padding: 1.5rem 1rem;
+  border-radius: 0.5rem;
+  border: 1px dashed #d1d5db;
+  background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 50%, #e5e7eb 100%);
+}
+@media (min-width: 640px) {
+  .signal-flow {
+    min-height: 280px;
+  }
+}
+.signal-flow__stage {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+.signal-flow__node {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 0.85rem;
+  border-radius: 0.375rem;
+  border: 1.5px solid #9ca3af;
+  color: #9ca3af;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  background: #fff;
+  transition: border-color 0.25s ease, color 0.25s ease, background-color 0.25s ease;
+}
+.signal-flow__rail {
+  position: relative;
+  width: 2rem;
+  height: 2px;
+  background: #d1d5db;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.signal-flow__pulse {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40%;
+  height: 100%;
+  background: #171717;
+  opacity: 0;
+  animation: signal-pulse 2.4s ease-in-out infinite;
+}
+.signal-flow__pulse--delay {
+  animation-delay: 0.8s;
+}
+.signal-flow__node--trigger {
+  animation: signal-node 2.4s ease-in-out infinite;
+}
+.signal-flow__node--runs {
+  animation: signal-node 2.4s ease-in-out infinite;
+  animation-delay: 0.8s;
+}
+.signal-flow__node--result {
+  animation: signal-node 2.4s ease-in-out infinite;
+  animation-delay: 1.6s;
+}
+.signal-flow__caption {
+  margin: 0;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #6b7280;
+}
+@keyframes signal-pulse {
+  0%,
+  15% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  30%,
+  45% {
+    opacity: 1;
+    transform: translateX(160%);
+  }
+  60%,
+  100% {
+    opacity: 0;
+    transform: translateX(160%);
+  }
+}
+@keyframes signal-node {
+  0%,
+  12% {
+    border-color: #9ca3af;
+    color: #9ca3af;
+    background: #fff;
+  }
+  18%,
+  38% {
+    border-color: #171717;
+    color: #171717;
+    background: #f3f4f6;
+  }
+  48%,
+  100% {
+    border-color: #9ca3af;
+    color: #9ca3af;
+    background: #fff;
+  }
+}
+
+/* ─── Reduced motion: short-circuit everything ─── */
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .nav-link::after {
+    transition: none;
+  }
+
+  .mobile-menu {
+    transition: none;
+  }
+
+  .btn-press,
+  .btn-press:hover:not(:disabled),
+  .btn-press:active:not(:disabled) {
+    transition: none;
+    transform: none;
+  }
+
+  .arrow-link .arrow {
+    transition: none;
+  }
+  .arrow-link:hover .arrow {
+    transform: none;
+  }
+
+  .field-focus {
+    transition: none;
+  }
+
+  .fade-in {
+    animation: none;
+  }
+
+  .faq-answer {
+    transition: none;
+  }
+  .faq-chevron {
+    transition: none;
+  }
+
+  .process-rail__node,
+  .process-rail__body,
+  .process-rail__stroke {
+    transition: none !important;
+    transition-delay: 0ms !important;
+    opacity: 1;
+    transform: none;
+    stroke-dashoffset: 0;
+  }
+
+  .signal-flow__pulse,
+  .signal-flow__node--trigger,
+  .signal-flow__node--runs,
+  .signal-flow__node--result {
+    animation: none;
+  }
+  .signal-flow__node {
+    border-color: #171717;
+    color: #171717;
+  }
+  .signal-flow__pulse {
+    opacity: 0;
+  }
+
+  .header-shadow {
+    transition: none;
+  }
+}

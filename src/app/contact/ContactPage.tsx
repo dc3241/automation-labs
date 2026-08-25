@@ -130,7 +130,7 @@ function submitLabel(inquiryType: InquiryLane): string {
 }
 
 const fieldClass = (hasError?: boolean) =>
-  `w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-gray-900 ${
+  `field-focus w-full px-4 py-3 border rounded-lg bg-white text-gray-900 ${
     hasError ? 'border-red-300' : 'border-gray-300'
   }`;
 
@@ -342,7 +342,7 @@ export default function ContactPage() {
 
           <div className="bg-white rounded-lg shadow-md p-8">
             {submitStatus === 'success' && (
-              <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg">
+              <div className="fade-in mb-6 p-4 bg-green-50 border border-green-200 rounded-lg">
                 <div className="flex items-center">
                   <svg
                     className="w-5 h-5 text-green-600 mr-2 shrink-0"
@@ -363,7 +363,7 @@ export default function ContactPage() {
             )}
 
             {submitStatus === 'error' && (
-              <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
+              <div className="fade-in mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
                 <div className="flex items-center">
                   <svg
                     className="w-5 h-5 text-red-600 mr-2 shrink-0"
@@ -792,7 +792,7 @@ export default function ContactPage() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className={`w-full py-3 px-6 rounded-lg font-semibold transition-colors duration-200 ${
+                    className={`btn-press w-full py-3 px-6 rounded-lg font-semibold ${
                       isSubmitting
                         ? 'bg-gray-400 text-gray-200 cursor-not-allowed'
                         : 'bg-black text-white hover:bg-gray-800'
