@@ -8,17 +8,15 @@ export const metadata: Metadata = {
     "Tell us about the automation you need. We help SMBs build custom internal tools and integrate the workflows that off-the-shelf tools don't solve.",
 };
 
-function ContactFallback() {
-  return (
-    <div className="bg-gray-50 min-h-screen flex items-center justify-center">
-      <p className="text-gray-600">Loading...</p>
-    </div>
-  );
-}
-
 export default function Contact() {
   return (
-    <Suspense fallback={<ContactFallback />}>
+    <Suspense
+      fallback={
+        <div className="bg-gray-50 min-h-screen flex items-center justify-center">
+          <p className="text-gray-600">Loading…</p>
+        </div>
+      }
+    >
       <ContactPage />
     </Suspense>
   );

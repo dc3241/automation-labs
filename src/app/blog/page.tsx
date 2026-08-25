@@ -1,4 +1,4 @@
-import { supabase, BlogPost, testSupabaseConnection } from '../../utils/supabase';
+﻿import { supabase, BlogPost, testSupabaseConnection } from '../../utils/supabase';
 
 function getCategoryColor(category: string): { bg: string; text: string; accent: string } {
   const colors = {
@@ -14,12 +14,12 @@ function getCategoryColor(category: string): { bg: string; text: string; accent:
 }
 
 async function getBlogPosts(): Promise<{ posts: BlogPost[]; error?: string; debug?: any }> {
-  console.log('🔄 Starting blog posts fetch...');
+  console.log('≡ƒöä Starting blog posts fetch...');
   
   try {
     // Check if environment variables are configured
     if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
-      console.error('❌ Supabase environment variables not configured');
+      console.error('Γ¥î Supabase environment variables not configured');
       return { 
         posts: [], 
         error: 'Supabase configuration is missing. Please check your environment variables.',
@@ -33,7 +33,7 @@ async function getBlogPosts(): Promise<{ posts: BlogPost[]; error?: string; debu
     // First, test the connection
     const connectionTest = await testSupabaseConnection();
     if (!connectionTest.success) {
-      console.error('❌ Connection test failed:', connectionTest.error);
+      console.error('Γ¥î Connection test failed:', connectionTest.error);
       return { 
         posts: [], 
         error: 'Database connection failed. Please check your Supabase configuration.',
@@ -41,7 +41,7 @@ async function getBlogPosts(): Promise<{ posts: BlogPost[]; error?: string; debu
       };
     }
 
-    console.log('✅ Connection test passed, fetching blog posts...');
+    console.log('Γ£à Connection test passed, fetching blog posts...');
     
     const { data, error } = await supabase
       .from('blog_posts')
@@ -49,7 +49,7 @@ async function getBlogPosts(): Promise<{ posts: BlogPost[]; error?: string; debu
       .order('published_at', { ascending: false });
     
     if (error) {
-      console.error('❌ Error fetching blog posts:', error);
+      console.error('Γ¥î Error fetching blog posts:', error);
       return { 
         posts: [], 
         error: `Database query failed: ${error.message}`,
@@ -57,11 +57,11 @@ async function getBlogPosts(): Promise<{ posts: BlogPost[]; error?: string; debu
       };
     }
     
-    console.log('✅ Blog posts fetched successfully:', data?.length || 0, 'posts');
+    console.log('Γ£à Blog posts fetched successfully:', data?.length || 0, 'posts');
     return { posts: data || [] };
     
   } catch (error) {
-    console.error('❌ Unexpected error in getBlogPosts:', error);
+    console.error('Γ¥î Unexpected error in getBlogPosts:', error);
     return { 
       posts: [], 
       error: `Unexpected error: ${error instanceof Error ? error.message : 'Unknown error'}`,
@@ -71,14 +71,14 @@ async function getBlogPosts(): Promise<{ posts: BlogPost[]; error?: string; debu
 }
 
 export default async function Blog() {
-  console.log('🚀 Blog page component rendering...');
+  console.log('≡ƒÜÇ Blog page component rendering...');
   
   try {
     const { posts: blogPosts, error, debug } = await getBlogPosts();
 
     // Debug information (only in development)
     if (process.env.NODE_ENV === 'development' && debug) {
-      console.log('🔍 Debug information:', debug);
+      console.log('≡ƒöì Debug information:', debug);
     }
 
   return (
@@ -89,7 +89,7 @@ export default async function Blog() {
             Automation Insights Blog
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Stay updated with the latest trends, tips, and insights in AI and ecommerce automation.
+            Practical automation thinking for operators across HR, Sales, Marketing, Operations, Finance, and Customer Service.
           </p>
         </div>
 
@@ -155,7 +155,7 @@ export default async function Blog() {
                     {post.description}
                   </p>
                   <button className={`${colors.accent} font-medium transition-colors duration-200`}>
-                    Read More →
+                    Read More ΓåÆ
                   </button>
                 </div>
               </article>
@@ -186,19 +186,11 @@ export default async function Blog() {
           </div>
         )}
 
-        {/* Load More Button */}
-        {blogPosts.length > 0 && (
-          <div className="text-center mt-12">
-            <button className="bg-gray-900 text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-800 transition-colors duration-200">
-              Load More Posts
-            </button>
-          </div>
-        )}
       </div>
     </div>
   );
   } catch (error) {
-    console.error('❌ Critical error in Blog component:', error);
+    console.error('Γ¥î Critical error in Blog component:', error);
     return (
       <div className="bg-gray-50 min-h-screen">
         <div className="container mx-auto px-4 py-16">

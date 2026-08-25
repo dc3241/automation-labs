@@ -1,4 +1,6 @@
 import Link from 'next/link';
+import { BuildTeaserCard } from '@/components/builds/BuildCaseStudy';
+import { builds } from '@/data/builds';
 
 function WorkflowVisualPlaceholder() {
   return (
@@ -292,57 +294,31 @@ export default function ServicesPage() {
       </section>
 
       {/* Featured work */}
-      <section className="py-16 md:py-24 bg-gray-50">
+      <section className="py-16 md:py-24 bg-gray-50" aria-label="Recent builds">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Recent builds.</h2>
             <p className="text-lg text-gray-600">
-              A look at custom tools we&apos;ve shipped for real teams.
+              Live tools we&apos;ve shipped for real teams — not mockups.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <article className="bg-white rounded-lg border border-gray-200 overflow-hidden shadow-sm">
-              <div className="p-4 bg-gray-100">
-                <DashboardVisualPlaceholder
-                  title="Content Dashboard"
-                  subtitle="Marketing · Custom Build"
-                />
-              </div>
-              <div className="p-6">
-                <span className="text-xs font-semibold uppercase tracking-wide text-gray-500">
-                  Marketing · Custom Build
-                </span>
-                <h3 className="text-xl font-semibold text-gray-900 mt-2 mb-3">Content Dashboard</h3>
-                <p className="text-gray-600 leading-relaxed">
-                  A centralized command center for social media teams managing
-                  content across multiple platforms. Replaced three separate spreadsheets
-                  and a scattered approval process with one tool the team actually uses.
-                </p>
-                <p className="text-sm text-gray-400 mt-4 italic">Case study coming soon</p>
-              </div>
-            </article>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+            {builds.slice(0, 2).map((build) => (
+              <BuildTeaserCard key={build.id} build={build} />
+            ))}
+          </div>
 
-            <article className="bg-white rounded-lg border border-gray-200 overflow-hidden shadow-sm">
-              <div className="p-4 bg-gray-100">
-                <DashboardVisualPlaceholder
-                  title="Revenue Tracking Dashboard"
-                  subtitle="Finance · Custom Build"
-                />
-              </div>
-              <div className="p-6">
-                <span className="text-xs font-semibold uppercase tracking-wide text-gray-500">
-                  Finance · Custom Build
-                </span>
-                <h3 className="text-xl font-semibold text-gray-900 mt-2 mb-3">Revenue Tracking Dashboard</h3>
-                <p className="text-gray-600 leading-relaxed">
-                  A multi-stream revenue visibility tool tracking brand deals,
-                  affiliate income, ad revenue, and service work in one view.
-                  Built to replace a fragmented mess of platform dashboards.
-                </p>
-                <p className="text-sm text-gray-400 mt-4 italic">Case study coming soon</p>
-              </div>
-            </article>
+          <div className="text-center mt-8 sm:mt-10">
+            <Link
+              href="/projects"
+              className="text-base font-semibold text-gray-900 hover:text-gray-700 inline-flex items-center"
+            >
+              See all builds
+              <span aria-hidden className="ml-1">
+                →
+              </span>
+            </Link>
           </div>
         </div>
       </section>

@@ -1,7 +1,9 @@
-'use client';
+﻿'use client';
 
 import Link from "next/link";
 import { useState } from "react";
+import { BuildTeaserCard } from "@/components/builds/BuildCaseStudy";
+import { builds } from "@/data/builds";
 
 export default function HomePage() {
   const [email, setEmail] = useState('');
@@ -78,7 +80,7 @@ export default function HomePage() {
           </div>
           <p className="text-xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed">
             We help SMB operators across HR, Sales, Marketing, Operations, Finance,
-            and Customer Service automate the repetitive parts of their job — so they
+            and Customer Service automate the repetitive parts of their job â€” so they
             can focus on the work that actually moves the business.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -111,7 +113,7 @@ export default function HomePage() {
             <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8">
               <h3 className="text-xl font-semibold text-gray-900 mb-4">Smart Tools</h3>
               <p className="text-gray-600 mb-6 leading-relaxed">
-                Hand-picked AI and automation tools, organized by department — delivered
+                Hand-picked AI and automation tools, organized by department â€” delivered
                 to your inbox, not buried in a spreadsheet. One department per week. One
                 tool worth trying, plus five more your team should know about.
               </p>
@@ -239,149 +241,33 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Latest Insights Section */}
-      <section className="py-16 bg-white">
+      {/* Recent builds — same source as /projects and /services teaser */}
+      <section className="py-16 bg-white" aria-label="Recent builds">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Latest insights
+              Recent builds
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Practical automation thinking for operators across every department.
+              Live tools we&apos;ve shipped for real teams — not mockups.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-            <article className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow duration-200">
-              <div className="h-48 bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center">
-                <svg className="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                </svg>
-              </div>
-              <div className="p-6">
-                <div className="flex items-center justify-between mb-3">
-                  <span className="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">AI Technology</span>
-                  <span className="text-sm text-gray-500">March 15, 2024</span>
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                  10 Ways AI is Transforming Ecommerce Brands
-                </h3>
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  Discover how artificial intelligence is helping ecommerce brands run leaner ops and convert more profitably.
-                </p>
-              </div>
-            </article>
-
-            <article className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow duration-200">
-              <div className="h-48 bg-gradient-to-br from-green-500 to-green-700 flex items-center justify-center">
-                <svg className="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
-              </div>
-              <div className="p-6">
-                <div className="flex items-center justify-between mb-3">
-                  <span className="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">Automation</span>
-                  <span className="text-sm text-gray-500">March 12, 2024</span>
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                  The Future of Work Automation
-                </h3>
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  Explore how automation is reshaping ecommerce ops teams and what it means for your brand.
-                </p>
-              </div>
-            </article>
-
-            <article className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow duration-200">
-              <div className="h-48 bg-gradient-to-br from-purple-500 to-purple-700 flex items-center justify-center">
-                <svg className="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                </svg>
-              </div>
-              <div className="p-6">
-                <div className="flex items-center justify-between mb-3">
-                  <span className="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">Strategy</span>
-                  <span className="text-sm text-gray-500">March 10, 2024</span>
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                  Building a Digital-First Ecommerce Strategy
-                </h3>
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  Learn how to tighten merchandising, fulfillment, and retention systems so your ecommerce brand scales with less manual work.
-                </p>
-              </div>
-            </article>
-
-            <article className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow duration-200">
-              <div className="h-48 bg-gradient-to-br from-cyan-500 to-cyan-700 flex items-center justify-center">
-                <svg className="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
-                </svg>
-              </div>
-              <div className="p-6">
-                <div className="flex items-center justify-between mb-3">
-                  <span className="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">ROI</span>
-                  <span className="text-sm text-gray-500">March 8, 2024</span>
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                  Maximizing ROI with AI Automation
-                </h3>
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  A comprehensive guide to measuring and optimizing your automation investments.
-                </p>
-              </div>
-            </article>
-
-            <article className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow duration-200">
-              <div className="h-48 bg-gradient-to-br from-orange-500 to-orange-700 flex items-center justify-center">
-                <svg className="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                </svg>
-              </div>
-              <div className="p-6">
-                <div className="flex items-center justify-between mb-3">
-                  <span className="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">Customer Service</span>
-                  <span className="text-sm text-gray-500">March 5, 2024</span>
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                  Customer Service Automation Best Practices
-                </h3>
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  Tips and strategies for automating customer service without losing the human touch.
-                </p>
-              </div>
-            </article>
-
-            <article className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow duration-200">
-              <div className="h-48 bg-gradient-to-br from-indigo-500 to-indigo-700 flex items-center justify-center">
-                <svg className="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                </svg>
-              </div>
-              <div className="p-6">
-                <div className="flex items-center justify-between mb-3">
-                  <span className="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">Analytics</span>
-                  <span className="text-sm text-gray-500">March 3, 2024</span>
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                  The Rise of AI-Powered Analytics
-                </h3>
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  How AI is revolutionizing ecommerce analytics and decision-making across merchandising, ads, and inventory.
-                </p>
-              </div>
-            </article>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+            {builds.slice(0, 2).map((build) => (
+              <BuildTeaserCard key={build.id} build={build} />
+            ))}
           </div>
 
-          <div className="text-center mt-12">
+          <div className="text-center mt-10">
             <Link
-              href="/blog"
-              className="bg-gray-900 text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-800 transition-colors duration-200 inline-flex items-center space-x-2"
+              href="/projects"
+              className="text-base font-semibold text-gray-900 hover:text-gray-700 inline-flex items-center"
             >
-              <span>View More</span>
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
+              See all builds
+              <span aria-hidden className="ml-1">
+                →
+              </span>
             </Link>
           </div>
         </div>

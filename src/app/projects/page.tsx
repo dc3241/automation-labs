@@ -1,66 +1,79 @@
-export default function Projects() {
+import type { Metadata } from "next";
+import Link from "next/link";
+import { BuildCaseStudy } from "@/components/builds/BuildCaseStudy";
+import { builds } from "@/data/builds";
+
+export const metadata: Metadata = {
+  title: "Builds | Automation Labs",
+  description:
+    "Real internal tools and dashboards we've built for SMB teams — across marketing, finance, operations, and more. No mockups, no ecommerce placeholders. What's live, what it replaced, and how it works.",
+};
+
+export default function ProjectsPage() {
   return (
-    <div className="bg-gray-50 min-h-screen">
-      <div className="container mx-auto px-4 py-16">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            Our Projects
+    <div className="bg-white">
+      <section className="bg-white py-12 sm:py-16 lg:py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <p className="text-sm font-semibold uppercase tracking-wide text-gray-500 mb-3 sm:mb-4">
+            Case studies
+          </p>
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 sm:mb-6">
+            What we&apos;ve actually built.
           </h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Explore sample automation builds we ship for ecommerce brands — from data pipelines to always-on ops workflows.
+          <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            No mockups, no &quot;coming soon.&quot; Every build below is live, in
+            use, and built for a real team.
           </p>
         </div>
+      </section>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {/* Project Card 1 */}
-          <div className="bg-white rounded-lg shadow-md overflow-hidden">
-            <div className="h-48 bg-gradient-to-br from-blue-400 to-blue-600"></div>
-            <div className="p-6">
-              <h3 className="text-xl font-semibold mb-2 text-gray-900">Order & Fulfillment Control Tower</h3>
-              <p className="text-gray-600 mb-4">
-                A daily digest that pulls Shopify, 3PL, and returns signals into one place so ops teams catch delays before customers do.
-              </p>
-              <div className="flex flex-wrap gap-2">
-                <span className="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">Shopify</span>
-                <span className="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full">3PL</span>
-                <span className="px-3 py-1 bg-purple-100 text-purple-800 text-sm rounded-full">Automation</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Project Card 2 */}
-          <div className="bg-white rounded-lg shadow-md overflow-hidden">
-            <div className="h-48 bg-gradient-to-br from-green-400 to-green-600"></div>
-            <div className="p-6">
-              <h3 className="text-xl font-semibold mb-2 text-gray-900">SKU Profitability Engine</h3>
-              <p className="text-gray-600 mb-4">
-                Connects sales, ad spend, and fulfillment costs to calculate true margin per SKU and email a weekly profitability snapshot.
-              </p>
-              <div className="flex flex-wrap gap-2">
-                <span className="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">Finance</span>
-                <span className="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full">Ads</span>
-                <span className="px-3 py-1 bg-purple-100 text-purple-800 text-sm rounded-full">Inventory</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Project Card 3 */}
-          <div className="bg-white rounded-lg shadow-md overflow-hidden">
-            <div className="h-48 bg-gradient-to-br from-purple-400 to-purple-600"></div>
-            <div className="p-6">
-              <h3 className="text-xl font-semibold mb-2 text-gray-900">Review Intelligence Pipeline</h3>
-              <p className="text-gray-600 mb-4">
-                Ingests product reviews, classifies issues, routes fixes to the right team, and drafts on-brand responses for support to send.
-              </p>
-              <div className="flex flex-wrap gap-2">
-                <span className="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">NLP</span>
-                <span className="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full">CX</span>
-                <span className="px-3 py-1 bg-purple-100 text-purple-800 text-sm rounded-full">Automation</span>
-              </div>
-            </div>
+      <section
+        className="pb-12 sm:pb-16 lg:pb-20 bg-white"
+        aria-label="Build case studies"
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/*
+            Department filter pills: every Build has a `department` field.
+            Use shouldShowDepartmentFilters() from @/data/builds once the
+            gallery hits DEPARTMENT_FILTER_THRESHOLD (~5–6). Not worth UI yet.
+          */}
+          <div className="max-w-5xl mx-auto">
+            {builds.map((build, index) => (
+              <BuildCaseStudy
+                key={build.id}
+                build={build}
+                priorityVisual={index === 0}
+              />
+            ))}
           </div>
         </div>
-      </div>
+      </section>
+
+      <section className="py-12 sm:py-16 lg:py-20 bg-gray-50">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900">
+            See how the process works.
+          </h2>
+          <p className="text-base sm:text-lg text-gray-600 leading-relaxed">
+            Every build here started with a 30-45 minute discovery call and a
+            fixed quote before any work began.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center pt-2">
+            <Link
+              href="/services"
+              className="bg-black text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-800 transition-colors duration-200 inline-flex items-center justify-center"
+            >
+              View services &amp; pricing
+            </Link>
+            <Link
+              href="/contact"
+              className="border border-gray-300 text-gray-700 px-8 py-3 rounded-lg font-semibold hover:bg-white transition-colors duration-200 inline-flex items-center justify-center"
+            >
+              Get in touch
+            </Link>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
