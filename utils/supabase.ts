@@ -94,10 +94,29 @@ export interface AITool {
 export type ContactInquiryType =
   | 'workflow-automation'
   | 'custom-build'
+  | 'unqualified'
   | 'brand-deal'
   | 'other';
 
-export type ContactCompanySize = '1-10' | '11-50' | '51-200' | '200+';
+export type ContactCompanySize = '1-9' | '10-49' | '50-200' | '200+' | '1-10' | '11-50' | '51-200';
+
+export type ContactBudgetRange =
+  | 'under-5k'
+  | '5k-15k'
+  | '15k-25k'
+  | '25k-plus'
+  | 'not-sure';
+
+export type ContactHowHeard =
+  | 'newsletter'
+  | 'social'
+  | 'referral'
+  | 'search'
+  | 'other';
+
+export type ContactTimeline = 'asap' | 'within-month' | 'exploring';
+
+export type ContactProcessFrequency = 'daily' | 'weekly' | 'monthly' | 'as-needed';
 
 export interface ContactSubmission {
   id: number;
@@ -107,6 +126,16 @@ export interface ContactSubmission {
   company?: string;
   company_size?: ContactCompanySize;
   inquiry_type?: ContactInquiryType;
+  budget_range?: ContactBudgetRange;
+  how_heard?: ContactHowHeard;
+  timeline?: ContactTimeline;
+  process_frequency?: ContactProcessFrequency;
+  tools_needed?: string;
+  process_today?: string;
+  current_workaround?: string;
+  team_users?: string;
+  must_have_integrations?: string;
+  loom_url?: string;
   message: string;
   status: 'new' | 'replied' | 'closed';
   created_at: string;

@@ -87,6 +87,16 @@ CREATE TABLE IF NOT EXISTS contact_submissions (
     company VARCHAR(255),
     company_size VARCHAR(20),
     inquiry_type VARCHAR(50),
+    budget_range VARCHAR(50),
+    how_heard VARCHAR(50),
+    timeline VARCHAR(50),
+    process_frequency VARCHAR(50),
+    tools_needed TEXT,
+    process_today TEXT,
+    current_workaround TEXT,
+    team_users TEXT,
+    must_have_integrations TEXT,
+    loom_url TEXT,
     message TEXT NOT NULL,
     status VARCHAR(50) DEFAULT 'new',
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
@@ -97,6 +107,9 @@ CREATE TABLE IF NOT EXISTS contact_submissions (
 CREATE INDEX IF NOT EXISTS idx_contact_submissions_email ON contact_submissions(email);
 CREATE INDEX IF NOT EXISTS idx_contact_submissions_status ON contact_submissions(status);
 CREATE INDEX IF NOT EXISTS idx_contact_submissions_created_at ON contact_submissions(created_at);
+CREATE INDEX IF NOT EXISTS idx_contact_submissions_company_size ON contact_submissions(company_size);
+CREATE INDEX IF NOT EXISTS idx_contact_submissions_budget_range ON contact_submissions(budget_range);
+CREATE INDEX IF NOT EXISTS idx_contact_submissions_inquiry_type ON contact_submissions(inquiry_type);
 
 -- Enable Row Level Security for contact_submissions
 ALTER TABLE contact_submissions ENABLE ROW LEVEL SECURITY;

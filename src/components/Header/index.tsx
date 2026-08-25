@@ -46,6 +46,9 @@ export default function Header() {
             <Link href="/services" className={desktopLinkClass('/services')}>
               Services
             </Link>
+            <Link href="/projects" className={desktopLinkClass('/projects')}>
+              Projects
+            </Link>
             <Link href="/blog" className={desktopLinkClass('/blog')}>
               Blog
             </Link>
@@ -92,6 +95,13 @@ export default function Header() {
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Services
+              </Link>
+              <Link
+                href="/projects"
+                className={mobileLinkClass('/projects')}
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Projects
               </Link>
               <Link
                 href="/blog"

@@ -169,14 +169,40 @@ export default function ServicesPage() {
                 <li><strong className="text-gray-900">Scoped proposal (within 2 business days)</strong> — Fixed price, fixed timeline, clear deliverable.</li>
                 <li><strong className="text-gray-900">Build (typically 3-7 business days)</strong> — We build the workflow, test it on real data, and document it.</li>
                 <li><strong className="text-gray-900">Handoff and 30-day support</strong> — Walkthrough call, written docs, and a month of free fixes if anything breaks.</li>
+                <li><strong className="text-gray-900">Ongoing retainer (optional)</strong> — After handoff, you can add a monthly retainer to keep things running and evolving. No obligation — cancel anytime.</li>
               </ol>
 
-              <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 mb-8">
-                <p className="text-xl font-semibold text-gray-900 mb-2">Starting at $1,500 per project</p>
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  Most projects land between $1,500 and $4,500 depending on complexity
-                  and tool count. We give you a fixed price before any work begins.
-                </p>
+              <div className="mb-8">
+                <div className="bg-gray-50 border border-gray-200 rounded-lg p-6">
+                  <p className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-2">
+                    Initial build
+                  </p>
+                  <p className="text-xl font-semibold text-gray-900 mb-2">Starting at $1,500 per project</p>
+                  <p className="text-gray-600 text-sm leading-relaxed">
+                    Most projects land between $1,500 and $4,500 depending on complexity
+                    and tool count. We give you a fixed price before any work begins.
+                  </p>
+                </div>
+                <div className="flex items-center gap-3 px-2 py-2" aria-hidden>
+                  <div className="w-px h-4 bg-gray-300 ml-4" />
+                  <span className="text-sm text-gray-400">→</span>
+                  <span className="text-xs font-medium uppercase tracking-wide text-gray-400">
+                    Then optional
+                  </span>
+                </div>
+                <div className="bg-gray-50 border border-gray-200 border-l-4 border-l-blue-500 rounded-lg p-6">
+                  <p className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-2">
+                    Monthly retainer
+                  </p>
+                  <h4 className="text-lg font-semibold text-gray-900 mb-1">Keep it running</h4>
+                  <p className="text-xl font-semibold text-gray-900 mb-4">$300–$750/mo</p>
+                  <ul className="space-y-2 text-sm text-gray-600 list-disc pl-5 leading-relaxed">
+                    <li>Monitoring so you&apos;re not the one who finds out an automation broke</li>
+                    <li>Fixes when a connected tool changes its API or shuts off access</li>
+                    <li>Minor adjustments as your process changes</li>
+                    <li>Small additions within the retainer scope</li>
+                  </ul>
+                </div>
               </div>
 
               <Link
@@ -240,15 +266,41 @@ export default function ServicesPage() {
                 <li><strong className="text-gray-900">Proposal and design brief (within 5 business days)</strong> — Scope, timeline, milestone-based pricing, and a design direction.</li>
                 <li><strong className="text-gray-900">Build (typically 2-6 weeks)</strong> — Iterative milestones with check-ins. You see progress weekly, not at the end.</li>
                 <li><strong className="text-gray-900">Launch and 60-day support</strong> — Deployment, team training, and two months of free fixes and tweaks.</li>
+                <li><strong className="text-gray-900">Ongoing retainer (optional)</strong> — After handoff, you can add a monthly retainer to keep things running and evolving. No obligation — cancel anytime.</li>
               </ol>
 
-              <div className="bg-white border border-gray-200 rounded-lg p-6 mb-8">
-                <p className="text-xl font-semibold text-gray-900 mb-2">Custom quote per project</p>
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  Custom builds are scoped individually. Most projects land between
-                  $5,000 and $25,000 depending on complexity, integrations, and team size.
-                  You get a clear quote before any work begins.
-                </p>
+              <div className="mb-8">
+                <div className="bg-white border border-gray-200 rounded-lg p-6">
+                  <p className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-2">
+                    Initial build
+                  </p>
+                  <p className="text-xl font-semibold text-gray-900 mb-2">Custom quote per project</p>
+                  <p className="text-gray-600 text-sm leading-relaxed">
+                    Custom builds are scoped individually. Most projects land between
+                    $5,000 and $25,000 depending on complexity, integrations, and team size.
+                    You get a clear quote before any work begins.
+                  </p>
+                </div>
+                <div className="flex items-center gap-3 px-2 py-2" aria-hidden>
+                  <div className="w-px h-4 bg-gray-300 ml-4" />
+                  <span className="text-sm text-gray-400">→</span>
+                  <span className="text-xs font-medium uppercase tracking-wide text-gray-400">
+                    Then optional
+                  </span>
+                </div>
+                <div className="bg-white border border-gray-200 border-l-4 border-l-blue-500 rounded-lg p-6">
+                  <p className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-2">
+                    Monthly retainer
+                  </p>
+                  <h4 className="text-lg font-semibold text-gray-900 mb-1">Keep it evolving</h4>
+                  <p className="text-xl font-semibold text-gray-900 mb-4">$750–$2,000/mo</p>
+                  <ul className="space-y-2 text-sm text-gray-600 list-disc pl-5 leading-relaxed">
+                    <li>Hosting and monitoring</li>
+                    <li>Bug fixes</li>
+                    <li>Up to 4 hours/month for new features or adjustments</li>
+                    <li>Priority turnaround on support requests</li>
+                  </ul>
+                </div>
               </div>
 
               <Link
@@ -340,8 +392,8 @@ export default function ServicesPage() {
                 a: 'For workflows: Make.com, n8n, Zapier, plus direct API integrations when needed. For custom builds: modern web stacks (React, Next.js, Supabase, Postgres) and AI infrastructure (OpenAI, Claude, vector databases). If you\'re already using something specific, tell us — we\'ll work in your stack when it makes sense.',
               },
               {
-                q: 'Do you offer ongoing support after the project ends?',
-                a: 'Every workflow project includes 30 days of free support for fixes and adjustments. Every custom build includes 60 days. Beyond that, we offer monthly retainers for ongoing maintenance, feature additions, and new workflows — but you\'re not locked into anything.',
+                q: 'Do you offer ongoing support after the build?',
+                a: 'Yes — see the retainer pricing above for each service. It\'s optional and month-to-month, not a lock-in.',
               },
               {
                 q: 'Can you train my team to maintain what you build?',

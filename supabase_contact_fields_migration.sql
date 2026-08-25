@@ -1,7 +1,6 @@
--- Run in Supabase SQL editor to add contact form qualification fields
-ALTER TABLE contact_submissions
-  ADD COLUMN IF NOT EXISTS company_size VARCHAR(20),
-  ADD COLUMN IF NOT EXISTS inquiry_type VARCHAR(50);
-
-CREATE INDEX IF NOT EXISTS idx_contact_submissions_inquiry_type
-  ON contact_submissions(inquiry_type);
+-- DEPRECATED / SUPERSEDED
+-- This file only ever added company_size + inquiry_type, which already existed
+-- on contact_submissions. Running it is a no-op and does NOT add branching fields.
+--
+-- Use instead: supabase_contact_branch_migration.sql
+-- That migration adds budget_range and all per-branch columns the /contact form needs.

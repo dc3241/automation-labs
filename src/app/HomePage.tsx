@@ -165,6 +165,41 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Projects snippet — same source as /projects */}
+      <section className="py-16 bg-white" aria-label="Projects">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <p className="text-sm font-semibold uppercase tracking-wide text-gray-500 mb-3">
+              Projects
+            </p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+              What we&apos;ve actually built.
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Live tools we&apos;ve shipped for real teams — not mockups.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+            {builds.slice(0, 2).map((build) => (
+              <BuildTeaserCard key={build.id} build={build} />
+            ))}
+          </div>
+
+          <div className="text-center mt-10">
+            <Link
+              href="/projects"
+              className="text-base font-semibold text-gray-900 hover:text-gray-700 inline-flex items-center"
+            >
+              See all projects
+              <span aria-hidden className="ml-1">
+                →
+              </span>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Newsletter Signup Section */}
       <section id="newsletter-section" className="bg-black py-20">
         <div className="container mx-auto px-4">
@@ -237,38 +272,6 @@ export default function HomePage() {
             <p className="text-sm text-gray-400">
               Free. One email per week. Unsubscribe anytime.
             </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Recent builds — same source as /projects and /services teaser */}
-      <section className="py-16 bg-white" aria-label="Recent builds">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Recent builds
-            </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Live tools we&apos;ve shipped for real teams — not mockups.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-            {builds.slice(0, 2).map((build) => (
-              <BuildTeaserCard key={build.id} build={build} />
-            ))}
-          </div>
-
-          <div className="text-center mt-10">
-            <Link
-              href="/projects"
-              className="text-base font-semibold text-gray-900 hover:text-gray-700 inline-flex items-center"
-            >
-              See all builds
-              <span aria-hidden className="ml-1">
-                →
-              </span>
-            </Link>
           </div>
         </div>
       </section>
