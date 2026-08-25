@@ -80,7 +80,7 @@ export default function HomePage() {
           </div>
           <p className="text-xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed">
             We help SMB operators across HR, Sales, Marketing, Operations, Finance,
-            and Customer Service automate the repetitive parts of their job â€” so they
+            and Customer Service automate the repetitive parts of their job — so they
             can focus on the work that actually moves the business.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -113,7 +113,7 @@ export default function HomePage() {
             <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8">
               <h3 className="text-xl font-semibold text-gray-900 mb-4">Smart Tools</h3>
               <p className="text-gray-600 mb-6 leading-relaxed">
-                Hand-picked AI and automation tools, organized by department â€” delivered
+                Hand-picked AI and automation tools, organized by department — delivered
                 to your inbox, not buried in a spreadsheet. One department per week. One
                 tool worth trying, plus five more your team should know about.
               </p>
