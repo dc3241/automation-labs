@@ -6,7 +6,7 @@ import { builds } from "@/data/builds";
 export const metadata: Metadata = {
   title: "Builds | Automation Labs",
   description:
-    "Real internal tools and dashboards we've built for SMB teams — across marketing, finance, operations, and more. No mockups, no ecommerce placeholders. What's live, what it replaced, and how it works.",
+    "Internal tools, dashboards, and workflow automations for SMB teams — across marketing, finance, operations, sales, and more. What's live, what's an example, what it replaced, and how it works.",
 };
 
 export default function ProjectsPage() {
@@ -21,8 +21,8 @@ export default function ProjectsPage() {
             What we&apos;ve actually built.
           </h1>
           <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            No mockups, no &quot;coming soon.&quot; Every build below is live, in
-            use, and built for a real team.
+            No vaporware. Each write-up covers the problem, the build, and the
+            result. Example builds are marked as such.
           </p>
         </div>
       </section>
@@ -55,8 +55,8 @@ export default function ProjectsPage() {
             See how the process works.
           </h2>
           <p className="text-base sm:text-lg text-gray-600 leading-relaxed">
-            Every build here started with a 30-45 minute discovery call and a
-            fixed quote before any work began.
+            Every project starts with a 30-45 minute discovery call and a
+            fixed quote before any work begins.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-2">
             <Link

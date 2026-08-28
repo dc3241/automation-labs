@@ -24,11 +24,6 @@ const WORKFLOW_STEPS = [
     description:
       'Walkthrough call, written docs, and a month of free fixes if anything breaks.',
   },
-  {
-    title: 'Ongoing retainer (optional)',
-    description:
-      'After handoff, you can add a monthly retainer to keep things running and evolving. No obligation — cancel anytime.',
-  },
 ];
 
 const BUILD_STEPS = [
@@ -51,11 +46,6 @@ const BUILD_STEPS = [
     title: 'Launch and 60-day support',
     description:
       'Deployment, team training, and two months of free fixes and tweaks.',
-  },
-  {
-    title: 'Ongoing retainer (optional)',
-    description:
-      'After handoff, you can add a monthly retainer to keep things running and evolving. No obligation — cancel anytime.',
   },
 ];
 
@@ -140,6 +130,61 @@ function WorkflowVisualPlaceholder() {
         )}
       </div>
       <p className="text-xs text-gray-400 mt-4 text-center">Workflow diagram coming soon</p>
+    </div>
+  );
+}
+
+type ServicePricingProps = {
+  initialEyebrow: string;
+  initialPrice: string;
+  initialBody: string;
+  retainerEyebrow: string;
+  retainerTitle: string;
+  retainerPrice: string;
+  retainerItems: string[];
+};
+
+function ServicePricing({
+  initialEyebrow,
+  initialPrice,
+  initialBody,
+  retainerEyebrow,
+  retainerTitle,
+  retainerPrice,
+  retainerItems,
+}: ServicePricingProps) {
+  return (
+    <div className="mt-16 pt-12 border-t border-gray-200">
+      <h3 className="text-lg font-semibold text-gray-900 mb-1">What it costs</h3>
+      <p className="text-sm text-gray-500 mb-6">
+        The project is the engagement. The retainer is optional after handoff.
+      </p>
+      <div className="space-y-5">
+        <div className="bg-white border border-gray-200 rounded-lg p-6">
+          <p className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-2">
+            {initialEyebrow}
+          </p>
+          <p className="text-xl font-semibold text-gray-900 mb-2">{initialPrice}</p>
+          <p className="text-gray-600 text-sm leading-relaxed">{initialBody}</p>
+        </div>
+        <div className="bg-white border border-gray-200 rounded-lg p-6">
+          <div className="flex items-center gap-2 mb-2">
+            <p className="text-xs font-semibold uppercase tracking-widest text-gray-500">
+              {retainerEyebrow}
+            </p>
+            <span className="text-[11px] font-semibold uppercase tracking-wide text-gray-500 border border-gray-300 rounded-full px-2 py-0.5">
+              Optional
+            </span>
+          </div>
+          <h4 className="text-lg font-semibold text-gray-900 mb-1">{retainerTitle}</h4>
+          <p className="text-xl font-semibold text-gray-900 mb-4">{retainerPrice}</p>
+          <ul className="space-y-2 text-sm text-gray-600 list-disc pl-5 leading-relaxed">
+            {retainerItems.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
     </div>
   );
 }
@@ -261,8 +306,8 @@ export default function ServicesPage() {
               </h2>
               <p className="text-gray-600 leading-relaxed mb-8">
                 You already pay for the tools. They just don&apos;t talk to each other. We
-                build the connections — usually in Make.com, n8n, or Zapier — that turn
-                five disconnected SaaS apps into one workflow that runs itself.
+                build the connections that turn five disconnected SaaS apps into one
+                workflow that runs itself.
               </p>
 
               <h3 className="text-lg font-semibold text-gray-900 mb-4">What we typically build:</h3>
@@ -276,47 +321,31 @@ export default function ServicesPage() {
               </ul>
 
               <h3 className="text-lg font-semibold text-gray-900 mb-4">How it works:</h3>
-              <ProcessRail steps={WORKFLOW_STEPS} className="mb-8" />
+              <ProcessRail steps={WORKFLOW_STEPS} />
 
-              <div className="mb-8 space-y-0">
-                <Reveal index={0} className="bg-gray-50 border border-gray-200 rounded-lg p-6">
-                  <p className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-2">
-                    Initial build
-                  </p>
-                  <p className="text-xl font-semibold text-gray-900 mb-2">Starting at $1,500 per project</p>
-                  <p className="text-gray-600 text-sm leading-relaxed">
-                    Most projects land between $1,500 and $4,500 depending on complexity
-                    and tool count. We give you a fixed price before any work begins.
-                  </p>
-                </Reveal>
-                <div className="flex items-center gap-3 px-2 py-2" aria-hidden>
-                  <div className="w-px h-4 bg-gray-300 ml-4" />
-                  <span className="text-sm text-gray-400">→</span>
-                  <span className="text-xs font-medium uppercase tracking-wide text-gray-400">
-                    Then optional
-                  </span>
-                </div>
-                <Reveal index={1} className="bg-gray-50 border border-gray-200 border-l-4 border-l-blue-500 rounded-lg p-6">
-                  <p className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-2">
-                    Monthly retainer
-                  </p>
-                  <h4 className="text-lg font-semibold text-gray-900 mb-1">Keep it running</h4>
-                  <p className="text-xl font-semibold text-gray-900 mb-4">$300–$750/mo</p>
-                  <ul className="space-y-2 text-sm text-gray-600 list-disc pl-5 leading-relaxed">
-                    <li>Monitoring so you&apos;re not the one who finds out an automation broke</li>
-                    <li>Fixes when a connected tool changes its API or shuts off access</li>
-                    <li>Minor adjustments as your process changes</li>
-                    <li>Small additions within the retainer scope</li>
-                  </ul>
-                </Reveal>
+              <ServicePricing
+                initialEyebrow="Initial build"
+                initialPrice="Starting at $1,500 per project"
+                initialBody="Most projects land between $1,500 and $4,500 depending on complexity and tool count. We give you a fixed price before any work begins."
+                retainerEyebrow="Monthly retainer"
+                retainerTitle="Keep it running"
+                retainerPrice="$300–$750/mo"
+                retainerItems={[
+                  "Monitoring so you're not the one who finds out an automation broke",
+                  'Fixes when a connected tool changes its API or shuts off access',
+                  'Minor adjustments as your process changes',
+                  'Small additions within the retainer scope',
+                ]}
+              />
+
+              <div className="mt-8">
+                <Link
+                  href="/contact?type=workflow"
+                  className="btn-press inline-block bg-black text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-800"
+                >
+                  Start a workflow project
+                </Link>
               </div>
-
-              <Link
-                href="/contact?type=workflow"
-                className="btn-press inline-block bg-black text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-800"
-              >
-                Start a workflow project
-              </Link>
             </div>
 
             <div className="lg:sticky lg:top-24">
@@ -367,48 +396,31 @@ export default function ServicesPage() {
               </ul>
 
               <h3 className="text-lg font-semibold text-gray-900 mb-4">How it works:</h3>
-              <ProcessRail steps={BUILD_STEPS} className="mb-8" />
+              <ProcessRail steps={BUILD_STEPS} />
 
-              <div className="mb-8 space-y-0">
-                <Reveal index={0} className="bg-white border border-gray-200 rounded-lg p-6">
-                  <p className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-2">
-                    Initial build
-                  </p>
-                  <p className="text-xl font-semibold text-gray-900 mb-2">Custom quote per project</p>
-                  <p className="text-gray-600 text-sm leading-relaxed">
-                    Custom builds are scoped individually. Most projects land between
-                    $5,000 and $25,000 depending on complexity, integrations, and team size.
-                    You get a clear quote before any work begins.
-                  </p>
-                </Reveal>
-                <div className="flex items-center gap-3 px-2 py-2" aria-hidden>
-                  <div className="w-px h-4 bg-gray-300 ml-4" />
-                  <span className="text-sm text-gray-400">→</span>
-                  <span className="text-xs font-medium uppercase tracking-wide text-gray-400">
-                    Then optional
-                  </span>
-                </div>
-                <Reveal index={1} className="bg-white border border-gray-200 border-l-4 border-l-blue-500 rounded-lg p-6">
-                  <p className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-2">
-                    Monthly retainer
-                  </p>
-                  <h4 className="text-lg font-semibold text-gray-900 mb-1">Keep it evolving</h4>
-                  <p className="text-xl font-semibold text-gray-900 mb-4">$750–$2,000/mo</p>
-                  <ul className="space-y-2 text-sm text-gray-600 list-disc pl-5 leading-relaxed">
-                    <li>Hosting and monitoring</li>
-                    <li>Bug fixes</li>
-                    <li>Up to 4 hours/month for new features or adjustments</li>
-                    <li>Priority turnaround on support requests</li>
-                  </ul>
-                </Reveal>
+              <ServicePricing
+                initialEyebrow="Initial build"
+                initialPrice="Custom quote per project"
+                initialBody="Custom builds are scoped individually. Most projects land between $5,000 and $25,000 depending on complexity, integrations, and team size. You get a clear quote before any work begins."
+                retainerEyebrow="Monthly retainer"
+                retainerTitle="Keep it evolving"
+                retainerPrice="$750–$2,000/mo"
+                retainerItems={[
+                  'Hosting and monitoring',
+                  'Bug fixes',
+                  'Up to 4 hours/month for new features or adjustments',
+                  'Priority turnaround on support requests',
+                ]}
+              />
+
+              <div className="mt-8">
+                <Link
+                  href="/contact?type=build"
+                  className="btn-press inline-block bg-black text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-800"
+                >
+                  Start a custom build
+                </Link>
               </div>
-
-              <Link
-                href="/contact?type=build"
-                className="btn-press inline-block bg-black text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-800"
-              >
-                Start a custom build
-              </Link>
             </div>
           </div>
         </div>
@@ -489,7 +501,7 @@ export default function ServicesPage() {
               },
               {
                 q: 'What tools do you work with?',
-                a: 'For workflows: Make.com, n8n, Zapier, plus direct API integrations when needed. For custom builds: modern web stacks (React, Next.js, Supabase, Postgres) and AI infrastructure (OpenAI, Claude, vector databases). If you\'re already using something specific, tell us — we\'ll work in your stack when it makes sense.',
+                a: 'For workflows: custom connections and direct API integrations. For custom builds: modern web stacks (React, Next.js, Supabase, Postgres) and AI infrastructure (OpenAI, Claude, vector databases). If you\'re already using something specific, tell us — we\'ll work in your stack when it makes sense.',
               },
               {
                 q: 'Do you offer ongoing support after the build?',

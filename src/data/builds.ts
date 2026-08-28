@@ -12,6 +12,7 @@ export type Department =
   | "Marketing"
   | "Finance"
   | "Operations"
+  | "Sales"
   | "Legal"
   | "Other";
 
@@ -97,6 +98,84 @@ export const builds: Build[] = [
       label: "Start a custom build",
       href: "/contact?type=build",
     },
+  },
+  {
+    id: "onboarding-tracker",
+    slug: "onboarding-tracker",
+    department: "Operations",
+    engagementType: "Custom Build",
+    title: "New-Hire Onboarding Tracker",
+    hook: "Replaced the email-spreadsheet-Slack scramble with one place to see where each hire actually is.",
+    problem:
+      "Once an offer was signed, onboarding lived in four places: a spreadsheet nobody updated, an IT email thread, a payroll checklist, and Slack messages asking \"did they get a laptop yet?\" Nobody could answer where a hire stood without pinging three people.",
+    build: "A small internal tool with one row per hire and a status for paperwork, equipment, payroll, and first-week plan. Form and email triggers update the row; the hiring manager opens a page instead of hunting through threads. TypeScript/Node.js on the backend, Postgres for state, a simple web UI the team bookmarks.",
+    result:
+      "Status questions stopped landing in Slack. IT and payroll see the same board the hiring manager does, and a new hire isn't stuck waiting because someone missed a thread.",
+    stack: ["TypeScript/Node.js", "Postgres", "Resend"],
+    visual: {
+      alt: "New-hire onboarding tracker screenshot",
+      placeholderHint:
+        "Screenshot of the hire status board — columns for paperwork, equipment, payroll, first week.",
+    },
+    cta: {
+      label: "Start a custom build",
+      href: "/contact?type=build",
+    },
+    isDemo: true,
+    demoNote:
+      "Example build — representative of the kind of engagement we take on, not a named client project.",
+  },
+  {
+    id: "lead-briefs",
+    slug: "lead-briefs",
+    department: "Sales",
+    engagementType: "Workflow Automation",
+    title: "Pre-Call Lead Briefs",
+    hook: "Every new CRM lead arrives with a one-page brief — so the first call isn't a LinkedIn tab and a guess.",
+    problem:
+      "Reps walked into first calls with a name, a company, and whatever they could skim in five minutes. Research was inconsistent: some people over-prepared, most people didn't, and nobody had time to do it for every inbound lead.",
+    build: "A new record in the CRM kicks off a job: pull company context from the website and a few public sources, the Anthropic API turns it into a one-page brief (what they do, recent signals, likely pain), and the brief lands in Slack or email before the call. Custom TypeScript worker, no middleware platform in the middle.",
+    result:
+      "Reps open the brief instead of starting from zero. The research still happens — it just doesn't eat the twenty minutes before every call.",
+    stack: ["TypeScript/Node.js", "Anthropic API", "CRM API"],
+    visual: {
+      alt: "Pre-call lead brief example",
+      placeholderHint:
+        "Screenshot of a brief in Slack or email — company, signals, likely pain, in one page.",
+    },
+    cta: {
+      label: "Start a workflow project",
+      href: "/contact?type=workflow",
+    },
+    isDemo: true,
+    demoNote:
+      "Example build — representative of the kind of engagement we take on, not a named client project.",
+  },
+  {
+    id: "request-portal",
+    slug: "request-portal",
+    department: "Operations",
+    engagementType: "Custom Build",
+    title: "Internal Request Portal",
+    hook: "IT and ops requests left Slack DMs and got a submit-route-status flow the team can actually track.",
+    problem:
+      "Laptop requests, access, vendor questions, and facilities issues all lived in DMs. The person who needed something had no idea if anyone saw it. The person doing the work had no queue — just a pile of Slack pings in different channels.",
+    build: "A small portal: pick a request type, submit, get a ticket. Routing rules send it to the right owner; status is visible to the requester without a follow-up ping. TypeScript/Node.js, Postgres, a straightforward UI that replaces the DM as the system of record.",
+    result:
+      "\"Did anyone see my message?\" stopped being the intake process. Ops has a queue. Requesters can see where their ticket stands without chasing anyone.",
+    stack: ["TypeScript/Node.js", "Postgres", "Next.js"],
+    visual: {
+      alt: "Internal request portal screenshot",
+      placeholderHint:
+        "Screenshot of the request queue — type, owner, status — plus the submit form.",
+    },
+    cta: {
+      label: "Start a custom build",
+      href: "/contact?type=build",
+    },
+    isDemo: true,
+    demoNote:
+      "Example build — representative of the kind of engagement we take on, not a named client project.",
   },
 ];
 
