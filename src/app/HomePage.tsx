@@ -124,7 +124,7 @@ export default function HomePage() {
                 We help SMB operators automate the repetitive parts of their job —
                 so they can focus on the work that actually moves the business.
               </p>
-              <ul className="hero-depts mb-8" aria-label="Departments we work with">
+              <ul className="hero-depts" aria-label="Departments we work with">
                 {DEPARTMENTS.map((dept) => (
                   <li key={dept} className="hero-dept">
                     {dept}
