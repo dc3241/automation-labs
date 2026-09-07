@@ -1,5 +1,5 @@
 import Link from "next/link";
-import type { Build } from "@/data/builds";
+import { engagementLabel, type Build } from "@/data/builds";
 import { Reveal } from "@/components/Reveal";
 import { SignalFlowDiagram } from "@/components/SignalFlowDiagram";
 
@@ -8,31 +8,64 @@ type BuildVisualSlotProps = {
   priority?: boolean;
 };
 
-export function BuildVisualSlot({ build, priority = false }: BuildVisualSlotProps) {
-  const { visual } = build;
+function BuildScreenshot({
+  visual,
+  priority = false,
+}: {
+  visual: Build["visual"];
+  priority?: boolean;
+}) {
+  if (!visual.src) return null;
 
-  if (visual.src) {
+  return (
+    <figure className="overflow-hidden rounded-lg border border-gray-200 bg-gray-100">
+      <img
+        src={visual.src}
+        alt={visual.alt}
+        className="w-full h-auto object-cover"
+        loading={priority ? "eager" : "lazy"}
+      />
+      {visual.caption ? (
+        <figcaption className="px-3 py-2 text-xs sm:text-sm text-gray-500 leading-relaxed bg-white border-t border-gray-200">
+          {visual.caption}
+        </figcaption>
+      ) : null}
+    </figure>
+  );
+}
+
+export function BuildVisualSlot({ build, priority = false }: BuildVisualSlotProps) {
+  const shots = [build.visual, ...(build.gallery ?? [])].filter(
+    (shot) => Boolean(shot.src)
+  );
+
+  if (shots.length === 0) {
+    const { visual } = build;
     return (
-      <figure className="overflow-hidden rounded-lg border border-gray-200 bg-gray-100">
-        <img
-          src={visual.src}
-          alt={visual.alt}
-          className="w-full h-auto object-cover"
-          loading={priority ? "eager" : "lazy"}
-        />
+      <figure aria-label={`${visual.alt} — placeholder`}>
+        <SignalFlowDiagram />
+        {visual.placeholderHint ? (
+          <p className="mt-2 text-xs sm:text-sm text-gray-500 text-center leading-relaxed">
+            {visual.placeholderHint}
+          </p>
+        ) : null}
       </figure>
     );
   }
 
+  const [hero, ...rest] = shots;
+
   return (
-    <figure aria-label={`${visual.alt} — placeholder`}>
-      <SignalFlowDiagram />
-      {visual.placeholderHint ? (
-        <p className="mt-2 text-xs sm:text-sm text-gray-500 text-center leading-relaxed">
-          {visual.placeholderHint}
-        </p>
+    <div className="space-y-3">
+      <BuildScreenshot visual={hero} priority={priority} />
+      {rest.length > 0 ? (
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          {rest.map((shot) => (
+            <BuildScreenshot key={shot.src} visual={shot} />
+          ))}
+        </div>
       ) : null}
-    </figure>
+    </div>
   );
 }
 
@@ -54,7 +87,7 @@ export function BuildCaseStudy({
       <div className="space-y-6 sm:space-y-8">
         <header className="space-y-3 sm:space-y-4">
           <p className="text-sm font-semibold text-gray-500">
-            {build.department} · {build.engagementType}
+            {build.department} · {engagementLabel(build.engagementType)}
           </p>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900">
             {build.title}
@@ -136,7 +169,7 @@ export function BuildTeaserCard({ build, index }: BuildTeaserCardProps) {
   return (
     <Reveal index={index} as="article" className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 sm:p-8 hover:shadow-md transition-shadow duration-200 flex flex-col h-full">
       <p className="text-sm font-semibold text-gray-500 mb-2">
-        {build.department} · {build.engagementType}
+        {build.department} · {engagementLabel(build.engagementType)}
       </p>
       <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-3">
         {build.title}

@@ -18,6 +18,12 @@ export type Department =
 
 export type EngagementType = "Custom Build" | "Workflow Automation";
 
+export function engagementLabel(
+  type: EngagementType | EngagementType[]
+): string {
+  return (Array.isArray(type) ? type : [type]).join(" · ");
+}
+
 export type BuildCta = {
   label: string;
   href: string;
@@ -27,6 +33,8 @@ export type BuildVisual = {
   /** Path under /public once a real screenshot ships */
   src?: string;
   alt: string;
+  /** Shown under the screenshot when src is set */
+  caption?: string;
   /** Shown in the placeholder until src is set */
   placeholderHint: string;
 };
@@ -35,7 +43,7 @@ export type Build = {
   id: string;
   slug: string;
   department: Department;
-  engagementType: EngagementType;
+  engagementType: EngagementType | EngagementType[];
   title: string;
   hook: string;
   problem: string;
@@ -43,6 +51,8 @@ export type Build = {
   result: string;
   stack: string[];
   visual: BuildVisual;
+  /** Extra screenshots; the first visual stays the hero. */
+  gallery?: BuildVisual[];
   cta: BuildCta;
   /**
    * Demo / config-layer builds (ecommerce, law firm, salon, home services).
@@ -53,6 +63,54 @@ export type Build = {
 };
 
 export const builds: Build[] = [
+  {
+    id: "weekly-social-production",
+    slug: "weekly-social-production",
+    department: "Marketing",
+    engagementType: ["Custom Build", "Workflow Automation"],
+    title: "Weekly Social Production System",
+    hook: "Replaced a content spreadsheet and a Friday “go make the graphics” chore with a private ops dashboard that produces a week of captions and brand-locked product images — then stops so a human still posts.",
+    problem:
+      "Social for First Look, a two-audience wedding SaaS (couples vs. venues and planners), ran on nine channels, a content-mix rule, and a weekly graphic batch — all in a Google Sheet plus a Cowork task. The calendar drifted. The mix lived in someone’s head. Product screenshots got pasted into Canva as floating phone mockups. Nobody could tell whether the week was actually done.",
+    build: "A gated /admin console, completely separate from the customer product. Humans generate and like ideas, then tag platform, format, and audience — the model does not pick the week. A Friday cron produces a bounded batch: captions come back as schema-enforced JSON, mix types A–D are assigned in code, and graphics are image-to-image against locked brand templates plus real product UI. Results land in a review queue via webhook. Approve files the post into an audience-split content bank. Nothing calls Instagram, TikTok, or LinkedIn.",
+    result:
+      "Friday produces a week of on-brand creative; a person still hits publish. Ideas aren’t repeated, the mix rule is a function not a memory, and missing product shots fail closed instead of inventing a fake dashboard. Automate production, never publication.",
+    stack: [
+      "Next.js",
+      "Postgres",
+      "Vercel Cron",
+      "Anthropic",
+      "Seedream (image-to-image)",
+      "Private object storage",
+    ],
+    visual: {
+      src: "/images/builds/first-look-content-queue.jpg",
+      alt: "First Look content queue — generated Instagram graphics with approve, deny, and download",
+      caption:
+        "The review board. Approve files the post; a human still publishes.",
+      placeholderHint: "",
+    },
+    gallery: [
+      {
+        src: "/images/builds/first-look-ideation.jpg",
+        alt: "First Look ideation — generate ideas, like or pass, and tag platform, format, and audience",
+        caption:
+          "Taste loop: like, pass, and tag before Friday produces.",
+        placeholderHint: "",
+      },
+      {
+        src: "/images/builds/first-look-schedule.jpg",
+        alt: "First Look weekly schedule — nine social channels with posted checkboxes and performance logging",
+        caption:
+          "The calendar the spreadsheet used to be — nine channels, posted or not.",
+        placeholderHint: "",
+      },
+    ],
+    cta: {
+      label: "Start a custom build",
+      href: "/contact?type=build",
+    },
+  },
   {
     id: "content-dashboard",
     slug: "content-dashboard",

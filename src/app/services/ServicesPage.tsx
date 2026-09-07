@@ -212,6 +212,41 @@ function DashboardVisualPlaceholder({ title, subtitle }: { title: string; subtit
   );
 }
 
+function BuildExampleVisual({
+  href,
+  src,
+  alt,
+  title,
+  subtitle,
+}: {
+  href: string;
+  src: string;
+  alt: string;
+  title: string;
+  subtitle: string;
+}) {
+  return (
+    <Link href={href} className="block group rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-900 focus-visible:ring-offset-2">
+      <figure className="overflow-hidden rounded-lg border border-gray-200 bg-white">
+        <img
+          src={src}
+          alt={alt}
+          className="w-full h-auto object-cover"
+        />
+        <figcaption className="px-4 py-3 border-t border-gray-200 bg-white">
+          <p className="text-sm font-semibold text-gray-900 group-hover:text-gray-700">
+            {title}
+            <span aria-hidden className="ml-1 text-gray-400 group-hover:text-gray-600">
+              →
+            </span>
+          </p>
+          <p className="text-xs text-gray-500 mt-0.5">{subtitle}</p>
+        </figcaption>
+      </figure>
+    </Link>
+  );
+}
+
 export default function ServicesPage() {
   return (
     <div className="bg-white">
@@ -222,12 +257,12 @@ export default function ServicesPage() {
             Services
           </span>
           <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-            The automation work, done by someone who&apos;s done it before.
+            The work eating your week, handled.
           </h1>
           <p className="text-lg sm:text-xl text-gray-600 leading-relaxed mb-10">
             We help SMB teams across HR, Sales, Marketing, Operations, Finance, and
-            Customer Service automate the work that&apos;s eating their week. Two ways
-            we do that — workflow automation and custom builds.
+            Customer Service. Two ways we do that — workflow automation and custom
+            builds.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
@@ -361,9 +396,12 @@ export default function ServicesPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
             <div className="lg:order-1 order-2 lg:sticky lg:top-24">
               <div className="space-y-4">
-                <DashboardVisualPlaceholder
-                  title="Content Dashboard"
-                  subtitle="Marketing command center"
+                <BuildExampleVisual
+                  href="/projects#weekly-social-production"
+                  src="/images/builds/first-look-content-queue.jpg"
+                  alt="First Look content queue — generated Instagram graphics with approve, deny, and download"
+                  title="Weekly Social Production System"
+                  subtitle="First Look — captions and brand-locked graphics, queued for a human"
                 />
                 <DashboardVisualPlaceholder
                   title="Revenue Tracking Dashboard"
