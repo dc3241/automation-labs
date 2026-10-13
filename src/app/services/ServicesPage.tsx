@@ -3,6 +3,11 @@ import { BuildTeaserCard } from '@/components/builds/BuildCaseStudy';
 import { ProcessRail } from '@/components/ProcessRail';
 import { Reveal } from '@/components/Reveal';
 import { builds } from '@/data/builds';
+import {
+  CONSULTING_DURATION_ADJECTIVE,
+  CONSULTING_DURATION_LABEL,
+  CONSULTING_PRICE_LABEL,
+} from '@/lib/consulting';
 
 const WORKFLOW_STEPS = [
   {
@@ -23,6 +28,28 @@ const WORKFLOW_STEPS = [
     title: 'Handoff and 30-day support',
     description:
       'Walkthrough call, written docs, and a month of free fixes if anything breaks.',
+  },
+];
+
+const CONSULTING_STEPS = [
+  {
+    title: 'Book and pay',
+    description: `${CONSULTING_PRICE_LABEL} confirms the time. The slot is held when payment clears.`,
+  },
+  {
+    title: 'Tell us the outcome',
+    description:
+      'The booking form asks for your company, what you want to leave with, and an optional Loom.',
+  },
+  {
+    title: `Working session (${CONSULTING_DURATION_LABEL})`,
+    description:
+      'Screen share on one workflow. We stay on it until the next step is clear, inside that window.',
+  },
+  {
+    title: 'Written recap',
+    description:
+      'A short note on what to automate, what to leave alone, and whether a build is worth commissioning.',
   },
 ];
 
@@ -58,6 +85,27 @@ const TIER_CARDS = [
     price: 'Free',
     bestFor: 'Best for: teams who want to figure out their own automation stack.',
     footer: <p className="text-sm text-gray-500">Tools directory coming soon.</p>,
+    className: 'bg-white rounded-lg border border-gray-200 p-8 flex flex-col',
+    dark: false,
+  },
+  {
+    key: 'consulting',
+    emoji: '💬',
+    title: 'Working Session',
+    subtitle: 'One problem, talked through live. You leave with a next step.',
+    price: `${CONSULTING_PRICE_LABEL} per session`,
+    bestFor: 'Best for: teams who want the advice before they commission a build.',
+    footer: (
+      <a
+        href="#consulting-details"
+        className="text-blue-600 font-semibold hover:text-blue-700 inline-flex items-center arrow-link"
+      >
+        See how it works
+        <span aria-hidden className="arrow ml-1">
+          →
+        </span>
+      </a>
+    ),
     className: 'bg-white rounded-lg border border-gray-200 p-8 flex flex-col',
     dark: false,
   },
@@ -261,13 +309,19 @@ export default function ServicesPage() {
           </h1>
           <p className="text-lg sm:text-xl text-gray-600 leading-relaxed mb-10">
             We help SMB teams across HR, Sales, Marketing, Operations, Finance, and
-            Customer Service. Two ways we do that — workflow automation and custom
-            builds.
+            Customer Service. Book a working session, or have us build the workflow
+            or the tool.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row flex-wrap gap-4 justify-center">
+            <Link
+              href="/consulting#book"
+              className="btn-press bg-black text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-800 text-center"
+            >
+              Book a working session
+            </Link>
             <Link
               href="/contact?type=workflow"
-              className="btn-press bg-black text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-800 text-center"
+              className="btn-press border border-gray-300 text-gray-700 px-8 py-3 rounded-lg font-semibold hover:bg-gray-50 text-center"
             >
               Start a workflow project
             </Link>
@@ -281,17 +335,17 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* Three-tier overview */}
+      {/* Offer overview */}
       <section className="py-16 md:py-24 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-              Three ways we help you automate.
+              Four ways we help.
             </h2>
-            <p className="text-lg text-gray-600">Pick the tier that matches the problem.</p>
+            <p className="text-lg text-gray-600">Pick the path that matches the problem.</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
             {TIER_CARDS.map((card, i) => (
               <Reveal key={card.key} index={i} className={`${card.className} h-full`}>
                 <span className="text-3xl mb-4" aria-hidden>
@@ -328,8 +382,56 @@ export default function ServicesPage() {
         </div>
       </section>
 
+      {/* Working session */}
+      <section id="consulting-details" className="py-16 md:py-24 scroll-mt-20">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <span className="inline-block text-xs font-semibold uppercase tracking-widest text-gray-500 mb-4">
+            Working Session
+          </span>
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">
+            Talk through the problem before you commission a build.
+          </h2>
+          <p className="text-gray-600 leading-relaxed mb-8">
+            You bring the workflow that is eating the week. We spend {CONSULTING_DURATION_LABEL}{' '}
+            on it and you leave with a next step: what to automate, what to leave alone,
+            and whether a build is worth it. The free discovery call still exists for
+            workflow and custom-build projects. This session is the product when you
+            want the advice itself.
+          </p>
+
+          <h3 className="text-lg font-semibold text-gray-900 mb-4">How it works:</h3>
+          <ProcessRail steps={CONSULTING_STEPS} />
+
+          <div className="mt-16 pt-12 border-t border-gray-200">
+            <h3 className="text-lg font-semibold text-gray-900 mb-1">What it costs</h3>
+            <p className="text-sm text-gray-500 mb-6">
+              One session. Paid when you book. No retainer.
+            </p>
+            <div className="bg-white border border-gray-200 rounded-lg p-6">
+              <p className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-2">
+                Working session
+              </p>
+              <p className="text-xl font-semibold text-gray-900 mb-2">{CONSULTING_PRICE_LABEL}</p>
+              <p className="text-gray-600 text-sm leading-relaxed">
+                {CONSULTING_DURATION_LABEL}, flat rate, one problem. Payment confirms the
+                time. The session does not include a build or a written proposal.
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-8">
+            <Link
+              href="/consulting#book"
+              className="btn-press inline-block bg-black text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-800"
+            >
+              Book a session
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Workflow Automation */}
-      <section id="workflow-details" className="py-16 md:py-24 scroll-mt-20">
+      <section id="workflow-details" className="py-16 md:py-24 scroll-mt-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
             <div>
@@ -391,7 +493,7 @@ export default function ServicesPage() {
       </section>
 
       {/* Custom Builds */}
-      <section id="build-details" className="py-16 md:py-24 bg-gray-50 scroll-mt-20">
+      <section id="build-details" className="py-16 md:py-24 scroll-mt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
             <div className="lg:order-1 order-2 lg:sticky lg:top-24">
@@ -478,6 +580,7 @@ export default function ServicesPage() {
                 <li>Know what&apos;s eating your team&apos;s time but don&apos;t have engineering bandwidth to fix it</li>
                 <li>Want a fixed scope, fixed timeline, and a real human to talk to</li>
                 <li>Already use SaaS tools and want to get more value from them</li>
+                <li>Want a {CONSULTING_DURATION_ADJECTIVE} working session on one problem before you commit to a build</li>
                 <li>Prefer &quot;built right&quot; over &quot;built fast&quot;</li>
               </ul>
             </div>
@@ -550,8 +653,12 @@ export default function ServicesPage() {
                 a: 'Yes. Every project ends with a handoff session where we walk your team through the workflow or tool, including how to make common changes. We also document everything in writing so the knowledge doesn\'t leave with us.',
               },
               {
+                q: `What do I get for ${CONSULTING_PRICE_LABEL}?`,
+                a: `${CONSULTING_DURATION_LABEL} on one workflow, live, plus a short written recap of what to automate, what to leave alone, and whether a build is worth it. You pay when you book, and that payment confirms the time. It is a working session, not a build and not a proposal.`,
+              },
+              {
                 q: 'What if I\'m not sure what I need yet?',
-                a: 'That\'s what the discovery call is for. Free, 30 minutes, no commitment. We\'ll talk through what\'s eating your team\'s time and figure out whether a workflow, a custom build, or something else entirely is the right move. Sometimes the answer is "you don\'t need us yet" — we\'ll tell you that too.',
+                a: `If you want the advice itself, book a ${CONSULTING_DURATION_ADJECTIVE} working session for ${CONSULTING_PRICE_LABEL}. If you are considering a workflow or a custom build, those projects still start with a free discovery call — 30 minutes for a workflow, 45 for a custom build. Sometimes the answer is that you do not need us yet, and we will say so.`,
               },
             ].map((item) => (
               <details key={item.q} className="group py-5">

@@ -4,10 +4,11 @@ import ServicesPage from "./ServicesPage";
 export const metadata: Metadata = {
   title: "Services | Automation Labs",
   description:
-    "Workflow automation and custom internal tool builds for SMB teams. We wire your tools together, or build new ones when off-the-shelf isn't enough.",
+    "A $250 working session, workflow automation, and custom internal tools for SMB teams.",
   openGraph: {
     title: "Services | Automation Labs",
-    description: "Workflow automation and custom internal tool builds for SMB teams.",
+    description:
+      "A $250 working session, workflow automation, and custom internal tools for SMB teams.",
     type: "website",
   },
   twitter: {

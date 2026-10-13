@@ -7,6 +7,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const routes = [
     "",
     "/services",
+    "/consulting",
     "/blog",
     "/newsletter",
     "/contact",
@@ -17,6 +18,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     url: `${baseUrl}${route}`,
     lastModified: new Date(),
     changeFrequency: route === "" ? "weekly" : "monthly",
-    priority: route === "" ? 1 : route === "/services" ? 0.9 : 0.7,
+    priority:
+      route === "" ? 1 : route === "/services" || route === "/consulting" ? 0.9 : 0.7,
   }));
 }

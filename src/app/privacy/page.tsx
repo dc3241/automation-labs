@@ -6,13 +6,13 @@ import Link from "next/link";
  * Aligned with Terms placeholders and how this site actually handles data
  * (newsletter via Beehiiv, contact/guide forms via Supabase).
  */
-const EFFECTIVE_DATE = "August 24, 2026";
+const EFFECTIVE_DATE = "October 12, 2026";
 const CONTACT_EMAIL = "hello@automationlabsai.com";
 
 export const metadata: Metadata = {
   title: "Privacy Policy | Automation Labs",
   description:
-    "How Automation Labs collects, uses, and protects information on automationlabsai.com — including newsletter, contact, and guide signups.",
+    "How Automation Labs collects, uses, and protects information on automationlabsai.com — including newsletter, contact, booking, and guide signups.",
 };
 
 export default function PrivacyPage() {
@@ -55,6 +55,13 @@ export default function PrivacyPage() {
                 <strong className="text-gray-900">AI Guide signup</strong> —
                 email, optional name, and business type
               </li>
+              <li>
+                <strong className="text-gray-900">Working-session booking</strong>{" "}
+                — name, email, company, and the notes you submit when you book,
+                collected through our scheduler. Payment is processed by Stripe.
+                We receive the booking details and a payment confirmation so we
+                can hold the session.
+              </li>
             </ul>
             <p>
               We may also receive standard technical data when you visit the Site
@@ -71,6 +78,7 @@ export default function PrivacyPage() {
             <ul className="list-disc pl-5 space-y-2">
               <li>Send the newsletter and related email series you opt into</li>
               <li>Respond to inquiries and evaluate potential project work</li>
+              <li>Schedule paid working sessions and confirm payment for them</li>
               <li>Deliver the AI Automation Guide and related onboarding emails</li>
               <li>Operate, secure, and improve the Site</li>
               <li>Comply with legal obligations when required</li>
@@ -114,6 +122,14 @@ export default function PrivacyPage() {
               <li>
                 <strong className="text-gray-900">Email</strong> — Beehiiv
                 (newsletter and guide delivery)
+              </li>
+              <li>
+                <strong className="text-gray-900">Scheduling</strong> — Cal.com
+                (working-session booking)
+              </li>
+              <li>
+                <strong className="text-gray-900">Payments</strong> — Stripe
+                (working-session payment)
               </li>
             </ul>
             <p>

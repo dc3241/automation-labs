@@ -1,12 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import {
+  CONSULTING_DURATION_ADJECTIVE,
+  CONSULTING_PRICE_LABEL,
+} from "@/lib/consulting";
 
 /**
  * Fill / confirm before treating as final (lawyer review still required).
  * These were set from site domain + publish date — verify email inbox exists
  * and governing-law jurisdiction matches where the business is actually based.
  */
-const EFFECTIVE_DATE = "August 24, 2026";
+const EFFECTIVE_DATE = "October 12, 2026";
 const CONTACT_EMAIL = "hello@automationlabsai.com";
 const GOVERNING_LAW = "the State of California, United States";
 
@@ -41,8 +45,9 @@ export default function TermsPage() {
               Using the site
             </h2>
             <p>
-              The Site provides information about automation tools, workflows,
-              and custom build services, plus a newsletter. You agree to use it
+              The Site provides information about automation tools, working
+              sessions, workflows, and custom build services, plus a newsletter.
+              You agree to use it
               lawfully and not to:
             </p>
             <ul className="list-disc pl-5 space-y-2">
@@ -90,22 +95,33 @@ export default function TermsPage() {
 
           <section className="space-y-3">
             <h2 className="text-xl sm:text-2xl font-semibold text-gray-900">
-              Paid services (workflow automation and custom builds)
+              Paid services
             </h2>
             <p>
-              The Site describes our workflow automation and custom build
-              services, including general pricing ranges. These are estimates,
-              not quotes — actual scope, timeline, and price for any engagement
-              are defined in a separate written proposal or agreement signed by
-              both parties, which governs that engagement. Nothing on this Site
-              is itself an offer to contract.
+              A working session is a fixed-price engagement: {CONSULTING_PRICE_LABEL}{" "}
+              for one {CONSULTING_DURATION_ADJECTIVE} session, paid at booking through
+              our scheduler. Payment
+              confirms the time. The session is advisory. It does not include a
+              build, a written proposal, or ongoing support. Rescheduling and
+              cancellation follow the policy shown when you book.
             </p>
             <p>
-              General terms that apply to engagements unless the signed proposal
-              says otherwise:
+              The Site also describes our workflow automation and custom build
+              services, including general pricing ranges. Those ranges are
+              estimates, not quotes. Scope, timeline, and price for a project
+              are defined in a separate written proposal or agreement signed by
+              both parties, which governs that engagement. A project page on
+              this Site is not itself an offer to contract.
+            </p>
+            <p>
+              General terms that apply to project engagements unless the signed
+              proposal says otherwise:
             </p>
             <ul className="list-disc pl-5 space-y-2">
-              <li>Discovery calls are free and non-binding</li>
+              <li>
+                Discovery calls for workflow and custom-build projects are free
+                and non-binding
+              </li>
               <li>
                 Fixed-price proposals are provided before any billable work
                 begins

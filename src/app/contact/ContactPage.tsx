@@ -1,7 +1,12 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
+import {
+  CONSULTING_DURATION_ADJECTIVE,
+  CONSULTING_PRICE_LABEL,
+} from '@/lib/consulting';
 import { submitContactForm } from '../../utils/data';
 import type {
   ContactBudgetRange,
@@ -336,6 +341,16 @@ export default function ContactPage() {
               <p>
                 Tell us what you&apos;re working on and we&apos;ll get back to you within{' '}
                 {CONFIRMATION_SLA}.
+              </p>
+              <p>
+                Want the advice without commissioning a build?{' '}
+                <Link
+                  href="/consulting#book"
+                  className="font-semibold text-gray-900 underline underline-offset-2 hover:text-gray-700"
+                >
+                  Book a {CONSULTING_DURATION_ADJECTIVE} working session
+                </Link>{' '}
+                for {CONSULTING_PRICE_LABEL}. You pay when you book, and that confirms the time.
               </p>
             </div>
           </div>
