@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
+import { CONSULTING_PRICE_LABEL } from "@/lib/consulting";
 import ServicesPage from "./ServicesPage";
+
+const description = `A ${CONSULTING_PRICE_LABEL} consultation, workflow automation, and custom internal tools for SMB teams.`;
 
 export const metadata: Metadata = {
   title: "Services | Automation Labs",
-  description:
-    "A $250 working session, workflow automation, and custom internal tools for SMB teams.",
+  description,
   openGraph: {
     title: "Services | Automation Labs",
-    description:
-      "A $250 working session, workflow automation, and custom internal tools for SMB teams.",
+    description,
     type: "website",
   },
   twitter: {

@@ -343,12 +343,12 @@ export default function ContactPage() {
                 {CONFIRMATION_SLA}.
               </p>
               <p>
-                Want the advice without commissioning a build?{' '}
+                Want a recommendation on the best way to automate a problem?{' '}
                 <Link
                   href="/consulting#book"
                   className="font-semibold text-gray-900 underline underline-offset-2 hover:text-gray-700"
                 >
-                  Book a {CONSULTING_DURATION_ADJECTIVE} working session
+                  Book a {CONSULTING_DURATION_ADJECTIVE} consultation
                 </Link>{' '}
                 for {CONSULTING_PRICE_LABEL}. You pay when you book, and that confirms the time.
               </p>

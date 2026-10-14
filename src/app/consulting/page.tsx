@@ -9,13 +9,13 @@ import {
   getCalLink,
 } from "@/lib/consulting";
 
-const description = `A ${CONSULTING_DURATION_LABEL} working session on one workflow. ${CONSULTING_PRICE_LABEL}, paid when you book. You leave with a next step, not a pitch.`;
+const description = `A ${CONSULTING_DURATION_LABEL} consultation on one problem. ${CONSULTING_PRICE_LABEL}, paid when you book. You leave with a recommended route.`;
 
 export const metadata: Metadata = {
-  title: "Working Session",
+  title: "Consultation",
   description,
   openGraph: {
-    title: "Working Session | Automation Labs",
+    title: "Consultation | Automation Labs",
     description,
     type: "website",
   },
@@ -25,9 +25,9 @@ export const metadata: Metadata = {
 };
 
 const INCLUDED = [
-  "One workflow, talked through live on a screen share",
-  "A decision: automate it, leave it alone, or commission a build",
-  "A short written recap of that next step after the call",
+  "One problem, worked through live",
+  "A recommended route: software you can use, a workflow we build, a custom tool, or leave it alone",
+  "A short written recap of that recommendation after the call",
 ];
 
 export default function ConsultingPage() {
@@ -41,18 +41,20 @@ export default function ConsultingPage() {
             Consulting
           </span>
           <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-            One problem. One session. A next step you can use.
+            Bring the problem. Leave with the route.
           </h1>
           <p className="text-lg sm:text-xl text-gray-600 leading-relaxed mb-8">
-            A flat-rate working session for teams who want the advice before they
-            commission a build. {CONSULTING_PRICE_LABEL} for {CONSULTING_DURATION_LABEL}.
-            You pay when you book, and that payment confirms the time.
+            A flat-rate consultation for a company with something to automate. We
+            look at the problem with you and name the best way through: software
+            you can use, a workflow we build, a custom tool, or leave it alone.{" "}
+            {CONSULTING_PRICE_LABEL} for {CONSULTING_DURATION_LABEL}. You pay when
+            you book, and that payment confirms the time.
           </p>
           <a
             href="#book"
             className="btn-press inline-block bg-black text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-800"
           >
-            Book a session
+            Book a consultation
           </a>
         </div>
       </section>
@@ -71,15 +73,16 @@ export default function ConsultingPage() {
               </ul>
               <div className="mt-10 bg-white border border-gray-200 rounded-lg p-6">
                 <p className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-2">
-                  Working session
+                  Consultation
                 </p>
                 <p className="text-xl font-semibold text-gray-900 mb-2">
                   {CONSULTING_PRICE_LABEL}
                 </p>
                 <p className="text-gray-600 text-sm leading-relaxed">
                   {CONSULTING_DURATION_LABEL}, one problem, flat rate. We stay on it
-                  until the next step is clear, inside that window. This is the
-                  session. It is not a build, a proposal, or ongoing support.
+                  until the route is clear, inside that window. You leave with the
+                  recommendation. This is not the build, a project proposal, or
+                  ongoing support.
                 </p>
               </div>
             </div>
@@ -95,12 +98,12 @@ export default function ConsultingPage() {
                     body: `${CONSULTING_PRICE_LABEL} is collected when you book. The slot is yours when payment clears.`,
                   },
                   {
-                    title: "Tell us what you want to leave with",
-                    body: "The booking form asks for your company, the outcome you want from the session, and an optional Loom of the workflow so we can prep.",
+                    title: "Tell us the problem",
+                    body: "The booking form asks for your company, the problem you want a recommendation on, and an optional Loom so we can prep.",
                   },
                   {
                     title: `Show up for ${CONSULTING_DURATION_LABEL}`,
-                    body: "Screen share. One workflow. You get a short written recap afterward.",
+                    body: "We work the problem with you and name the route. You get a short written recap afterward.",
                   },
                 ].map((step, index) => (
                   <li key={step.title} className="flex gap-4">
@@ -124,7 +127,7 @@ export default function ConsultingPage() {
       <section className="py-16 md:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-12 text-center">
-            Is a session the right move?
+            Is a consultation the right move?
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="bg-green-50 border border-green-100 rounded-lg p-8">
@@ -132,8 +135,8 @@ export default function ConsultingPage() {
                 Book this if you...
               </h3>
               <ul className="space-y-3 text-gray-700 list-disc pl-5 leading-relaxed">
-                <li>Have one workflow that is eating the week and want a plan for it</li>
-                <li>Want the advice itself, before you decide whether to hire anyone</li>
+                <li>Have a problem and want the best way to automate it</li>
+                <li>Want a recommendation before you buy software or hire anyone to build</li>
                 <li>Can show the process on a call — a Loom ahead of time helps</li>
               </ul>
             </div>
@@ -142,11 +145,8 @@ export default function ConsultingPage() {
                 Use the project form if you...
               </h3>
               <ul className="space-y-3 text-gray-700 list-disc pl-5 leading-relaxed">
-                <li>
-                  Already know you want a workflow built or a custom tool — those
-                  start with a free discovery call
-                </li>
-                <li>Need someone to run your tools for you after the call</li>
+                <li>Already know you want a workflow or a custom tool built</li>
+                <li>Need someone to run your tools for you after the work is done</li>
                 <li>Want a fixed-price build quote as the outcome of this page</li>
               </ul>
               <Link
@@ -167,7 +167,7 @@ export default function ConsultingPage() {
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10">
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-              Book a session.
+              Book a consultation.
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               {CONSULTING_PRICE_LABEL} for {CONSULTING_DURATION_LABEL}. Rescheduling
@@ -192,7 +192,7 @@ export default function ConsultingPage() {
                     {CONSULTING_EMAIL}
                   </a>{" "}
                   and we will send a booking link for a {CONSULTING_DURATION_ADJECTIVE}{" "}
-                  session.
+                  consultation.
                 </p>
               </div>
             )}

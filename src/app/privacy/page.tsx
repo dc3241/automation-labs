@@ -56,7 +56,7 @@ export default function PrivacyPage() {
                 email, optional name, and business type
               </li>
               <li>
-                <strong className="text-gray-900">Working-session booking</strong>{" "}
+                <strong className="text-gray-900">Consultation booking</strong>{" "}
                 — name, email, company, and the notes you submit when you book,
                 collected through our scheduler. Payment is processed by Stripe.
                 We receive the booking details and a payment confirmation so we
@@ -78,7 +78,7 @@ export default function PrivacyPage() {
             <ul className="list-disc pl-5 space-y-2">
               <li>Send the newsletter and related email series you opt into</li>
               <li>Respond to inquiries and evaluate potential project work</li>
-              <li>Schedule paid working sessions and confirm payment for them</li>
+              <li>Schedule paid consultations and confirm payment for them</li>
               <li>Deliver the AI Automation Guide and related onboarding emails</li>
               <li>Operate, secure, and improve the Site</li>
               <li>Comply with legal obligations when required</li>
@@ -125,11 +125,11 @@ export default function PrivacyPage() {
               </li>
               <li>
                 <strong className="text-gray-900">Scheduling</strong> — Cal.com
-                (working-session booking)
+                (consultation booking)
               </li>
               <li>
                 <strong className="text-gray-900">Payments</strong> — Stripe
-                (working-session payment)
+                (consultation payment)
               </li>
             </ul>
             <p>

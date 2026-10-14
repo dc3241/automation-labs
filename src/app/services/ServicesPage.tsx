@@ -11,23 +11,23 @@ import {
 
 const WORKFLOW_STEPS = [
   {
-    title: 'Discovery call (30 min, free)',
+    title: 'Project inquiry',
     description:
-      'You describe the workflow, we ask the questions that surface the gotchas.',
+      'You describe the workflow in writing. We reply with whether a build is the right next step.',
   },
   {
     title: 'Scoped proposal (within 2 business days)',
     description: 'Fixed price, fixed timeline, clear deliverable.',
   },
   {
-    title: 'Build (typically 3-7 business days)',
+    title: 'Build (typically 7-21 days)',
     description:
       'We build the workflow, test it on real data, and document it.',
   },
   {
     title: 'Handoff and 30-day support',
     description:
-      'Walkthrough call, written docs, and a month of free fixes if anything breaks.',
+      'Walkthrough call, written docs, and a month of included support.',
   },
 ];
 
@@ -37,27 +37,27 @@ const CONSULTING_STEPS = [
     description: `${CONSULTING_PRICE_LABEL} confirms the time. The slot is held when payment clears.`,
   },
   {
-    title: 'Tell us the outcome',
+    title: 'Tell us the problem',
     description:
-      'The booking form asks for your company, what you want to leave with, and an optional Loom.',
+      'The booking form asks for your company, the problem you want a recommendation on, and an optional Loom.',
   },
   {
-    title: `Working session (${CONSULTING_DURATION_LABEL})`,
+    title: `Consultation (${CONSULTING_DURATION_LABEL})`,
     description:
-      'Screen share on one workflow. We stay on it until the next step is clear, inside that window.',
+      'We work the problem live and name the route: software, a workflow we build, a custom tool, or leave it alone.',
   },
   {
     title: 'Written recap',
     description:
-      'A short note on what to automate, what to leave alone, and whether a build is worth commissioning.',
+      'The recommendation in writing, so your team can act on it.',
   },
 ];
 
 const BUILD_STEPS = [
   {
-    title: 'Discovery call (45 min, free)',
+    title: 'Project inquiry',
     description:
-      'We walk through the problem, the current workflow, and what success looks like.',
+      'You describe the problem, the current workflow, and what success looks like. We reply in writing.',
   },
   {
     title: 'Proposal and design brief (within 5 business days)',
@@ -91,10 +91,11 @@ const TIER_CARDS = [
   {
     key: 'consulting',
     emoji: '💬',
-    title: 'Working Session',
-    subtitle: 'One problem, talked through live. You leave with a next step.',
+    title: 'Consultation',
+    subtitle: 'Bring a problem. Leave with the best way to automate it.',
     price: `${CONSULTING_PRICE_LABEL} per session`,
-    bestFor: 'Best for: teams who want the advice before they commission a build.',
+    bestFor:
+      'Best for: teams who want a recommendation before they buy software or commission a build.',
     footer: (
       <a
         href="#consulting-details"
@@ -309,7 +310,7 @@ export default function ServicesPage() {
           </h1>
           <p className="text-lg sm:text-xl text-gray-600 leading-relaxed mb-10">
             We help SMB teams across HR, Sales, Marketing, Operations, Finance, and
-            Customer Service. Book a working session, or have us build the workflow
+            Customer Service. Book a consultation, or have us build the workflow
             or the tool.
           </p>
           <div className="flex flex-col sm:flex-row flex-wrap gap-4 justify-center">
@@ -317,7 +318,7 @@ export default function ServicesPage() {
               href="/consulting#book"
               className="btn-press bg-black text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-800 text-center"
             >
-              Book a working session
+              Book a consultation
             </Link>
             <Link
               href="/contact?type=workflow"
@@ -382,21 +383,21 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* Working session */}
+      {/* Consultation */}
       <section id="consulting-details" className="py-16 md:py-24 scroll-mt-20">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <span className="inline-block text-xs font-semibold uppercase tracking-widest text-gray-500 mb-4">
-            Working Session
+            Consultation
           </span>
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">
-            Talk through the problem before you commission a build.
+            Bring the problem. We&apos;ll tell you the route.
           </h2>
           <p className="text-gray-600 leading-relaxed mb-8">
-            You bring the workflow that is eating the week. We spend {CONSULTING_DURATION_LABEL}{' '}
-            on it and you leave with a next step: what to automate, what to leave alone,
-            and whether a build is worth it. The free discovery call still exists for
-            workflow and custom-build projects. This session is the product when you
-            want the advice itself.
+            You bring what&apos;s eating the week. We spend {CONSULTING_DURATION_LABEL}{' '}
+            on it: the ways to automate it, and which route fits — software you can
+            use, a workflow we build, a custom tool, or leave it alone. You leave
+            with that recommendation in writing. This consultation is how we look
+            at a problem together.
           </p>
 
           <h3 className="text-lg font-semibold text-gray-900 mb-4">How it works:</h3>
@@ -409,12 +410,13 @@ export default function ServicesPage() {
             </p>
             <div className="bg-white border border-gray-200 rounded-lg p-6">
               <p className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-2">
-                Working session
+                Consultation
               </p>
               <p className="text-xl font-semibold text-gray-900 mb-2">{CONSULTING_PRICE_LABEL}</p>
               <p className="text-gray-600 text-sm leading-relaxed">
                 {CONSULTING_DURATION_LABEL}, flat rate, one problem. Payment confirms the
-                time. The session does not include a build or a written proposal.
+                time. You leave with a recommendation and a written recap. The
+                consultation does not include the build.
               </p>
             </div>
           </div>
@@ -424,7 +426,7 @@ export default function ServicesPage() {
               href="/consulting#book"
               className="btn-press inline-block bg-black text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-800"
             >
-              Book a session
+              Book a consultation
             </Link>
           </div>
         </div>
@@ -468,10 +470,9 @@ export default function ServicesPage() {
                 retainerTitle="Keep it running"
                 retainerPrice="$300–$750/mo"
                 retainerItems={[
-                  "Monitoring so you're not the one who finds out an automation broke",
-                  'Fixes when a connected tool changes its API or shuts off access',
-                  'Minor adjustments as your process changes',
-                  'Small additions within the retainer scope',
+                  'Ongoing monitoring so the workflow keeps running as designed',
+                  'Requested additions within the retainer scope',
+                  'Iterations when a connected API, tool, or access changes',
                 ]}
               />
 
@@ -580,7 +581,7 @@ export default function ServicesPage() {
                 <li>Know what&apos;s eating your team&apos;s time but don&apos;t have engineering bandwidth to fix it</li>
                 <li>Want a fixed scope, fixed timeline, and a real human to talk to</li>
                 <li>Already use SaaS tools and want to get more value from them</li>
-                <li>Want a {CONSULTING_DURATION_ADJECTIVE} working session on one problem before you commit to a build</li>
+                <li>Want a {CONSULTING_DURATION_ADJECTIVE} consultation on one problem before you buy software or commit to a build</li>
                 <li>Prefer &quot;built right&quot; over &quot;built fast&quot;</li>
               </ul>
             </div>
@@ -638,7 +639,7 @@ export default function ServicesPage() {
             {[
               {
                 q: 'How long does a typical project take?',
-                a: 'Workflow projects typically run 3-7 business days from kickoff to handoff. Custom builds run 2-6 weeks depending on scope. We give you a specific timeline in your proposal — no "it\'ll be ready when it\'s ready."',
+                a: 'Workflow projects typically run 7-21 days from kickoff to handoff. Custom builds run 2-6 weeks depending on scope. We give you a specific timeline in your proposal — no "it\'ll be ready when it\'s ready."',
               },
               {
                 q: 'What tools do you work with?',
@@ -654,11 +655,11 @@ export default function ServicesPage() {
               },
               {
                 q: `What do I get for ${CONSULTING_PRICE_LABEL}?`,
-                a: `${CONSULTING_DURATION_LABEL} on one workflow, live, plus a short written recap of what to automate, what to leave alone, and whether a build is worth it. You pay when you book, and that payment confirms the time. It is a working session, not a build and not a proposal.`,
+                a: `${CONSULTING_DURATION_LABEL} on one problem. We walk through how to automate it and recommend the route: software you can use, a workflow we build, a custom tool, or leave it alone. You get a short written recap. You pay when you book, and that payment confirms the time. The consultation is the recommendation. It is not the build.`,
               },
               {
                 q: 'What if I\'m not sure what I need yet?',
-                a: `If you want the advice itself, book a ${CONSULTING_DURATION_ADJECTIVE} working session for ${CONSULTING_PRICE_LABEL}. If you are considering a workflow or a custom build, those projects still start with a free discovery call — 30 minutes for a workflow, 45 for a custom build. Sometimes the answer is that you do not need us yet, and we will say so.`,
+                a: `Book a ${CONSULTING_DURATION_ADJECTIVE} consultation for ${CONSULTING_PRICE_LABEL}. That is what it is for. If the answer is software you can set up yourself, or that you do not need anything yet, we will say so.`,
               },
             ].map((item) => (
               <details key={item.q} className="group py-5">

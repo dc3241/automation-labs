@@ -45,8 +45,8 @@ export default function TermsPage() {
               Using the site
             </h2>
             <p>
-              The Site provides information about automation tools, working
-              sessions, workflows, and custom build services, plus a newsletter.
+              The Site provides information about automation tools, consultations,
+              workflows, and custom build services, plus a newsletter.
               You agree to use it
               lawfully and not to:
             </p>
@@ -98,11 +98,12 @@ export default function TermsPage() {
               Paid services
             </h2>
             <p>
-              A working session is a fixed-price engagement: {CONSULTING_PRICE_LABEL}{" "}
+              A consultation is a fixed-price engagement: {CONSULTING_PRICE_LABEL}{" "}
               for one {CONSULTING_DURATION_ADJECTIVE} session, paid at booking through
               our scheduler. Payment
-              confirms the time. The session is advisory. It does not include a
-              build, a written proposal, or ongoing support. Rescheduling and
+              confirms the time. The consultation is advisory. You leave with a
+              recommended route. It does not include a
+              build, a written project proposal, or ongoing support. Rescheduling and
               cancellation follow the policy shown when you book.
             </p>
             <p>
@@ -119,8 +120,8 @@ export default function TermsPage() {
             </p>
             <ul className="list-disc pl-5 space-y-2">
               <li>
-                Discovery calls for workflow and custom-build projects are free
-                and non-binding
+                Consultations are paid at booking and are separate from project
+                work
               </li>
               <li>
                 Fixed-price proposals are provided before any billable work

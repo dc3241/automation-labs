@@ -272,7 +272,7 @@ export default function ServicesIntakeForm() {
 
               <p className="text-sm text-gray-500 text-center">
                 We review every submission personally. If it&apos;s a fit,
-                we&apos;ll reach out to schedule a call.
+                we&apos;ll reply with next steps.
               </p>
             </form>
           </div>

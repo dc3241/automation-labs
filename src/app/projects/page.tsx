@@ -55,8 +55,15 @@ export default function ProjectsPage() {
             See how the process works.
           </h2>
           <p className="text-base sm:text-lg text-gray-600 leading-relaxed">
-            Every project starts with a 30-45 minute discovery call and a
-            fixed quote before any work begins.
+            Every build starts from a written scope and a fixed quote before any
+            work begins. Not sure of the route yet? A{" "}
+            <Link
+              href="/consulting"
+              className="font-semibold text-gray-900 underline underline-offset-2 hover:text-gray-700"
+            >
+              consultation
+            </Link>{" "}
+            is how we decide it.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-2">
             <Link
