@@ -353,6 +353,20 @@ export const builds: Build[] = [
   },
 ];
 
+export function getBuildBySlug(slug: string): Build | undefined {
+  return builds.find((build) => build.slug === slug);
+}
+
+/** Same department first, then the rest of the gallery. */
+export function getRelatedBuilds(build: Build, limit = 3): Build[] {
+  const others = builds.filter((item) => item.slug !== build.slug);
+  const sameDepartment = others.filter(
+    (item) => item.department === build.department
+  );
+  const rest = others.filter((item) => item.department !== build.department);
+  return [...sameDepartment, ...rest].slice(0, limit);
+}
+
 export function getBuildDepartments(items: Build[] = builds): Department[] {
   return Array.from(new Set(items.map((b) => b.department)));
 }

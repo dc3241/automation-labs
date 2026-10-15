@@ -500,7 +500,7 @@ export default function ServicesPage() {
             <div className="lg:order-1 order-2 lg:sticky lg:top-24">
               <div className="space-y-4">
                 <BuildExampleVisual
-                  href="/projects#weekly-social-production"
+                  href="/projects/weekly-social-production"
                   src="/images/builds/first-look-content-queue.jpg"
                   alt="First Look content queue — generated Instagram graphics with approve, deny, and download"
                   title="Weekly Social Production System"

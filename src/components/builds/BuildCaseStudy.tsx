@@ -69,61 +69,53 @@ export function BuildVisualSlot({ build, priority = false }: BuildVisualSlotProp
   );
 }
 
-function BuildBeatBlock({ label, beat }: { label: string; beat: BuildBeat }) {
+export function BuildBeatBlock({ label, beat }: { label: string; beat: BuildBeat }) {
   return (
     <section className="space-y-2">
-      <h3 className="text-sm font-semibold uppercase tracking-wide text-gray-500">
+      <h2 className="text-sm font-semibold uppercase tracking-wide text-gray-500">
         {label}
-      </h3>
+      </h2>
       <p className="text-lg sm:text-xl text-gray-900 leading-snug">{beat.claim}</p>
       <p className="text-gray-600 text-sm sm:text-base leading-relaxed">{beat.body}</p>
     </section>
   );
 }
 
-type BuildCaseStudyProps = {
+type BuildIndexCardProps = {
   build: Build;
   priorityVisual?: boolean;
+  index?: number;
 };
 
-export function BuildCaseStudy({
+export function BuildIndexCard({
   build,
   priorityVisual = false,
-}: BuildCaseStudyProps) {
+  index,
+}: BuildIndexCardProps) {
+  const href = `/projects/${build.slug}`;
+
   return (
     <Reveal
       as="article"
       id={build.slug}
-      className="scroll-mt-24 border-b border-gray-200 last:border-b-0 py-12 sm:py-16 first:pt-0 last:pb-0"
+      index={index}
+      className="scroll-mt-24 border-b border-gray-200 last:border-b-0 py-12 sm:py-16 first:pt-0"
     >
-      <div className="space-y-6 sm:space-y-8">
-        <header className="space-y-3 sm:space-y-4">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+        <div className={build.visual.src ? "lg:col-span-6" : "lg:col-span-12"}>
           <p className="text-sm font-semibold text-gray-500">
             {buildKicker(build)}
           </p>
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900">
-            {build.title}
+          <h2 className="mt-3 text-2xl sm:text-3xl font-bold text-gray-900">
+            <Link href={href} className="hover:text-gray-700">
+              {build.title}
+            </Link>
           </h2>
-          <p className="text-lg sm:text-xl text-gray-600 leading-relaxed max-w-3xl">
-            {build.hook}
-          </p>
+          <p className="mt-4 text-lg text-gray-600 leading-relaxed">{build.hook}</p>
           {build.isDemo && build.demoNote ? (
-            <p className="text-sm text-gray-500 italic max-w-3xl">
-              {build.demoNote}
-            </p>
+            <p className="mt-3 text-sm text-gray-500 italic">{build.demoNote}</p>
           ) : null}
-        </header>
-
-        <BuildVisualSlot build={build} priority={priorityVisual} />
-
-        <div className="max-w-3xl space-y-8">
-          <BuildBeatBlock label="The problem" beat={build.problem} />
-          <BuildBeatBlock label="The build" beat={build.build} />
-          <BuildBeatBlock label="The result" beat={build.result} />
-        </div>
-
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pt-2">
-          <div className="flex flex-wrap gap-2">
+          <div className="mt-5 flex flex-wrap gap-2">
             {build.stack.map((tool) => (
               <span
                 key={tool}
@@ -133,19 +125,28 @@ export function BuildCaseStudy({
               </span>
             ))}
           </div>
-          <p className="text-sm sm:text-base text-gray-700">
-            Want something like this for your team?{" "}
-            <Link
-              href={build.cta.href}
-              className="font-semibold text-gray-900 underline underline-offset-2 hover:text-gray-700 arrow-link"
-            >
-              {build.cta.label}
-              <span aria-hidden className="arrow ml-0.5">
-                →
-              </span>
-            </Link>
-          </p>
+          <Link
+            href={href}
+            className="mt-6 inline-flex items-center text-sm sm:text-base font-semibold text-gray-900 hover:text-gray-700 arrow-link"
+          >
+            Read the breakdown
+            <span aria-hidden className="arrow ml-1">
+              →
+            </span>
+          </Link>
         </div>
+        {build.visual.src ? (
+          <Link href={href} className="lg:col-span-6 block">
+            <figure className="overflow-hidden rounded-lg border border-gray-200 bg-gray-100">
+              <img
+                src={build.visual.src}
+                alt={build.visual.alt}
+                className="w-full h-auto object-cover"
+                loading={priorityVisual ? "eager" : "lazy"}
+              />
+            </figure>
+          </Link>
+        ) : null}
       </div>
     </Reveal>
   );
@@ -169,10 +170,10 @@ export function BuildTeaserCard({ build, index }: BuildTeaserCardProps) {
         {build.hook}
       </p>
       <Link
-        href={`/projects#${build.slug}`}
+        href={`/projects/${build.slug}`}
         className="text-sm font-semibold text-gray-900 hover:text-gray-700 inline-flex items-center arrow-link"
       >
-        Read the case study
+        Read the breakdown
         <span aria-hidden className="arrow ml-1">
           →
         </span>

@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { BuildCaseStudy } from "@/components/builds/BuildCaseStudy";
+import { BuildIndexCard } from "@/components/builds/BuildCaseStudy";
 import { builds } from "@/data/builds";
 
 export const metadata: Metadata = {
-  title: "Builds | Automation Labs",
+  title: "Builds",
   description:
-    "Internal tools, dashboards, and workflow automations for SMB teams — across marketing, finance, operations, sales, and more. What's live, what's an example, what it replaced, and how it works.",
+    "Internal tools and workflow automations for SMB teams. Open a build for the problem, how it works, and who it is for — client knowledge hubs, social content systems, revenue dashboards, and more.",
 };
 
 export default function ProjectsPage() {
@@ -21,8 +21,8 @@ export default function ProjectsPage() {
             What we&apos;ve actually built.
           </h1>
           <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            No vaporware. Each write-up covers the problem, the build, and the
-            result. Example builds are marked as such.
+            No vaporware. Open a build for the problem, how it works, and who
+            it is for. Example builds are marked as such.
           </p>
         </div>
       </section>
@@ -39,10 +39,11 @@ export default function ProjectsPage() {
           */}
           <div className="max-w-5xl mx-auto">
             {builds.map((build, index) => (
-              <BuildCaseStudy
+              <BuildIndexCard
                 key={build.id}
                 build={build}
                 priorityVisual={index === 0}
+                index={index}
               />
             ))}
           </div>
