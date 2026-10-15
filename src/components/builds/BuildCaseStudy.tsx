@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { engagementLabel, type Build } from "@/data/builds";
+import { buildKicker, type Build, type BuildBeat } from "@/data/builds";
 import { Reveal } from "@/components/Reveal";
 import { SignalFlowDiagram } from "@/components/SignalFlowDiagram";
 
@@ -69,6 +69,18 @@ export function BuildVisualSlot({ build, priority = false }: BuildVisualSlotProp
   );
 }
 
+function BuildBeatBlock({ label, beat }: { label: string; beat: BuildBeat }) {
+  return (
+    <section className="space-y-2">
+      <h3 className="text-sm font-semibold uppercase tracking-wide text-gray-500">
+        {label}
+      </h3>
+      <p className="text-lg sm:text-xl text-gray-900 leading-snug">{beat.claim}</p>
+      <p className="text-gray-600 text-sm sm:text-base leading-relaxed">{beat.body}</p>
+    </section>
+  );
+}
+
 type BuildCaseStudyProps = {
   build: Build;
   priorityVisual?: boolean;
@@ -87,7 +99,7 @@ export function BuildCaseStudy({
       <div className="space-y-6 sm:space-y-8">
         <header className="space-y-3 sm:space-y-4">
           <p className="text-sm font-semibold text-gray-500">
-            {build.department} · {engagementLabel(build.engagementType)}
+            {buildKicker(build)}
           </p>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900">
             {build.title}
@@ -104,31 +116,10 @@ export function BuildCaseStudy({
 
         <BuildVisualSlot build={build} priority={priorityVisual} />
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-10">
-          <section className="space-y-2">
-            <h3 className="text-sm font-semibold uppercase tracking-wide text-gray-500">
-              The problem
-            </h3>
-            <p className="text-gray-700 text-sm sm:text-base leading-relaxed">
-              {build.problem}
-            </p>
-          </section>
-          <section className="space-y-2">
-            <h3 className="text-sm font-semibold uppercase tracking-wide text-gray-500">
-              The build
-            </h3>
-            <p className="text-gray-700 text-sm sm:text-base leading-relaxed">
-              {build.build}
-            </p>
-          </section>
-          <section className="space-y-2">
-            <h3 className="text-sm font-semibold uppercase tracking-wide text-gray-500">
-              The result
-            </h3>
-            <p className="text-gray-700 text-sm sm:text-base leading-relaxed">
-              {build.result}
-            </p>
-          </section>
+        <div className="max-w-3xl space-y-8">
+          <BuildBeatBlock label="The problem" beat={build.problem} />
+          <BuildBeatBlock label="The build" beat={build.build} />
+          <BuildBeatBlock label="The result" beat={build.result} />
         </div>
 
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pt-2">
@@ -169,7 +160,7 @@ export function BuildTeaserCard({ build, index }: BuildTeaserCardProps) {
   return (
     <Reveal index={index} as="article" className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 sm:p-8 hover:shadow-md transition-shadow duration-200 flex flex-col h-full">
       <p className="text-sm font-semibold text-gray-500 mb-2">
-        {build.department} · {engagementLabel(build.engagementType)}
+        {buildKicker(build)}
       </p>
       <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-3">
         {build.title}

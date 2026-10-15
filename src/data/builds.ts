@@ -24,6 +24,16 @@ export function engagementLabel(
   return (Array.isArray(type) ? type : [type]).join(" · ");
 }
 
+export function buildKicker(build: {
+  department: Department;
+  engagementType: EngagementType | EngagementType[];
+  focus?: string;
+}): string {
+  const parts = [build.department, engagementLabel(build.engagementType)];
+  if (build.focus) parts.push(build.focus);
+  return parts.join(" · ");
+}
+
 export type BuildCta = {
   label: string;
   href: string;
@@ -39,16 +49,24 @@ export type BuildVisual = {
   placeholderHint: string;
 };
 
+/** A case-study beat: one claim, then a short paragraph. */
+export type BuildBeat = {
+  claim: string;
+  body: string;
+};
+
 export type Build = {
   id: string;
   slug: string;
   department: Department;
   engagementType: EngagementType | EngagementType[];
+  /** Optional third kicker, e.g. "Knowledge Management". */
+  focus?: string;
   title: string;
   hook: string;
-  problem: string;
-  build: string;
-  result: string;
+  problem: BuildBeat;
+  build: BuildBeat;
+  result: BuildBeat;
   stack: string[];
   visual: BuildVisual;
   /** Extra screenshots; the first visual stays the hero. */
@@ -64,17 +82,80 @@ export type Build = {
 
 export const builds: Build[] = [
   {
+    id: "client-knowledge-hub",
+    slug: "client-knowledge-hub",
+    department: "Operations",
+    engagementType: "Custom Build",
+    focus: "Knowledge Management",
+    title: "Client Knowledge Hub",
+    hook: "Replaced five tools and a “who do I ask?” Slack thread with a private hub that shows who works on every client and puts everything they need one click away.",
+    problem: {
+      claim: "Five tools, and a Slack thread, for one client’s rules.",
+      body: "Guides lived in Atlassian, rules and the roster in a spreadsheet, work in Jira, the account in Salesforce, conversations in Gmail. Finding the answer took longer than asking a coworker.",
+    },
+    build: {
+      claim: "One page per client, fed by the sheet the team already updates.",
+      body: "The page shows the team, a briefing, and a plain-language answer with the source attached. Guides, rules, tickets, the account, and email open in the original tool, and coverage and new-hire mode come from that same sheet.",
+    },
+    result: {
+      claim: "The question starts with the answer.",
+      body: "Anyone can see who owns the client, who is covering, and open the exact doc. New hires have a map on day one.",
+    },
+    stack: [
+      "Confluence",
+      "Jira",
+      "Salesforce",
+      "Google Sheets",
+      "Gmail",
+      "Slack",
+    ],
+    visual: {
+      src: "/images/builds/client-knowledge-hub-team.jpg",
+      alt: "Client Atlas page for Bramblewood Home, with today’s briefing and the account team, including who is covering while the QA specialist is out",
+      caption:
+        "One client, one page. The team — and who is covering — comes from the roles sheet.",
+      placeholderHint: "",
+    },
+    gallery: [
+      {
+        src: "/images/builds/client-knowledge-hub-answer.jpg",
+        alt: "Ask Atlas answering whether Ferrow tents can be called waterproof, with citations to the client rules and category map",
+        caption:
+          "Ask in plain language. The answer cites the rule it used.",
+        placeholderHint: "",
+      },
+      {
+        src: "/images/builds/client-knowledge-hub-docs.jpg",
+        alt: "Documentation for Ferrow Outdoor Co. filtered across Confluence, Google Sheets, Jira, Salesforce, and Gmail, with who to ask and what changed",
+        caption:
+          "Guides, rules, tickets, the account, and email — filterable by source.",
+        placeholderHint: "",
+      },
+    ],
+    cta: {
+      label: "Start a custom build",
+      href: "/contact?type=build",
+    },
+  },
+  {
     id: "weekly-social-production",
     slug: "weekly-social-production",
     department: "Marketing",
     engagementType: ["Custom Build", "Workflow Automation"],
     title: "Weekly Social Production System",
     hook: "Replaced a content spreadsheet and a Friday “go make the graphics” chore with a private ops dashboard that produces a week of captions and brand-locked product images — then stops so a human still posts.",
-    problem:
-      "Social for First Look, a two-audience wedding SaaS (couples vs. venues and planners), ran on nine channels, a content-mix rule, and a weekly graphic batch — all in a Google Sheet plus a Cowork task. The calendar drifted. The mix lived in someone’s head. Product screenshots got pasted into Canva as floating phone mockups. Nobody could tell whether the week was actually done.",
-    build: "A gated /admin console, completely separate from the customer product. Humans generate and like ideas, then tag platform, format, and audience — the model does not pick the week. A Friday cron produces a bounded batch: captions come back as schema-enforced JSON, mix types A–D are assigned in code, and graphics are image-to-image against locked brand templates plus real product UI. Results land in a review queue via webhook. Approve files the post into an audience-split content bank. Nothing calls Instagram, TikTok, or LinkedIn.",
-    result:
-      "Friday produces a week of on-brand creative; a person still hits publish. Ideas aren’t repeated, the mix rule is a function not a memory, and missing product shots fail closed instead of inventing a fake dashboard. Automate production, never publication.",
+    problem: {
+      claim: "Nine channels, a mix rule, and a Friday graphic batch lived in a spreadsheet.",
+      body: "The calendar drifted, the mix lived in someone’s head, and product shots got pasted into Canva as floating phones. Nobody could tell whether the week was actually done.",
+    },
+    build: {
+      claim: "A private console produces the week. A person still hits publish.",
+      body: "People tag platform, format, and audience; a Friday job writes the captions and brand-locked images. Approve files the post. Nothing calls Instagram, TikTok, or LinkedIn.",
+    },
+    result: {
+      claim: "Friday produces a week of on-brand creative.",
+      body: "Ideas aren’t repeated, the mix rule is a function, and missing product shots fail closed. Automate production, never publication.",
+    },
     stack: [
       "Next.js",
       "Postgres",
@@ -118,11 +199,18 @@ export const builds: Build[] = [
     engagementType: "Custom Build",
     title: "Content Dashboard",
     hook: "Replaced three spreadsheets and a scattered approval process with one tool the team actually opens.",
-    problem:
-      "A social media team tracking content performance across Instagram, TikTok, and YouTube had no single view — just scattered spreadsheets, manual data pulls, and an approval process nobody could follow. Nobody could answer \"what's working\" without an hour of copy-pasting first.",
-    build: "Apify scrapers pull platform data on a schedule. A TypeScript/Node.js analysis layer processes it, the Anthropic API clusters content into themes and patterns, and the result renders as a static HTML dashboard the team opens like a webpage — no login, no spreadsheet, no waiting on an export.",
-    result:
-      "One tool replaced three spreadsheets and the manual approval chain that used to sit on top of them. The team can see what's performing without asking anyone to pull a report first.",
+    problem: {
+      claim: "Nobody could answer “what’s working” without an hour of copy-pasting.",
+      body: "Performance across Instagram, TikTok, and YouTube lived in scattered spreadsheets, with an approval process nobody could follow.",
+    },
+    build: {
+      claim: "Scrapers, a clustering pass, and a page the team just opens.",
+      body: "Apify pulls platform data on a schedule. The Anthropic API groups it into themes, and the result is a static dashboard — no login, no export.",
+    },
+    result: {
+      claim: "One page replaced three spreadsheets and the approval chain on top of them.",
+      body: "The team can see what’s performing without asking anyone to pull a report first.",
+    },
     stack: ["Apify", "TypeScript/Node.js", "Anthropic API", "Static HTML"],
     visual: {
       alt: "Content Dashboard screenshot",
@@ -141,11 +229,18 @@ export const builds: Build[] = [
     engagementType: "Custom Build",
     title: "Revenue Tracking Dashboard",
     hook: "Replaced a fragmented mess of platform dashboards with one place to see every revenue stream.",
-    problem:
-      "Revenue was split across brand deals, affiliate income, ad/view revenue, and agency work — each living in its own platform, with no combined view of what the business was actually making, no KPI tracking, and no trailing-twelve-month picture without manually rebuilding one.",
-    build: "A multi-tab spreadsheet system built with Python and openpyxl: four tabs, one per revenue stream, feeding a central KPI dashboard with TTM totals. Dark and light theme options so it's usable as a daily-open tool, not just a monthly report.",
-    result:
-      "One file replaced logging into four separate platforms to piece together the same picture. TTM totals and KPIs are always current, not rebuilt by hand each time someone asks.",
+    problem: {
+      claim: "Four revenue streams, and no picture of the business without rebuilding it by hand.",
+      body: "Brand deals, affiliate income, ad revenue, and agency work each lived in their own platform. There was no KPI view and no trailing-twelve-month total unless someone assembled one.",
+    },
+    build: {
+      claim: "Four tabs feed one KPI sheet, including trailing twelve months.",
+      body: "Python and openpyxl keep a tab per revenue stream and a central dashboard. Dark and light themes make it a daily-open file, not a monthly report.",
+    },
+    result: {
+      claim: "One file replaced logging into four platforms.",
+      body: "Totals and KPIs stay current. Nobody rebuilds the picture each time someone asks.",
+    },
     stack: ["Python", "openpyxl", "Excel"],
     visual: {
       alt: "Revenue Tracking Dashboard KPI tab (dark theme)",
@@ -164,11 +259,18 @@ export const builds: Build[] = [
     engagementType: "Custom Build",
     title: "New-Hire Onboarding Tracker",
     hook: "Replaced the email-spreadsheet-Slack scramble with one place to see where each hire actually is.",
-    problem:
-      "Once an offer was signed, onboarding lived in four places: a spreadsheet nobody updated, an IT email thread, a payroll checklist, and Slack messages asking \"did they get a laptop yet?\" Nobody could answer where a hire stood without pinging three people.",
-    build: "A small internal tool with one row per hire and a status for paperwork, equipment, payroll, and first-week plan. Form and email triggers update the row; the hiring manager opens a page instead of hunting through threads. TypeScript/Node.js on the backend, Postgres for state, a simple web UI the team bookmarks.",
-    result:
-      "Status questions stopped landing in Slack. IT and payroll see the same board the hiring manager does, and a new hire isn't stuck waiting because someone missed a thread.",
+    problem: {
+      claim: "After the offer, nobody could say where a hire stood without pinging three people.",
+      body: "Onboarding lived in a spreadsheet, an IT thread, a payroll checklist, and Slack messages asking whether the laptop had arrived.",
+    },
+    build: {
+      claim: "One row per hire, updated by the form and the email.",
+      body: "Paperwork, equipment, payroll, and the first-week plan sit on one page. The hiring manager opens it instead of hunting threads.",
+    },
+    result: {
+      claim: "Status questions left Slack.",
+      body: "IT, payroll, and the hiring manager see the same board. A new hire isn’t stuck because someone missed a thread.",
+    },
     stack: ["TypeScript/Node.js", "Postgres", "Resend"],
     visual: {
       alt: "New-hire onboarding tracker screenshot",
@@ -190,11 +292,18 @@ export const builds: Build[] = [
     engagementType: "Workflow Automation",
     title: "Pre-Call Lead Briefs",
     hook: "Every new CRM lead arrives with a one-page brief — so the first call isn't a LinkedIn tab and a guess.",
-    problem:
-      "Reps walked into first calls with a name, a company, and whatever they could skim in five minutes. Research was inconsistent: some people over-prepared, most people didn't, and nobody had time to do it for every inbound lead.",
-    build: "A new record in the CRM kicks off a job: pull company context from the website and a few public sources, the Anthropic API turns it into a one-page brief (what they do, recent signals, likely pain), and the brief lands in Slack or email before the call. Custom TypeScript worker, no middleware platform in the middle.",
-    result:
-      "Reps open the brief instead of starting from zero. The research still happens — it just doesn't eat the twenty minutes before every call.",
+    problem: {
+      claim: "First calls started from a name, a company, and five minutes of skimming.",
+      body: "Research was inconsistent. Some reps over-prepared, most didn’t, and nobody had time to do it for every inbound lead.",
+    },
+    build: {
+      claim: "A new CRM record writes the brief before the call.",
+      body: "A worker pulls public company context, and the Anthropic API turns it into one page — what they do, recent signals, likely pain — that lands in Slack or email.",
+    },
+    result: {
+      claim: "Reps open the brief instead of starting from zero.",
+      body: "The research still happens. It just doesn’t eat the twenty minutes before every call.",
+    },
     stack: ["TypeScript/Node.js", "Anthropic API", "CRM API"],
     visual: {
       alt: "Pre-call lead brief example",
@@ -216,11 +325,18 @@ export const builds: Build[] = [
     engagementType: "Custom Build",
     title: "Internal Request Portal",
     hook: "IT and ops requests left Slack DMs and got a submit-route-status flow the team can actually track.",
-    problem:
-      "Laptop requests, access, vendor questions, and facilities issues all lived in DMs. The person who needed something had no idea if anyone saw it. The person doing the work had no queue — just a pile of Slack pings in different channels.",
-    build: "A small portal: pick a request type, submit, get a ticket. Routing rules send it to the right owner; status is visible to the requester without a follow-up ping. TypeScript/Node.js, Postgres, a straightforward UI that replaces the DM as the system of record.",
-    result:
-      "\"Did anyone see my message?\" stopped being the intake process. Ops has a queue. Requesters can see where their ticket stands without chasing anyone.",
+    problem: {
+      claim: "Requests lived in DMs, so nobody had a queue and nobody knew if they’d been seen.",
+      body: "Laptops, access, vendor questions, and facilities issues arrived as Slack pings in different channels.",
+    },
+    build: {
+      claim: "Pick a type, submit, get a ticket the requester can see.",
+      body: "Routing sends it to the right owner. Status is visible without a follow-up ping, and the portal replaces the DM as the record.",
+    },
+    result: {
+      claim: "“Did anyone see my message?” stopped being the intake process.",
+      body: "Ops has a queue. Requesters can see where a ticket stands without chasing anyone.",
+    },
     stack: ["TypeScript/Node.js", "Postgres", "Next.js"],
     visual: {
       alt: "Internal request portal screenshot",
