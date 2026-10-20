@@ -46,7 +46,7 @@ export default function TermsPage() {
             </h2>
             <p>
               The Site provides information about automation tools, consultations,
-              workflows, and custom build services, plus a newsletter.
+              workflows, and custom solution services, plus a newsletter.
               You agree to use it
               lawfully and not to:
             </p>
@@ -107,7 +107,7 @@ export default function TermsPage() {
               cancellation follow the policy shown when you book.
             </p>
             <p>
-              The Site also describes our workflow automation and custom build
+              The Site also describes our workflow automation and custom solution
               services, including general pricing ranges. Those ranges are
               estimates, not quotes. Scope, timeline, and price for a project
               are defined in a separate written proposal or agreement signed by
@@ -133,7 +133,7 @@ export default function TermsPage() {
               </li>
               <li>
                 Support windows (e.g. 30 days for workflow projects, 60 days for
-                custom builds) are as described in the applicable proposal
+                custom solutions) are as described in the applicable proposal
               </li>
             </ul>
           </section>
@@ -145,7 +145,7 @@ export default function TermsPage() {
             <p>
               We build things carefully, but we don&apos;t guarantee specific
               business outcomes (revenue, time saved, etc.) from any tool
-              recommendation, workflow, or custom build — results depend on
+              recommendation, workflow, or custom solution — results depend on
               factors outside our control.
             </p>
           </section>

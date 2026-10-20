@@ -54,8 +54,8 @@ function StageIcon({ icon }: { icon: (typeof STAGES)[number]["icon"] }) {
 
 /**
  * Homepage hero graphic: trigger → runs → result.
- * Draw-in is CSS-only (plays once on load) so it does not flash empty
- * while waiting on hydration. Not a loop.
+ * CSS-only draw-in on load, then a soft looping signal that lights
+ * each step and travels the connectors. Respects reduced motion via CSS.
  */
 export function HeroFlowDiagram({
   className = "",

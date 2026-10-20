@@ -18,7 +18,7 @@ function BuildScreenshot({
   if (!visual.src) return null;
 
   return (
-    <figure className="overflow-hidden rounded-lg border border-gray-200 bg-gray-100">
+    <figure className="media-zoom overflow-hidden rounded-lg border border-gray-200 bg-gray-100">
       <img
         src={visual.src}
         alt={visual.alt}
@@ -137,7 +137,7 @@ export function BuildIndexCard({
         </div>
         {build.visual.src ? (
           <Link href={href} className="lg:col-span-6 block">
-            <figure className="overflow-hidden rounded-lg border border-gray-200 bg-gray-100">
+            <figure className="media-zoom overflow-hidden rounded-lg border border-gray-200 bg-gray-100">
               <img
                 src={build.visual.src}
                 alt={build.visual.alt}
@@ -158,24 +158,28 @@ type BuildTeaserCardProps = {
 };
 
 export function BuildTeaserCard({ build, index }: BuildTeaserCardProps) {
+  const href = `/projects/${build.slug}`;
+
   return (
-    <Reveal index={index} as="article" className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 sm:p-8 hover:shadow-md transition-shadow duration-200 flex flex-col h-full">
-      <p className="text-sm font-semibold text-gray-500 mb-2">
-        {buildKicker(build)}
-      </p>
-      <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-3">
-        {build.title}
-      </h3>
-      <p className="text-gray-600 text-sm leading-relaxed mb-6 flex-1">
-        {build.hook}
-      </p>
+    <Reveal index={index} as="article" className="h-full">
       <Link
-        href={`/projects/${build.slug}`}
-        className="text-sm font-semibold text-gray-900 hover:text-gray-700 inline-flex items-center arrow-link"
+        href={href}
+        className="surface-card bg-white rounded-lg shadow-sm border border-gray-200 p-6 sm:p-8 flex flex-col h-full"
       >
-        Read the breakdown
-        <span aria-hidden className="arrow ml-1">
-          →
+        <p className="text-sm font-semibold text-gray-500 mb-2">
+          {buildKicker(build)}
+        </p>
+        <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-3">
+          {build.title}
+        </h3>
+        <p className="text-gray-600 text-sm leading-relaxed mb-6 flex-1">
+          {build.hook}
+        </p>
+        <span className="text-sm font-semibold text-gray-900 inline-flex items-center arrow-link">
+          Read the breakdown
+          <span aria-hidden className="arrow ml-1">
+            →
+          </span>
         </span>
       </Link>
     </Reveal>

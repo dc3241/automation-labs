@@ -41,7 +41,7 @@ const HOW_HEARD: { value: ContactHowHeard; label: string }[] = [
 
 const INQUIRY_OPTIONS: { value: InquiryLane; label: string }[] = [
   { value: 'workflow-automation', label: 'Workflow Automation' },
-  { value: 'custom-build', label: 'Custom Build' },
+  { value: 'custom-build', label: 'Custom Solution' },
   { value: 'unqualified', label: 'Not sure yet' },
 ];
 
@@ -333,7 +333,7 @@ export default function ContactPage() {
                 <li className="flex gap-2">
                   <span className="text-gray-900 shrink-0">→</span>
                   <span>
-                    <strong className="text-gray-900">Custom builds</strong> — designing and building
+                    <strong className="text-gray-900">Custom solutions</strong> — designing and building
                     internal tools or dashboards when off-the-shelf isn&apos;t enough
                   </span>
                 </li>

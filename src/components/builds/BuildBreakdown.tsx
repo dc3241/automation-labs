@@ -159,7 +159,7 @@ export function BuildBreakdown({
             >
               services
             </Link>{" "}
-            lists how custom builds and workflow projects are priced.
+            lists how custom solutions and workflow projects are priced.
           </p>
           <Link
             href={build.cta.href}
@@ -181,7 +181,7 @@ export function BuildBreakdown({
                 <Link
                   key={item.id}
                   href={`/projects/${item.slug}`}
-                  className="block rounded-lg border border-gray-200 p-6 hover:shadow-md transition-shadow duration-200"
+                  className="surface-card block rounded-lg border border-gray-200 bg-white shadow-sm p-6"
                 >
                   <p className="text-sm font-semibold text-gray-500 mb-2">
                     {buildKicker(item)}

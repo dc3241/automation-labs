@@ -82,7 +82,7 @@ const breakdowns: Record<string, BuildBreakdown> = {
       {
         question: "Can you build this on our stack?",
         answer:
-          "The version we shipped sits on Confluence, Jira, Salesforce, Google Sheets, Gmail, and Slack. A custom build starts from the tools your team already updates.",
+          "The version we shipped sits on Confluence, Jira, Salesforce, Google Sheets, Gmail, and Slack. A custom solution starts from the tools your team already updates.",
       },
     ],
   },

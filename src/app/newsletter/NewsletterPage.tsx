@@ -16,7 +16,7 @@ const DEPARTMENTS = [
 const ISSUE_BENEFITS = [
   'The Tool of the Week — a single AI or automation tool worth trying',
   'The Workflow of the Week — a step-by-step you can build yourself',
-  'A Custom Build Spotlight — a real internal tool we\'ve shipped',
+  'A Custom Solution Spotlight — a real internal tool we\'ve shipped',
   '5 Tools Your [Department] Team Should Know',
   'Reader Q&A — your questions, answered',
 ];

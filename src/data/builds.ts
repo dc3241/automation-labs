@@ -16,7 +16,7 @@ export type Department =
   | "Legal"
   | "Other";
 
-export type EngagementType = "Custom Build" | "Workflow Automation";
+export type EngagementType = "Custom Solution" | "Workflow Automation";
 
 export function engagementLabel(
   type: EngagementType | EngagementType[]
@@ -85,7 +85,7 @@ export const builds: Build[] = [
     id: "client-knowledge-hub",
     slug: "client-knowledge-hub",
     department: "Operations",
-    engagementType: "Custom Build",
+    engagementType: "Custom Solution",
     focus: "Knowledge Management",
     title: "Client Knowledge Hub",
     hook: "Replaced five tools and a “who do I ask?” Slack thread with a private hub that shows who works on every client and puts everything they need one click away.",
@@ -133,7 +133,7 @@ export const builds: Build[] = [
       },
     ],
     cta: {
-      label: "Start a custom build",
+      label: "Start a custom solution",
       href: "/contact?type=build",
     },
   },
@@ -141,7 +141,7 @@ export const builds: Build[] = [
     id: "weekly-social-production",
     slug: "weekly-social-production",
     department: "Marketing",
-    engagementType: ["Custom Build", "Workflow Automation"],
+    engagementType: ["Custom Solution", "Workflow Automation"],
     title: "Weekly Social Production System",
     hook: "Replaced a content spreadsheet and a Friday “go make the graphics” chore with a private ops dashboard that produces a week of captions and brand-locked product images — then stops so a human still posts.",
     problem: {
@@ -188,7 +188,7 @@ export const builds: Build[] = [
       },
     ],
     cta: {
-      label: "Start a custom build",
+      label: "Start a custom solution",
       href: "/contact?type=build",
     },
   },
@@ -196,7 +196,7 @@ export const builds: Build[] = [
     id: "content-dashboard",
     slug: "content-dashboard",
     department: "Marketing",
-    engagementType: "Custom Build",
+    engagementType: "Custom Solution",
     title: "Content Dashboard",
     hook: "Replaced three spreadsheets and a scattered approval process with one tool the team actually opens.",
     problem: {
@@ -218,7 +218,7 @@ export const builds: Build[] = [
         "Screenshot of the dashboard (or a 10–15s screen-capture loop). Highest-leverage visual on the page.",
     },
     cta: {
-      label: "Start a custom build",
+      label: "Start a custom solution",
       href: "/contact?type=build",
     },
   },
@@ -226,7 +226,7 @@ export const builds: Build[] = [
     id: "revenue-tracking-dashboard",
     slug: "revenue-tracking-dashboard",
     department: "Finance",
-    engagementType: "Custom Build",
+    engagementType: "Custom Solution",
     title: "Revenue Tracking Dashboard",
     hook: "Replaced a fragmented mess of platform dashboards with one place to see every revenue stream.",
     problem: {
@@ -248,7 +248,7 @@ export const builds: Build[] = [
         "Screenshot of the KPI dashboard tab — dark theme reads better as a static image.",
     },
     cta: {
-      label: "Start a custom build",
+      label: "Start a custom solution",
       href: "/contact?type=build",
     },
   },
@@ -256,7 +256,7 @@ export const builds: Build[] = [
     id: "onboarding-tracker",
     slug: "onboarding-tracker",
     department: "Operations",
-    engagementType: "Custom Build",
+    engagementType: "Custom Solution",
     title: "New-Hire Onboarding Tracker",
     hook: "Replaced the email-spreadsheet-Slack scramble with one place to see where each hire actually is.",
     problem: {
@@ -278,7 +278,7 @@ export const builds: Build[] = [
         "Screenshot of the hire status board — columns for paperwork, equipment, payroll, first week.",
     },
     cta: {
-      label: "Start a custom build",
+      label: "Start a custom solution",
       href: "/contact?type=build",
     },
     isDemo: true,
@@ -322,7 +322,7 @@ export const builds: Build[] = [
     id: "request-portal",
     slug: "request-portal",
     department: "Operations",
-    engagementType: "Custom Build",
+    engagementType: "Custom Solution",
     title: "Internal Request Portal",
     hook: "IT and ops requests left Slack DMs and got a submit-route-status flow the team can actually track.",
     problem: {
@@ -344,7 +344,7 @@ export const builds: Build[] = [
         "Screenshot of the request queue — type, owner, status — plus the submit form.",
     },
     cta: {
-      label: "Start a custom build",
+      label: "Start a custom solution",
       href: "/contact?type=build",
     },
     isDemo: true,

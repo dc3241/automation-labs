@@ -7,7 +7,7 @@ import { ContactSubmission } from '../../../../utils/supabase';
 const INQUIRY_FILTERS = [
   { value: 'all', label: 'All types' },
   { value: 'workflow-automation', label: 'Workflow automation' },
-  { value: 'custom-build', label: 'Custom build' },
+  { value: 'custom-build', label: 'Custom solution' },
   { value: 'unqualified', label: 'Not sure yet' },
   { value: 'brand-deal', label: 'Brand deal' },
   { value: 'other', label: 'Other' },
@@ -105,7 +105,7 @@ export default function AdminContacts() {
       case 'workflow-automation':
         return 'Workflow automation';
       case 'custom-build':
-        return 'Custom build';
+        return 'Custom solution';
       case 'unqualified':
         return 'Not sure yet';
       case 'brand-deal':

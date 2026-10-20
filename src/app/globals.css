@@ -144,7 +144,7 @@ details[open] > summary .faq-chevron {
   transform: rotate(180deg);
 }
 
-/* ─── Process rail (one-time draw-in) ─── */
+/* ─── Process rail (scroll-linked progress) ─── */
 .process-rail {
   list-style: none;
   margin: 0;
@@ -167,9 +167,9 @@ details[open] > summary .faq-chevron {
   width: 2rem;
   height: 2rem;
   border-radius: 9999px;
-  border: 1.5px solid #171717;
+  border: 1.5px solid #d1d5db;
   background: #fff;
-  color: #171717;
+  color: #9ca3af;
   font-size: 0.75rem;
   font-weight: 700;
   display: flex;
@@ -178,11 +178,27 @@ details[open] > summary .faq-chevron {
   z-index: 1;
   opacity: 0;
   transform: scale(0.85);
-  transition: opacity 0.35s ease, transform 0.35s ease;
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s ease,
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    color 0.3s ease,
+    box-shadow 0.3s ease;
 }
 .process-rail.is-drawn .process-rail__node {
   opacity: 1;
   transform: scale(1);
+}
+.process-rail__step.is-reached .process-rail__node {
+  border-color: #171717;
+  color: #171717;
+}
+.process-rail__step.is-active .process-rail__node {
+  background: #171717;
+  border-color: #171717;
+  color: #fff;
+  box-shadow: 0 0 0 4px rgba(23, 23, 23, 0.08);
 }
 .process-rail__step:nth-child(1) .process-rail__node {
   transition-delay: 0ms;
@@ -199,15 +215,25 @@ details[open] > summary .faq-chevron {
 .process-rail__step:nth-child(5) .process-rail__node {
   transition-delay: 480ms;
 }
+.process-rail.is-drawn .process-rail__step.is-reached .process-rail__node,
+.process-rail.is-drawn .process-rail__step.is-active .process-rail__node {
+  transition-delay: 0ms;
+}
 .process-rail__body {
   padding-top: 0.15rem;
   opacity: 0;
   transform: translateY(6px);
-  transition: opacity 0.4s ease, transform 0.4s ease;
+  transition: opacity 0.4s ease, transform 0.4s ease, color 0.3s ease;
 }
 .process-rail.is-drawn .process-rail__body {
-  opacity: 1;
+  opacity: 0.55;
   transform: translateY(0);
+}
+.process-rail.is-drawn .process-rail__step.is-reached .process-rail__body {
+  opacity: 0.85;
+}
+.process-rail.is-drawn .process-rail__step.is-active .process-rail__body {
+  opacity: 1;
 }
 .process-rail__step:nth-child(1) .process-rail__body {
   transition-delay: 40ms;
@@ -223,6 +249,10 @@ details[open] > summary .faq-chevron {
 }
 .process-rail__step:nth-child(5) .process-rail__body {
   transition-delay: 520ms;
+}
+.process-rail.is-drawn .process-rail__step.is-reached .process-rail__body,
+.process-rail.is-drawn .process-rail__step.is-active .process-rail__body {
+  transition-delay: 0ms;
 }
 .process-rail__title {
   display: block;
@@ -244,27 +274,19 @@ details[open] > summary .faq-chevron {
   z-index: 0;
 }
 .process-rail__stroke {
-  stroke: #171717;
+  stroke: #e5e7eb;
   stroke-width: 2;
   stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+  transition: stroke 0.35s ease;
+}
+.process-rail__stroke--progress {
+  stroke: #171717;
   stroke-dashoffset: 1;
-  transition: stroke-dashoffset 0.55s ease;
+  transition: stroke-dashoffset 0.45s ease;
 }
-.process-rail.is-drawn .process-rail__step:nth-child(1) .process-rail__stroke {
+.process-rail__step.is-complete .process-rail__stroke--progress {
   stroke-dashoffset: 0;
-  transition-delay: 80ms;
-}
-.process-rail.is-drawn .process-rail__step:nth-child(2) .process-rail__stroke {
-  stroke-dashoffset: 0;
-  transition-delay: 200ms;
-}
-.process-rail.is-drawn .process-rail__step:nth-child(3) .process-rail__stroke {
-  stroke-dashoffset: 0;
-  transition-delay: 320ms;
-}
-.process-rail.is-drawn .process-rail__step:nth-child(4) .process-rail__stroke {
-  stroke-dashoffset: 0;
-  transition-delay: 440ms;
 }
 
 /* ─── Signal flow diagram (looping placeholder only) ─── */
@@ -413,15 +435,65 @@ details[open] > summary .faq-chevron {
 .hero-dept:nth-child(5) { animation-delay: 300ms; }
 .hero-dept:nth-child(6) { animation-delay: 360ms; }
 
+/* ─── Hero atmosphere (soft wash + drifting dots) ─── */
+.hero-atmosphere {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.hero-atmosphere__wash {
+  pointer-events: none;
+  position: absolute;
+  inset: -20% -10%;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse 60% 55% at 78% 42%, rgba(23, 23, 23, 0.1) 0%, transparent 72%),
+    radial-gradient(ellipse 50% 45% at 18% 70%, rgba(23, 23, 23, 0.07) 0%, transparent 68%);
+  animation: hero-wash-drift 22s ease-in-out infinite alternate;
+}
+.hero-atmosphere__dots {
+  pointer-events: none;
+  position: absolute;
+  inset: -32px;
+  z-index: 0;
+  opacity: 0.9;
+  background-image: radial-gradient(#9ca3af 1.25px, transparent 1.35px);
+  background-size: 18px 18px;
+  mask-image: radial-gradient(ellipse 85% 80% at 65% 48%, #000 35%, transparent 82%);
+  -webkit-mask-image: radial-gradient(ellipse 85% 80% at 65% 48%, #000 35%, transparent 82%);
+  animation: hero-dots-drift 28s linear infinite;
+}
+.hero-atmosphere__content {
+  position: relative;
+  z-index: 1;
+}
+@keyframes hero-wash-drift {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(-2.5%, 1.5%, 0) scale(1.04);
+  }
+}
+@keyframes hero-dots-drift {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 20px 40px;
+  }
+}
+
 /* ─── Hero flow diagram (one-time draw-in) ─── */
 .hero-flow {
   width: 100%;
   padding: 1.25rem 1rem;
   border: 1px solid #e5e7eb;
   border-radius: 0.75rem;
-  background-color: #fafafa;
+  background-color: rgba(250, 250, 250, 0.92);
   background-image: radial-gradient(#d1d5db 1px, transparent 1px);
   background-size: 16px 16px;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8) inset;
 }
 @media (min-width: 640px) {
   .hero-flow {
@@ -442,11 +514,24 @@ details[open] > summary .faq-chevron {
   border: 1.5px solid #171717;
   border-radius: 0.5rem;
   background: #fff;
+  /* Entrance, then a looping "active step" highlight */
   animation: hero-card-in 0.4s ease both;
 }
-.hero-flow__card:nth-of-type(1) { animation-delay: 0ms; }
-.hero-flow__card:nth-of-type(2) { animation-delay: 220ms; }
-.hero-flow__card:nth-of-type(3) { animation-delay: 440ms; }
+.hero-flow__card:nth-of-type(1) {
+  animation:
+    hero-card-in 0.4s ease both,
+    hero-card-glow-1 4.8s ease-in-out 0.9s infinite;
+}
+.hero-flow__card:nth-of-type(2) {
+  animation:
+    hero-card-in 0.4s ease 220ms both,
+    hero-card-glow-2 4.8s ease-in-out 0.9s infinite;
+}
+.hero-flow__card:nth-of-type(3) {
+  animation:
+    hero-card-in 0.4s ease 440ms both,
+    hero-card-glow-3 4.8s ease-in-out 0.9s infinite;
+}
 @keyframes hero-card-in {
   from {
     opacity: 0;
@@ -455,6 +540,58 @@ details[open] > summary .faq-chevron {
   to {
     opacity: 1;
     transform: none;
+  }
+}
+/* Active windows staggered across one 4.8s cycle (trigger → runs → result → pause) */
+@keyframes hero-card-glow-1 {
+  0%,
+  4% {
+    background: #fff;
+    box-shadow: none;
+  }
+  8%,
+  22% {
+    background: #f3f4f6;
+    box-shadow: 0 0 0 3px rgba(23, 23, 23, 0.08);
+  }
+  28%,
+  100% {
+    background: #fff;
+    box-shadow: none;
+  }
+}
+@keyframes hero-card-glow-2 {
+  0%,
+  28% {
+    background: #fff;
+    box-shadow: none;
+  }
+  32%,
+  46% {
+    background: #f3f4f6;
+    box-shadow: 0 0 0 3px rgba(23, 23, 23, 0.08);
+  }
+  52%,
+  100% {
+    background: #fff;
+    box-shadow: none;
+  }
+}
+@keyframes hero-card-glow-3 {
+  0%,
+  52% {
+    background: #fff;
+    box-shadow: none;
+  }
+  56%,
+  70% {
+    background: #f3f4f6;
+    box-shadow: 0 0 0 3px rgba(23, 23, 23, 0.08);
+  }
+  76%,
+  100% {
+    background: #fff;
+    box-shadow: none;
   }
 }
 .hero-flow__icon {
@@ -469,6 +606,58 @@ details[open] > summary .faq-chevron {
 .hero-flow__glyph {
   width: 1.5rem;
   height: 1.5rem;
+  transform-origin: center;
+}
+.hero-flow__card:nth-of-type(1) .hero-flow__glyph {
+  animation: hero-glyph-pulse-1 4.8s ease-in-out 0.9s infinite;
+}
+.hero-flow__card:nth-of-type(2) .hero-flow__glyph {
+  animation: hero-glyph-pulse-2 4.8s ease-in-out 0.9s infinite;
+}
+.hero-flow__card:nth-of-type(3) .hero-flow__glyph {
+  animation: hero-glyph-pulse-3 4.8s ease-in-out 0.9s infinite;
+}
+@keyframes hero-glyph-pulse-1 {
+  0%,
+  6% {
+    transform: scale(1);
+  }
+  12%,
+  20% {
+    transform: scale(1.08);
+  }
+  26%,
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes hero-glyph-pulse-2 {
+  0%,
+  30% {
+    transform: scale(1);
+  }
+  36%,
+  44% {
+    transform: scale(1.08);
+  }
+  50%,
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes hero-glyph-pulse-3 {
+  0%,
+  54% {
+    transform: scale(1);
+  }
+  60%,
+  68% {
+    transform: scale(1.08);
+  }
+  74%,
+  100% {
+    transform: scale(1);
+  }
 }
 .hero-flow__title {
   font-size: 0.95rem;
@@ -526,10 +715,14 @@ details[open] > summary .faq-chevron {
   transform: translate(-50%, -50%);
 }
 .hero-flow__rail:nth-of-type(1) .hero-flow__pulse {
-  animation: hero-flow-pulse-vert 0.45s ease-out 0.12s 1 both;
+  animation:
+    hero-flow-pulse-vert 0.45s ease-out 0.12s 1 both,
+    hero-flow-pulse-vert-1 4.8s ease-in-out 0.9s infinite;
 }
 .hero-flow__rail:nth-of-type(2) .hero-flow__pulse {
-  animation: hero-flow-pulse-vert 0.45s ease-out 0.34s 1 both;
+  animation:
+    hero-flow-pulse-vert 0.45s ease-out 0.34s 1 both,
+    hero-flow-pulse-vert-2 4.8s ease-in-out 0.9s infinite;
 }
 @keyframes hero-flow-pulse-vert {
   0% {
@@ -542,6 +735,47 @@ details[open] > summary .faq-chevron {
   80% {
     opacity: 1;
   }
+  100% {
+    opacity: 0;
+    top: 100%;
+  }
+}
+/* Connector pulses between active steps */
+@keyframes hero-flow-pulse-vert-1 {
+  0%,
+  20% {
+    opacity: 0;
+    top: 0;
+  }
+  24% {
+    opacity: 1;
+    top: 0;
+  }
+  30% {
+    opacity: 1;
+    top: 100%;
+  }
+  32%,
+  100% {
+    opacity: 0;
+    top: 100%;
+  }
+}
+@keyframes hero-flow-pulse-vert-2 {
+  0%,
+  44% {
+    opacity: 0;
+    top: 0;
+  }
+  48% {
+    opacity: 1;
+    top: 0;
+  }
+  54% {
+    opacity: 1;
+    top: 100%;
+  }
+  56%,
   100% {
     opacity: 0;
     top: 100%;
@@ -574,10 +808,14 @@ details[open] > summary .faq-chevron {
     transform: translate(-50%, -50%);
   }
   .hero-flow__rail:nth-of-type(1) .hero-flow__pulse {
-    animation: hero-flow-pulse-horiz 0.45s ease-out 0.12s 1 both;
+    animation:
+      hero-flow-pulse-horiz 0.45s ease-out 0.12s 1 both,
+      hero-flow-pulse-horiz-1 4.8s ease-in-out 0.9s infinite;
   }
   .hero-flow__rail:nth-of-type(2) .hero-flow__pulse {
-    animation: hero-flow-pulse-horiz 0.45s ease-out 0.34s 1 both;
+    animation:
+      hero-flow-pulse-horiz 0.45s ease-out 0.34s 1 both,
+      hero-flow-pulse-horiz-2 4.8s ease-in-out 0.9s infinite;
   }
 }
 @keyframes hero-flow-line-horiz {
@@ -604,18 +842,89 @@ details[open] > summary .faq-chevron {
     left: 100%;
   }
 }
+@keyframes hero-flow-pulse-horiz-1 {
+  0%,
+  20% {
+    opacity: 0;
+    left: 0;
+  }
+  24% {
+    opacity: 1;
+    left: 0;
+  }
+  30% {
+    opacity: 1;
+    left: 100%;
+  }
+  32%,
+  100% {
+    opacity: 0;
+    left: 100%;
+  }
+}
+@keyframes hero-flow-pulse-horiz-2 {
+  0%,
+  44% {
+    opacity: 0;
+    left: 0;
+  }
+  48% {
+    opacity: 1;
+    left: 0;
+  }
+  54% {
+    opacity: 1;
+    left: 100%;
+  }
+  56%,
+  100% {
+    opacity: 0;
+    left: 100%;
+  }
+}
 
-/* ─── Help cards (icon invert + lift) ─── */
+/* ─── Surface cards (shared lift + border harden) ─── */
+.surface-card,
 .help-card {
   transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
 }
 @media (hover: hover) {
+  .surface-card:hover,
   .help-card:hover {
     transform: translateY(-4px);
     box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
     border-color: #171717;
   }
+  .surface-card--dark:hover {
+    border-color: #6b7280;
+    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.28);
+  }
 }
+.surface-card--featured {
+  border-width: 2px;
+  border-color: #171717;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+}
+
+/* Media zoom inside cards / linked figures */
+.media-zoom {
+  overflow: hidden;
+}
+.media-zoom img {
+  transition: transform 320ms ease;
+  transform-origin: center center;
+}
+@media (hover: hover) {
+  .surface-card:hover .media-zoom img,
+  .help-card:hover .media-zoom img,
+  a:hover > .media-zoom img,
+  a:hover .media-zoom img,
+  .media-zoom:hover img {
+    transform: scale(1.03);
+  }
+}
+
+/* Help-card icon invert (extends surface-card language) */
 .help-card__icon {
   display: inline-flex;
   align-items: center;
@@ -684,12 +993,32 @@ details[open] > summary .faq-chevron {
 
   .process-rail__node,
   .process-rail__body,
-  .process-rail__stroke {
+  .process-rail__stroke,
+  .process-rail__stroke--progress {
     transition: none !important;
     transition-delay: 0ms !important;
     opacity: 1;
     transform: none;
+  }
+  .process-rail__node {
+    border-color: #171717;
+    color: #171717;
+  }
+  .process-rail__step.is-active .process-rail__node {
+    background: #171717;
+    color: #fff;
+    box-shadow: none;
+  }
+  .process-rail.is-drawn .process-rail__body {
+    opacity: 1;
+  }
+  .process-rail__stroke--progress {
     stroke-dashoffset: 0;
+  }
+
+  .hero-atmosphere__wash,
+  .hero-atmosphere__dots {
+    animation: none;
   }
 
   .signal-flow__pulse,
@@ -711,13 +1040,24 @@ details[open] > summary .faq-chevron {
   }
 
   .hero-flow__card,
-  .hero-flow__line {
+  .hero-flow__line,
+  .hero-flow__glyph,
+  .hero-flow__pulse {
     animation: none !important;
+  }
+  .hero-flow__card {
     opacity: 1;
+    transform: none;
+    background: #fff;
+    box-shadow: none;
+  }
+  .hero-flow__line {
+    transform: none;
+  }
+  .hero-flow__glyph {
     transform: none;
   }
   .hero-flow__pulse {
-    animation: none;
     opacity: 0;
   }
 
@@ -726,10 +1066,19 @@ details[open] > summary .faq-chevron {
     opacity: 1;
   }
 
+  .surface-card,
+  .surface-card:hover,
+  .surface-card--dark:hover,
   .help-card,
   .help-card:hover,
   .help-card__icon,
-  .help-card:hover .help-card__icon {
+  .help-card:hover .help-card__icon,
+  .media-zoom img,
+  .surface-card:hover .media-zoom img,
+  .help-card:hover .media-zoom img,
+  a:hover > .media-zoom img,
+  a:hover .media-zoom img,
+  .media-zoom:hover img {
     transition: none;
     transform: none;
   }

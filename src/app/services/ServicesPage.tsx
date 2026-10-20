@@ -85,7 +85,7 @@ const TIER_CARDS = [
     price: 'Free',
     bestFor: 'Best for: teams who want to figure out their own automation stack.',
     footer: <p className="text-sm text-gray-500">Tools directory coming soon.</p>,
-    className: 'bg-white rounded-lg border border-gray-200 p-8 flex flex-col',
+    className: 'surface-card bg-white rounded-lg border border-gray-200 shadow-sm p-8 flex flex-col',
     dark: false,
   },
   {
@@ -99,7 +99,7 @@ const TIER_CARDS = [
     footer: (
       <a
         href="#consulting-details"
-        className="text-blue-600 font-semibold hover:text-blue-700 inline-flex items-center arrow-link"
+        className="text-gray-900 font-semibold hover:text-gray-700 inline-flex items-center arrow-link"
       >
         See how it works
         <span aria-hidden className="arrow ml-1">
@@ -107,7 +107,7 @@ const TIER_CARDS = [
         </span>
       </a>
     ),
-    className: 'bg-white rounded-lg border border-gray-200 p-8 flex flex-col',
+    className: 'surface-card bg-white rounded-lg border border-gray-200 shadow-sm p-8 flex flex-col',
     dark: false,
   },
   {
@@ -121,7 +121,7 @@ const TIER_CARDS = [
     footer: (
       <a
         href="#workflow-details"
-        className="text-blue-600 font-semibold hover:text-blue-700 inline-flex items-center arrow-link"
+        className="text-gray-900 font-semibold hover:text-gray-700 inline-flex items-center arrow-link"
       >
         See how it works
         <span aria-hidden className="arrow ml-1">
@@ -130,13 +130,13 @@ const TIER_CARDS = [
       </a>
     ),
     className:
-      'bg-white rounded-lg border-2 border-blue-500 shadow-md p-8 flex flex-col relative',
+      'surface-card surface-card--featured bg-white rounded-lg border-2 border-gray-900 p-8 flex flex-col relative',
     dark: false,
   },
   {
     key: 'builds',
     emoji: '🏗️',
-    title: 'Custom Builds',
+    title: 'Custom Solutions',
     subtitle: 'Internal tools and dashboards built for how your team works.',
     price: 'Custom quote',
     bestFor: 'Best for: teams hitting the limits of off-the-shelf software.',
@@ -152,7 +152,7 @@ const TIER_CARDS = [
       </a>
     ),
     className:
-      'bg-gray-900 text-white rounded-lg border border-gray-800 p-8 flex flex-col',
+      'surface-card surface-card--dark bg-gray-900 text-white rounded-lg border border-gray-800 p-8 flex flex-col',
     dark: true,
   },
 ] as const;
@@ -275,8 +275,11 @@ function BuildExampleVisual({
   subtitle: string;
 }) {
   return (
-    <Link href={href} className="block group rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-900 focus-visible:ring-offset-2">
-      <figure className="overflow-hidden rounded-lg border border-gray-200 bg-white">
+    <Link
+      href={href}
+      className="surface-card block group rounded-lg border border-gray-200 bg-white shadow-sm overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-900 focus-visible:ring-offset-2"
+    >
+      <figure className="media-zoom">
         <img
           src={src}
           alt={alt}
@@ -330,7 +333,7 @@ export default function ServicesPage() {
               href="/contact?type=build"
               className="btn-press border border-gray-300 text-gray-700 px-8 py-3 rounded-lg font-semibold hover:bg-gray-50 text-center"
             >
-              Start a custom build
+              Start a custom solution
             </Link>
           </div>
         </div>
@@ -493,7 +496,7 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* Custom Builds */}
+      {/* Custom Solutions */}
       <section id="build-details" className="py-16 md:py-24 scroll-mt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
@@ -515,7 +518,7 @@ export default function ServicesPage() {
 
             <div className="lg:order-2 order-1">
               <span className="inline-block text-xs font-semibold uppercase tracking-widest text-gray-500 mb-4">
-                Custom Builds
+                Custom Solutions
               </span>
               <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">
                 When off-the-shelf software doesn&apos;t fit, we build something that does.
@@ -542,7 +545,7 @@ export default function ServicesPage() {
               <ServicePricing
                 initialEyebrow="Initial build"
                 initialPrice="Custom quote per project"
-                initialBody="Custom builds are scoped individually. Most projects land between $5,000 and $25,000 depending on complexity, integrations, and team size. You get a clear quote before any work begins."
+                initialBody="Custom solutions are scoped individually. Most projects land between $5,000 and $25,000 depending on complexity, integrations, and team size. You get a clear quote before any work begins."
                 retainerEyebrow="Monthly retainer"
                 retainerTitle="Keep it evolving"
                 retainerPrice="$750–$2,000/mo"
@@ -559,7 +562,7 @@ export default function ServicesPage() {
                   href="/contact?type=build"
                   className="btn-press inline-block bg-black text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-800"
                 >
-                  Start a custom build
+                  Start a custom solution
                 </Link>
               </div>
             </div>
@@ -639,11 +642,11 @@ export default function ServicesPage() {
             {[
               {
                 q: 'How long does a typical project take?',
-                a: 'Workflow projects typically run 7-21 days from kickoff to handoff. Custom builds run 2-6 weeks depending on scope. We give you a specific timeline in your proposal — no "it\'ll be ready when it\'s ready."',
+                a: 'Workflow projects typically run 7-21 days from kickoff to handoff. Custom solutions run 2-6 weeks depending on scope. We give you a specific timeline in your proposal — no "it\'ll be ready when it\'s ready."',
               },
               {
                 q: 'What tools do you work with?',
-                a: 'For workflows: custom connections and direct API integrations. For custom builds: modern web stacks (React, Next.js, Supabase, Postgres) and AI infrastructure (OpenAI, Claude, vector databases). If you\'re already using something specific, tell us — we\'ll work in your stack when it makes sense.',
+                a: 'For workflows: custom connections and direct API integrations. For custom solutions: modern web stacks (React, Next.js, Supabase, Postgres) and AI infrastructure (OpenAI, Claude, vector databases). If you\'re already using something specific, tell us — we\'ll work in your stack when it makes sense.',
               },
               {
                 q: 'Do you offer ongoing support after the build?',
