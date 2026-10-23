@@ -43,6 +43,132 @@ export type BuildBreakdown = {
 };
 
 const breakdowns: Record<string, BuildBreakdown> = {
+  "resume-intake": {
+    seoTitle: "AI Resume Screening for Small Business",
+    seoDescription:
+      "Automate resume screening for small business. Applications are read, matched to your job criteria, and logged in a tracker. A person makes every decision.",
+    headline: "AI resume screening for small business hiring teams",
+    published: "2026-10-23",
+    audience: {
+      claim: "For whoever opens every application and retypes it into a tracker.",
+      body: "Owners, office managers, and HR leads at companies with roughly 10 to 200 people who hire a few times a year and get applications by email and a form. There is a clear owner, a written job description, and a pile that grows faster than anyone can read it.",
+    },
+    replaces: [
+      "Opening every emailed resume just to find the basics",
+      "Retyping names, experience, and contact details into a tracker",
+      "Reviewing applicants in the order they arrived instead of by fit",
+      "Losing track of who still needs a reply or a second copy of a resume",
+    ],
+    howItWorks: [
+      {
+        title: "The application arrives where it already does",
+        body: "Candidates keep applying by email or through your form. A rule picks up each application so nobody changes how they apply.",
+      },
+      {
+        title: "The details are read and structured",
+        body: "Contact details, experience, skills, and availability are pulled from the resume and the message into one candidate record.",
+      },
+      {
+        title: "The record is compared to the job",
+        body: "Your must-haves for the role, written down once, are checked against each record. Only job criteria are compared. Names, photos, and personal details are not scored.",
+      },
+      {
+        title: "Everyone is logged and sorted",
+        body: "Each applicant gets one tracker row, with the strongest matches first and a plain note on what was and wasn’t found.",
+      },
+      {
+        title: "A person reviews and decides",
+        body: "Someone opens the list, shortlists, and follows up. Unreadable or incomplete applications are flagged for a person to chase. Nobody is rejected automatically.",
+      },
+    ],
+    sections: [
+      {
+        heading: "What AI resume screening does",
+        paragraphs: [
+          "AI resume screening reads each application, pulls out the details a person would otherwise retype, and compares them to the requirements you wrote for the job. It turns a pile of PDFs into a sorted list with notes.",
+          "It is a first-reader tool for the front of the hiring process. It does not interview, rank people on anything but the written job criteria, or make hiring decisions.",
+        ],
+      },
+      {
+        heading: "What gets extracted from each resume",
+        paragraphs: [
+          "Every application becomes one record with the same fields, whatever the resume’s layout looks like. This is the part people often call resume parsing:",
+        ],
+        bullets: [
+          "Name and contact details",
+          "The role applied for",
+          "Years and type of experience",
+          "Skills and tools mentioned",
+          "Availability and start date, when stated",
+          "Which of the job’s must-haves were found and which were not",
+        ],
+      },
+      {
+        heading: "Where a person stays in the loop",
+        paragraphs: [
+          "The workflow sorts and notes. People decide. It never rejects an applicant, and a lower match stays on the list for anyone who wants to look. Anything missing or unreadable is flagged so a person can ask for another copy.",
+          "Some places regulate automated tools used in hiring, so it is worth checking the rules that apply to you before you start. Keeping a person in charge of every decision, and scoring only against written job criteria, is the safer design either way.",
+        ],
+      },
+      {
+        heading: "Which tools it connects to",
+        paragraphs: [
+          "A project like this is scoped around what you already use: usually a shared jobs inbox such as Gmail or Outlook, an application form such as Google Forms, and a tracker such as Google Sheets. The example on this page uses Gmail, Google Forms, Google Sheets, the Anthropic API, and Slack.",
+        ],
+        link: { text: "See how workflow projects are scoped and priced", href: "/services" },
+      },
+      {
+        heading: "Is resume screening automation right for your business?",
+        paragraphs: [
+          "A short checklist tells you whether this is worth building:",
+        ],
+        bullets: [
+          "Applications arrive as emailed documents or form submissions",
+          "Someone clearly owns hiring and will review the output",
+          "You hire often enough that the pile keeps coming back",
+          "The job’s must-haves are written down before the posting goes live",
+        ],
+        link: { text: "Book a consultation to check your hiring process", href: "/consulting" },
+      },
+    ],
+    faqs: [
+      {
+        question: "How do I automate resume screening?",
+        answer:
+          "Route applications to one inbox or form, then use a workflow that reads each resume, extracts the details, compares them to the job’s written must-haves, and logs one row per applicant in a tracker. A person reviews the sorted list and makes every decision.",
+      },
+      {
+        question: "Is this just resume parsing?",
+        answer:
+          "Parsing is the first step: turning a resume into structured fields. This workflow also compares those fields to your job criteria, flags anything missing or unreadable, and logs and sorts every applicant so the review can start from a list.",
+      },
+      {
+        question: "Does it reject candidates automatically?",
+        answer:
+          "No. It sorts and adds notes. Every shortlist and every rejection is a person’s decision, and lower matches stay on the list.",
+      },
+      {
+        question: "Are there rules about using AI to screen applicants?",
+        answer:
+          "Some places regulate automated tools used in hiring decisions. We are not lawyers, so check the rules that apply to you. This workflow is designed to keep a person in charge of every decision and to compare only against written job criteria.",
+      },
+      {
+        question: "Can it work with our applicant tracking system?",
+        answer:
+          "It can be scoped around the system you use. Many small teams start with a shared Google Sheet and connect an applicant tracking system later.",
+      },
+      {
+        question: "Does it read resumes from both email and application forms?",
+        answer:
+          "Yes. Emailed attachments and form submissions can feed the same tracker so every applicant is logged the same way.",
+      },
+      {
+        question: "Is this a real client project?",
+        answer:
+          "This is an example build with a fictional company and candidates. It shows the kind of hiring workflow we scope for small business HR and operations teams, not a named client project.",
+      },
+    ],
+  },
   "invoice-intake": {
     seoTitle: "AI Invoice Processing for Small Business",
     seoDescription:

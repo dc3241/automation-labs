@@ -11,6 +11,7 @@ export const DEPARTMENT_FILTER_THRESHOLD = 5;
 export type Department =
   | "Marketing"
   | "Finance"
+  | "HR"
   | "Operations"
   | "Sales"
   | "Legal"
@@ -302,6 +303,57 @@ export const builds: Build[] = [
     isDemo: true,
     demoNote:
       "Example build with fictional vendors and data, representative of the kind of engagement we take on, not a named client project.",
+  },
+  {
+    id: "resume-intake",
+    slug: "resume-intake",
+    department: "HR",
+    engagementType: "Workflow Automation",
+    title: "Resume Intake Automation",
+    hook: "Applications that arrive by email or form get read, matched to the job's criteria, and logged in a tracker. A person makes every decision.",
+    problem: {
+      claim: "Applications piled up in an inbox, and the first review went to whoever had time.",
+      body: "Resumes arrived as PDFs and form submissions. Someone opened each one, retyped the basics into a tracker, and reviewed them in whatever order they came in.",
+    },
+    build: {
+      claim: "Every application is read the same way, against criteria you wrote down.",
+      body: "A workflow pulls contact details, experience, and skills into one tracker row and compares them to the job's must-haves. Strong matches sort to the top. Nobody is rejected automatically.",
+    },
+    result: {
+      claim: "The first review starts with a sorted list.",
+      body: "Every applicant is logged, and the person hiring spends their time on candidates instead of data entry.",
+    },
+    stack: ["Gmail", "Google Forms", "Google Sheets", "Anthropic API", "Slack"],
+    visual: {
+      src: "/images/builds/resume-intake-email-extraction.jpg",
+      alt: "Illustration of AI resume screening: an emailed application with a PDF resume on the left and the extracted candidate record with must-haves found on the right",
+      caption:
+        "An emailed application becomes one structured candidate record. Illustrative example with fictional data.",
+      placeholderHint: "",
+    },
+    gallery: [
+      {
+        src: "/images/builds/resume-intake-review-list.jpg",
+        alt: "Applicant review list showing candidates sorted by how many job must-haves were found, with a note that no one is rejected automatically",
+        caption:
+          "Every applicant is logged. A person reviews and decides. Illustrative example with fictional data.",
+        placeholderHint: "",
+      },
+      {
+        src: "/images/builds/resume-intake-process-flow.jpg",
+        alt: "Resume screening automation flow from application to extraction, comparison with job criteria, a sorted tracker, and a person who decides",
+        caption:
+          "From inbox to shortlist, with a person making every call. Illustrative example.",
+        placeholderHint: "",
+      },
+    ],
+    cta: {
+      label: "Start a workflow project",
+      href: "/contact?type=workflow",
+    },
+    isDemo: true,
+    demoNote:
+      "Example build with a fictional company and candidates, representative of the kind of engagement we take on, not a named client project.",
   },
   {
     id: "onboarding-tracker",
