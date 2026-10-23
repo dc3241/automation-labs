@@ -15,7 +15,7 @@ const CONTACT_EMAIL = "hello@automationlabsai.com";
 const GOVERNING_LAW = "the State of California, United States";
 
 export const metadata: Metadata = {
-  title: "Terms of Service | Automation Labs",
+  title: "Terms of Service",
   description:
     "Terms of Service for automationlabsai.com — site use, newsletter, affiliate disclosure, and how paid engagements are handled.",
 };

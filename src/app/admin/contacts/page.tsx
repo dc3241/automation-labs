@@ -1,8 +1,7 @@
 'use client';
 
 import { useState, useEffect, useMemo } from 'react';
-import { fetchContactSubmissions, updateContactSubmissionStatus } from '../../../../utils/data';
-import { ContactSubmission } from '../../../../utils/supabase';
+import type { ContactSubmission } from '../../../../utils/supabase';
 
 const INQUIRY_FILTERS = [
   { value: 'all', label: 'All types' },
@@ -41,6 +40,10 @@ export default function AdminContacts() {
   const [inquiryFilter, setInquiryFilter] = useState('all');
   const [companySizeFilter, setCompanySizeFilter] = useState('all');
   const [budgetFilter, setBudgetFilter] = useState('all');
+  const [needsLogin, setNeedsLogin] = useState(false);
+  const [password, setPassword] = useState('');
+  const [loginError, setLoginError] = useState('');
+  const [loggingIn, setLoggingIn] = useState(false);
 
   useEffect(() => {
     loadSubmissions();
@@ -49,13 +52,55 @@ export default function AdminContacts() {
   const loadSubmissions = async () => {
     try {
       setLoading(true);
-      const data = await fetchContactSubmissions();
-      setSubmissions(data);
+      setError('');
+      const res = await fetch('/api/admin/contacts', { cache: 'no-store' });
+      if (res.status === 401) {
+        setNeedsLogin(true);
+        return;
+      }
+      if (!res.ok) {
+        const body = await res.json().catch(() => ({}));
+        setError(body.error || 'Failed to load contact submissions');
+        return;
+      }
+      const body = await res.json();
+      setSubmissions(body.submissions ?? []);
+      setNeedsLogin(false);
     } catch {
       setError('Failed to load contact submissions');
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoginError('');
+    setLoggingIn(true);
+    try {
+      const res = await fetch('/api/admin/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password }),
+      });
+      if (res.ok) {
+        setPassword('');
+        await loadSubmissions();
+      } else {
+        const body = await res.json().catch(() => ({}));
+        setLoginError(body.error || 'Could not sign in.');
+      }
+    } catch {
+      setLoginError('Could not sign in.');
+    } finally {
+      setLoggingIn(false);
+    }
+  };
+
+  const handleSignOut = async () => {
+    await fetch('/api/admin/logout', { method: 'POST' }).catch(() => undefined);
+    setSubmissions([]);
+    setNeedsLogin(true);
   };
 
   const filteredSubmissions = useMemo(() => {
@@ -76,7 +121,18 @@ export default function AdminContacts() {
   const handleStatusUpdate = async (id: number, newStatus: ContactSubmission['status']) => {
     try {
       setUpdatingId(id);
-      const result = await updateContactSubmissionStatus(id, newStatus);
+      const res = await fetch('/api/admin/contacts', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id, status: newStatus }),
+      });
+      if (res.status === 401) {
+        setNeedsLogin(true);
+        return;
+      }
+      const result: { success: boolean; error?: string } = res.ok
+        ? { success: true }
+        : { success: false, error: (await res.json().catch(() => ({}))).error };
 
       if (result.success) {
         setSubmissions((prev) =>
@@ -203,6 +259,40 @@ export default function AdminContacts() {
     );
   }
 
+  if (needsLogin) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
+        <form
+          onSubmit={handleLogin}
+          className="w-full max-w-sm bg-white rounded-lg shadow-md p-8 space-y-4"
+        >
+          <h1 className="text-xl font-bold text-gray-900">Admin sign in</h1>
+          <label htmlFor="admin-password" className="block text-sm font-medium text-gray-700">
+            Password
+          </label>
+          <input
+            id="admin-password"
+            type="password"
+            autoComplete="current-password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+            disabled={loggingIn}
+            required
+          />
+          {loginError && <p className="text-sm text-red-600">{loginError}</p>}
+          <button
+            type="submit"
+            disabled={loggingIn || !password}
+            className="w-full px-4 py-2 bg-black text-white rounded-lg font-semibold disabled:opacity-50"
+          >
+            {loggingIn ? 'Signing in...' : 'Sign in'}
+          </button>
+        </form>
+      </div>
+    );
+  }
+
   if (error) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
@@ -232,9 +322,18 @@ export default function AdminContacts() {
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="container mx-auto px-4 py-8">
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Contact Submissions</h1>
-          <p className="text-gray-600">Manage and respond to contact form submissions</p>
+        <div className="mb-8 flex items-start justify-between gap-4">
+          <div>
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">Contact Submissions</h1>
+            <p className="text-gray-600">Manage and respond to contact form submissions</p>
+          </div>
+          <button
+            type="button"
+            onClick={handleSignOut}
+            className="px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100"
+          >
+            Sign out
+          </button>
         </div>
 
         <div className="bg-white rounded-lg shadow-md p-4 mb-6 grid grid-cols-1 md:grid-cols-3 gap-4">

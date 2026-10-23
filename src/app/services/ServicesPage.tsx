@@ -84,7 +84,17 @@ const TIER_CARDS = [
     subtitle: 'Free, hand-picked recommendations.',
     price: 'Free',
     bestFor: 'Best for: teams who want to figure out their own automation stack.',
-    footer: <p className="text-sm text-gray-500">Tools directory coming soon.</p>,
+    footer: (
+      <Link
+        href="/newsletter"
+        className="text-gray-900 font-semibold hover:text-gray-700 inline-flex items-center arrow-link"
+      >
+        Join the newsletter
+        <span aria-hidden className="arrow ml-1">
+          →
+        </span>
+      </Link>
+    ),
     className: 'surface-card bg-white rounded-lg border border-gray-200 shadow-sm p-8 flex flex-col',
     dark: false,
   },

@@ -3,7 +3,7 @@ import { Suspense } from "react";
 import ContactPage from "./ContactPage";
 
 export const metadata: Metadata = {
-  title: "Work With Us | Automation Labs",
+  title: "Work With Us",
   description:
     "Tell us about the automation you need. We help SMBs build custom internal tools and integrate the workflows that off-the-shelf tools don't solve.",
 };

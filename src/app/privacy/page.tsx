@@ -10,7 +10,7 @@ const EFFECTIVE_DATE = "October 12, 2026";
 const CONTACT_EMAIL = "hello@automationlabsai.com";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | Automation Labs",
+  title: "Privacy Policy",
   description:
     "How Automation Labs collects, uses, and protects information on automationlabsai.com — including newsletter, contact, booking, and guide signups.",
 };
