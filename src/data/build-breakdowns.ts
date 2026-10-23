@@ -17,19 +17,164 @@ export type BuildFaq = {
   answer: string;
 };
 
+export type BuildSection = {
+  /** Visible H2. Written as a phrase a buyer would search. */
+  heading: string;
+  paragraphs: string[];
+  bullets?: string[];
+  /** Optional internal link rendered under the section. */
+  link?: { text: string; href: string };
+};
+
 export type BuildBreakdown = {
   /** Document title. The root layout appends "| Automation Labs". */
   seoTitle: string;
   seoDescription: string;
   /** Visible H1. Sentence case, includes the product and the audience. */
   headline: string;
+  /** ISO date (YYYY-MM-DD). Feeds Article datePublished in JSON-LD. */
+  published?: string;
   audience: BuildBeat;
   replaces: string[];
   howItWorks: BuildStep[];
+  /** Optional long-form, keyword-led sections rendered after "How it works". */
+  sections?: BuildSection[];
   faqs: BuildFaq[];
 };
 
 const breakdowns: Record<string, BuildBreakdown> = {
+  "invoice-intake": {
+    seoTitle: "AI Invoice Processing for Small Business",
+    seoDescription:
+      "Automate invoice data entry with AI invoice processing. Emailed invoices are read, checked, and filed to your sheet or accounting tool; odd ones wait for you.",
+    headline: "AI invoice processing for small business finance teams",
+    published: "2026-10-23",
+    audience: {
+      claim: "For whoever keeps retyping invoices into a spreadsheet.",
+      body: "Owners, office managers, and finance leads at companies with roughly 10 to 200 people, where vendor invoices land in a shared inbox and one person copies the vendor, number, date, and amount into a sheet or accounting tool. It is steady, repetitive work with a clear owner, which is the kind that automates well.",
+    },
+    replaces: [
+      "Opening each emailed PDF just to retype the vendor, number, date, and amount",
+      "Invoices sitting in a shared inbox until someone has time to enter them",
+      "Paying late because a due date never made it into the sheet",
+      "Entering the same invoice twice because nobody could tell it was already in",
+    ],
+    howItWorks: [
+      {
+        title: "The invoice arrives where it already does",
+        body: "Vendors keep emailing the same address. A rule picks up messages with an invoice attached, so nobody has to change how they send them.",
+      },
+      {
+        title: "The fields are read and structured",
+        body: "Vendor, invoice number, invoice date, due date, amount, and a suggested category are pulled from the PDF or the email body into one clean record.",
+      },
+      {
+        title: "The record is checked against your rules",
+        body: "Is this a known vendor? Is the amount in its usual range? Has this invoice number been seen before? Is a due date present? The rules are yours, written down once.",
+      },
+      {
+        title: "Clean invoices file themselves",
+        body: "A passing record is added to your Google Sheet or accounting tool without anyone touching it. A weekly digest shows what was filed.",
+      },
+      {
+        title: "Anything unusual waits for a person",
+        body: "A failed check goes to Slack or email with the reason attached. Someone approves or edits it, and it files like the rest.",
+      },
+    ],
+    sections: [
+      {
+        heading: "What AI invoice processing does for accounts payable",
+        paragraphs: [
+          "AI invoice processing reads the invoices that arrive by email, pulls out the fields someone would otherwise retype, and puts them where you track bills. That makes it invoice data entry automation for the first step of accounts payable: open the document, find the details, record them.",
+          "It does not decide what gets paid. The automation handles the reading and the filing. A person still owns approval and payment.",
+        ],
+      },
+      {
+        heading: "What gets extracted from each invoice",
+        paragraphs: [
+          "Every invoice becomes one structured record with the same fields, whatever the vendor’s layout looks like:",
+        ],
+        bullets: [
+          "Vendor name",
+          "Invoice number",
+          "Invoice date and due date",
+          "Total amount",
+          "A suggested spending category you can accept or change",
+          "The result of each check: known vendor, usual amount, not a duplicate",
+        ],
+      },
+      {
+        heading: "Where a person stays in the loop",
+        paragraphs: [
+          "The workflow is built so that routine invoices pass quietly and unusual ones stop. A new vendor, an amount well outside the usual range, a missing due date, or a possible duplicate each pause the invoice and send it to a person with the reason.",
+          "That keeps the work where it belongs: software does the repetitive reading, and a person makes the judgment calls. It also means a wrong read is caught at the review step instead of surfacing later in your books.",
+        ],
+      },
+      {
+        heading: "Which tools it connects to",
+        paragraphs: [
+          "A project like this is scoped around what you already use: usually a shared inbox such as Gmail or Outlook, a destination such as Google Sheets or QuickBooks Online, and Slack or email for the review step. The example on this page uses Gmail, the Anthropic API, Google Sheets, QuickBooks Online, and Slack.",
+        ],
+        link: { text: "See how workflow projects are scoped and priced", href: "/services" },
+      },
+      {
+        heading: "Is invoice automation right for your business?",
+        paragraphs: [
+          "A short checklist tells you whether this is worth building:",
+        ],
+        bullets: [
+          "Invoices arrive as emailed documents or text, not only through a portal",
+          "Someone clearly owns accounts payable and would notice a mistake",
+          "Invoices come in every week, not once a quarter",
+          "The data goes to an internal sheet or accounting tool first, where a mistake is cheap to fix",
+        ],
+        link: { text: "Book a consultation to check your invoice process", href: "/consulting" },
+      },
+    ],
+    faqs: [
+      {
+        question: "How do I automate invoice data entry?",
+        answer:
+          "Route vendor invoices to one inbox, then use a workflow that reads each emailed invoice, extracts the vendor, number, dates, and amount, checks them against your rules, and writes the record to your sheet or accounting tool. Invoices that fail a check go to a person for approval.",
+      },
+      {
+        question:
+          "Can invoices be pulled from email into Google Sheets or QuickBooks automatically?",
+        answer:
+          "Yes. A workflow can watch an inbox, read the attached invoice, and add a row to Google Sheets or create a bill in QuickBooks Online. The setup depends on your inbox, your chart of accounts, and which checks you want before anything is filed.",
+      },
+      {
+        question: "Does the automation approve or pay invoices?",
+        answer:
+          "No. It reads and files. Approval and payment stay with a person. The review step exists so that unusual invoices are looked at before they reach your books.",
+      },
+      {
+        question: "What happens when an invoice is unusual or read wrong?",
+        answer:
+          "It stops. An unknown vendor, an out-of-range amount, a possible duplicate, or a missing field sends the invoice to Slack or email with the reason. Someone approves or edits it, and only then does it file.",
+      },
+      {
+        question: "Is this just invoice OCR?",
+        answer:
+          "No. OCR turns a scanned page into text. This workflow also finds the right fields, checks them against your rules, and routes anything unusual to a person, so the output is a filed record rather than a block of text.",
+      },
+      {
+        question: "Can it catch duplicate invoices?",
+        answer:
+          "Yes. Each invoice number and vendor pair is compared against what has already been filed. A possible duplicate is held for review instead of being entered a second time.",
+      },
+      {
+        question: "Do I need accounts payable software for this?",
+        answer:
+          "Not necessarily. Many small teams start by filing to a shared Google Sheet and add an accounting-tool connection later. The workflow is scoped around the tools you already use.",
+      },
+      {
+        question: "Is this a real client project?",
+        answer:
+          "This is an example build with fictional vendors and data. It shows the kind of invoice workflow we scope for small business finance and operations teams, not a named client project.",
+      },
+    ],
+  },
   "client-knowledge-hub": {
     seoTitle: "Client Knowledge Hub for Operations Teams",
     seoDescription:

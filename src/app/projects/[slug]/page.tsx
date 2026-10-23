@@ -82,6 +82,8 @@ function buildJsonLd(slug: string) {
         headline: breakdown.headline,
         description: breakdown.seoDescription,
         image: images.length > 0 ? images : undefined,
+        datePublished: breakdown.published,
+        dateModified: breakdown.published,
         author: {
           "@type": "Organization",
           name: "Automation Labs",

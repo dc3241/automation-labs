@@ -101,6 +101,39 @@ export function BuildBreakdown({
               </ol>
             </section>
 
+            {breakdown.sections?.map((section) => (
+              <section key={section.heading} className="space-y-3">
+                <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 leading-snug">
+                  {section.heading}
+                </h2>
+                {section.paragraphs.map((paragraph) => (
+                  <p
+                    key={paragraph}
+                    className="text-gray-600 text-base leading-relaxed"
+                  >
+                    {paragraph}
+                  </p>
+                ))}
+                {section.bullets ? (
+                  <ul className="space-y-2 text-gray-700 text-base leading-relaxed list-disc pl-5">
+                    {section.bullets.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                ) : null}
+                {section.link ? (
+                  <p>
+                    <Link
+                      href={section.link.href}
+                      className="font-semibold text-gray-900 underline underline-offset-2 hover:text-gray-700"
+                    >
+                      {section.link.text}
+                    </Link>
+                  </p>
+                ) : null}
+              </section>
+            ))}
+
             <section className="space-y-3">
               <h2 className="text-sm font-semibold uppercase tracking-wide text-gray-500">
                 Stack
