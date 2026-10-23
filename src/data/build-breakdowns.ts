@@ -44,11 +44,10 @@ export type BuildBreakdown = {
 
 const breakdowns: Record<string, BuildBreakdown> = {
   "invoice-intake": {
-    seoTitle: "Automate Invoice Data Entry from Email",
+    seoTitle: "AI Invoice Processing for Small Business",
     seoDescription:
-      "Automate invoice data entry for small business. Emailed invoices are read, checked, and filed to your sheet or accounting tool. Odd ones wait for you.",
-    headline:
-      "Automate invoice data entry from email for small business finance teams",
+      "Automate invoice data entry with AI invoice processing. Emailed invoices are read, checked, and filed to your sheet or accounting tool; odd ones wait for you.",
+    headline: "AI invoice processing for small business finance teams",
     published: "2026-10-23",
     audience: {
       claim: "For whoever keeps retyping invoices into a spreadsheet.",
@@ -84,9 +83,9 @@ const breakdowns: Record<string, BuildBreakdown> = {
     ],
     sections: [
       {
-        heading: "What invoice data entry automation does",
+        heading: "What AI invoice processing does for accounts payable",
         paragraphs: [
-          "Invoice data entry automation reads the invoices that arrive by email, pulls out the fields someone would otherwise retype, and puts them where you track bills. It is the first-reader job in accounts payable: open the document, find the details, record them.",
+          "AI invoice processing reads the invoices that arrive by email, pulls out the fields someone would otherwise retype, and puts them where you track bills. That makes it invoice data entry automation for the first step of accounts payable: open the document, find the details, record them.",
           "It does not decide what gets paid. The automation handles the reading and the filing. A person still owns approval and payment.",
         ],
       },
@@ -153,6 +152,16 @@ const breakdowns: Record<string, BuildBreakdown> = {
         question: "What happens when an invoice is unusual or read wrong?",
         answer:
           "It stops. An unknown vendor, an out-of-range amount, a possible duplicate, or a missing field sends the invoice to Slack or email with the reason. Someone approves or edits it, and only then does it file.",
+      },
+      {
+        question: "Is this just invoice OCR?",
+        answer:
+          "No. OCR turns a scanned page into text. This workflow also finds the right fields, checks them against your rules, and routes anything unusual to a person, so the output is a filed record rather than a block of text.",
+      },
+      {
+        question: "Can it catch duplicate invoices?",
+        answer:
+          "Yes. Each invoice number and vendor pair is compared against what has already been filed. A possible duplicate is held for review instead of being entered a second time.",
       },
       {
         question: "Do I need accounts payable software for this?",
