@@ -253,6 +253,57 @@ export const builds: Build[] = [
     },
   },
   {
+    id: "invoice-intake",
+    slug: "invoice-intake",
+    department: "Finance",
+    engagementType: "Workflow Automation",
+    title: "Invoice Intake Automation",
+    hook: "Vendor invoices that arrive by email get read, checked, and filed on their own. Anything unusual waits for a person.",
+    problem: {
+      claim: "Invoices piled up in a shared inbox until someone had time to retype them.",
+      body: "Each emailed PDF meant opening the file and copying the vendor, number, date, and amount into a sheet. Due dates got missed, and the same invoice could be entered twice.",
+    },
+    build: {
+      claim: "The inbox is read first. A person only sees what looks off.",
+      body: "A workflow extracts the fields from each invoice and checks them against your rules. Clean ones are filed to the sheet or accounting tool, and the rest go to Slack with the reason.",
+    },
+    result: {
+      claim: "Routine invoices stopped needing a human.",
+      body: "The data is entered, duplicates are caught, and a person only handles the invoices that need judgment.",
+    },
+    stack: ["Gmail", "Anthropic API", "Google Sheets", "QuickBooks Online", "Slack"],
+    visual: {
+      src: "/images/builds/invoice-intake-email-extraction.jpg",
+      alt: "Illustration of invoice data entry automation: an emailed PDF invoice on the left and the extracted vendor, invoice number, dates, amount, and category on the right",
+      caption:
+        "An emailed invoice becomes one structured record. Illustrative example with fictional data.",
+      placeholderHint: "",
+    },
+    gallery: [
+      {
+        src: "/images/builds/invoice-intake-review-queue.jpg",
+        alt: "Invoice review queue showing three invoices filed automatically and two flagged for a person to approve, with the reason for each flag",
+        caption:
+          "Routine invoices file themselves. Flagged ones show why. Illustrative example with fictional data.",
+        placeholderHint: "",
+      },
+      {
+        src: "/images/builds/invoice-intake-process-flow.jpg",
+        alt: "Invoice processing automation flow from email to extraction to rule checks, then either filing automatically or sending to a person for approval",
+        caption:
+          "The whole path, with a person at the step that needs judgment. Illustrative example.",
+        placeholderHint: "",
+      },
+    ],
+    cta: {
+      label: "Start a workflow project",
+      href: "/contact?type=workflow",
+    },
+    isDemo: true,
+    demoNote:
+      "Example build with fictional vendors and data, representative of the kind of engagement we take on, not a named client project.",
+  },
+  {
     id: "onboarding-tracker",
     slug: "onboarding-tracker",
     department: "Operations",
