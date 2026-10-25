@@ -11,6 +11,7 @@ export const DEPARTMENT_FILTER_THRESHOLD = 5;
 export type Department =
   | "Marketing"
   | "Finance"
+  | "HR"
   | "Operations"
   | "Sales"
   | "Legal"
@@ -251,6 +252,108 @@ export const builds: Build[] = [
       label: "Start a custom solution",
       href: "/contact?type=build",
     },
+  },
+  {
+    id: "invoice-intake",
+    slug: "invoice-intake",
+    department: "Finance",
+    engagementType: "Workflow Automation",
+    title: "Invoice Intake Automation",
+    hook: "Vendor invoices that arrive by email get read, checked, and filed on their own. Anything unusual waits for a person.",
+    problem: {
+      claim: "Invoices piled up in a shared inbox until someone had time to retype them.",
+      body: "Each emailed PDF meant opening the file and copying the vendor, number, date, and amount into a sheet. Due dates got missed, and the same invoice could be entered twice.",
+    },
+    build: {
+      claim: "The inbox is read first. A person only sees what looks off.",
+      body: "A workflow extracts the fields from each invoice and checks them against your rules. Clean ones are filed to the sheet or accounting tool, and the rest go to Slack with the reason.",
+    },
+    result: {
+      claim: "Routine invoices stopped needing a human.",
+      body: "The data is entered, duplicates are caught, and a person only handles the invoices that need judgment.",
+    },
+    stack: ["Gmail", "Anthropic API", "Google Sheets", "QuickBooks Online", "Slack"],
+    visual: {
+      src: "/images/builds/invoice-intake-email-extraction.jpg",
+      alt: "Illustration of invoice data entry automation: an emailed PDF invoice on the left and the extracted vendor, invoice number, dates, amount, and category on the right",
+      caption:
+        "An emailed invoice becomes one structured record. Illustrative example with fictional data.",
+      placeholderHint: "",
+    },
+    gallery: [
+      {
+        src: "/images/builds/invoice-intake-review-queue.jpg",
+        alt: "Invoice review queue showing three invoices filed automatically and two flagged for a person to approve, with the reason for each flag",
+        caption:
+          "Routine invoices file themselves. Flagged ones show why. Illustrative example with fictional data.",
+        placeholderHint: "",
+      },
+      {
+        src: "/images/builds/invoice-intake-process-flow.jpg",
+        alt: "Invoice processing automation flow from email to extraction to rule checks, then either filing automatically or sending to a person for approval",
+        caption:
+          "The whole path, with a person at the step that needs judgment. Illustrative example.",
+        placeholderHint: "",
+      },
+    ],
+    cta: {
+      label: "Start a workflow project",
+      href: "/contact?type=workflow",
+    },
+    isDemo: true,
+    demoNote:
+      "Example build with fictional vendors and data, representative of the kind of engagement we take on, not a named client project.",
+  },
+  {
+    id: "resume-intake",
+    slug: "resume-intake",
+    department: "HR",
+    engagementType: "Workflow Automation",
+    title: "Resume Intake Automation",
+    hook: "Applications that arrive by email or form get read, matched to the job's criteria, and logged in a tracker. A person makes every decision.",
+    problem: {
+      claim: "Applications piled up in an inbox, and the first review went to whoever had time.",
+      body: "Resumes arrived as PDFs and form submissions. Someone opened each one, retyped the basics into a tracker, and reviewed them in whatever order they came in.",
+    },
+    build: {
+      claim: "Every application is read the same way, against criteria you wrote down.",
+      body: "A workflow pulls contact details, experience, and skills into one tracker row and compares them to the job's must-haves. Strong matches sort to the top. Nobody is rejected automatically.",
+    },
+    result: {
+      claim: "The first review starts with a sorted list.",
+      body: "Every applicant is logged, and the person hiring spends their time on candidates instead of data entry.",
+    },
+    stack: ["Gmail", "Google Forms", "Google Sheets", "Anthropic API", "Slack"],
+    visual: {
+      src: "/images/builds/resume-intake-email-extraction.jpg",
+      alt: "Illustration of AI resume screening: an emailed application with a PDF resume on the left and the extracted candidate record with must-haves found on the right",
+      caption:
+        "An emailed application becomes one structured candidate record. Illustrative example with fictional data.",
+      placeholderHint: "",
+    },
+    gallery: [
+      {
+        src: "/images/builds/resume-intake-review-list.jpg",
+        alt: "Applicant review list showing candidates sorted by how many job must-haves were found, with a note that no one is rejected automatically",
+        caption:
+          "Every applicant is logged. A person reviews and decides. Illustrative example with fictional data.",
+        placeholderHint: "",
+      },
+      {
+        src: "/images/builds/resume-intake-process-flow.jpg",
+        alt: "Resume screening automation flow from application to extraction, comparison with job criteria, a sorted tracker, and a person who decides",
+        caption:
+          "From inbox to shortlist, with a person making every call. Illustrative example.",
+        placeholderHint: "",
+      },
+    ],
+    cta: {
+      label: "Start a workflow project",
+      href: "/contact?type=workflow",
+    },
+    isDemo: true,
+    demoNote:
+      "Example build with a fictional company and candidates, representative of the kind of engagement we take on, not a named client project.",
   },
   {
     id: "onboarding-tracker",

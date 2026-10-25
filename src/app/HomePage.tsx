@@ -3,10 +3,17 @@
 import Link from "next/link";
 import { useState } from "react";
 import { BuildTeaserCard } from "@/components/builds/BuildCaseStudy";
-import { HelpCardIcon, type HelpCardKind } from "@/components/HelpCardIcon";
-import { HeroFlowDiagram } from "@/components/HeroFlowDiagram";
+import { CountUp } from "@/components/home/CountUp";
+import { ExampleCard } from "@/components/home/ExampleCard";
+import { HeroDemo } from "@/components/home/HeroDemo";
+import { StepsRail } from "@/components/home/StepsRail";
+import "@/components/home/home-motion.css";
 import { Reveal } from "@/components/Reveal";
-import { builds } from "@/data/builds";
+import { builds, getBuildBySlug, type Build } from "@/data/builds";
+import {
+  CONSULTING_DURATION_LABEL,
+  CONSULTING_PRICE_LABEL,
+} from "@/lib/consulting";
 
 const DEPARTMENTS = [
   "HR",
@@ -17,48 +24,57 @@ const DEPARTMENTS = [
   "Customer Service",
 ] as const;
 
-const HELP_CARDS: {
-  title: string;
-  body: string;
-  href: string;
-  cta: string;
-  icon: HelpCardKind;
-}[] = [
+/** Example builds shown under "Everyday work we automate". Order matters. */
+const EXAMPLE_SLUGS = ["invoice-intake", "resume-intake", "lead-briefs"] as const;
+const exampleBuilds = EXAMPLE_SLUGS.map((slug) => getBuildBySlug(slug)).filter(
+  (build): build is Build => Boolean(build)
+);
+
+const HOW_IT_WORKS = [
   {
-    title: "Smart Tools",
-    body: "Hand-picked AI and automation tools, organized by department — delivered to your inbox, not buried in a spreadsheet. One department per week. One tool worth trying, plus five more your team should know about.",
-    href: "/newsletter",
-    cta: "Get the weekly tool picks",
-    icon: "tools",
+    title: "Describe the problem",
+    body: "Tell us what the work is, who does it, and how often. A written note or a short Loom is enough.",
   },
   {
-    title: "Smart Workflows",
-    body: "Step-by-step automation walkthroughs you can build yourself. Or hire us to wire it up for you.",
-    href: "/blog",
-    cta: "See the Workflows",
-    icon: "workflows",
+    title: "Get a fixed quote",
+    body: "We reply with a written scope and a fixed price before any work begins.",
   },
   {
-    title: "Custom Solutions",
-    body: "Internal tools and dashboards built specifically for how your team works. For when off-the-shelf isn't enough.",
-    href: "/projects",
-    cta: "See the Solutions",
-    icon: "builds",
+    title: "We build it and hand it off",
+    body: "Tested on your real data, documented, and backed by support after launch.",
   },
-];
+] as const;
+
+const PRICING = [
+  {
+    name: "Consultation",
+    price: `${CONSULTING_PRICE_LABEL}`,
+    detail: `${CONSULTING_DURATION_LABEL} on one problem. You leave with a recommended route.`,
+  },
+  {
+    name: "Workflow automation",
+    price: "From $1,500",
+    detail: "We wire your existing tools together. Most projects land between $1,500 and $4,500.",
+  },
+  {
+    name: "Custom solution",
+    price: "$5,000 to $25,000",
+    detail: "An internal tool built around how your team works, scoped individually.",
+  },
+] as const;
+
+const GOOD_FIRST_AUTOMATIONS = [
+  "The work arrives as documents or text: invoices, applications, emails, forms.",
+  "Someone owns it and would notice a mistake.",
+  "It happens every week, not once a quarter.",
+  "It starts internal, where a mistake is cheap to fix.",
+] as const;
 
 export default function HomePage() {
   const [email, setEmail] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState('');
   const [messageType, setMessageType] = useState<'success' | 'error'>('success');
-
-  const scrollToNewsletter = () => {
-    const newsletterSection = document.getElementById('newsletter-section');
-    if (newsletterSection) {
-      newsletterSection.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
 
   const handleNewsletterSignup = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -112,19 +128,19 @@ export default function HomePage() {
       {/* Hero Section */}
       <section className="hero-atmosphere bg-white py-16 lg:py-20">
         <div className="hero-atmosphere__wash" aria-hidden />
-        <div className="hero-atmosphere__dots" aria-hidden />
+        <div className="hm-grid" aria-hidden />
         <div className="hero-atmosphere__content container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center max-w-6xl mx-auto">
             <div>
-              <p className="text-gray-600 text-lg mb-6">
-                Smart tools. Smart workflows. Custom solutions.
-              </p>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                Automate the work, not the thinking.
+              <p className="hm-eyebrow mb-6">Automation for small business teams</p>
+              <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6 leading-[1.08]">
+                Tell us what&apos;s eating your team&apos;s week. We&apos;ll <span className="hm-mark">automate it.</span>
               </h1>
               <p className="text-lg sm:text-xl text-gray-600 mb-6 leading-relaxed">
-                We help SMB operators automate the repetitive parts of their job —
-                so they can focus on the work that actually moves the business.
+                We build the repetitive work small business teams do every day
+                into automations: invoices filed, applications sorted, leads
+                researched before the call. A person stays in charge of every
+                decision.
               </p>
               <ul className="hero-depts" aria-label="Departments we work with">
                 {DEPARTMENTS.map((dept) => (
@@ -134,59 +150,146 @@ export default function HomePage() {
                 ))}
               </ul>
               <div className="flex flex-col sm:flex-row gap-4">
-                <button
-                  onClick={scrollToNewsletter}
-                  className="btn-press bg-black text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-800 flex items-center justify-center cursor-pointer"
+                <Link
+                  href="/contact"
+                  className="btn-press bg-black text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-800 flex items-center justify-center"
                 >
-                  Join the Newsletter
-                  <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  Tell us the problem
+                  <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
-                </button>
+                </Link>
                 <Link
-                  href="/services"
+                  href="/projects"
                   className="btn-press border border-gray-300 text-gray-700 px-8 py-3 rounded-lg font-semibold hover:bg-gray-50 flex items-center justify-center"
                 >
-                  View Services
+                  See what we build
                 </Link>
               </div>
+              <p className="mt-4 text-sm text-gray-500">
+                Fixed quote before any work begins. Projects start at $1,500.
+              </p>
             </div>
-            <HeroFlowDiagram />
+            <HeroDemo />
           </div>
         </div>
       </section>
 
-      {/* What we do */}
-      <section className="py-16 bg-gray-50">
+      {/* Everyday work we automate */}
+      <section className="py-16 bg-gray-50" aria-label="Everyday work we automate">
         <div className="container mx-auto px-4">
+          <Reveal className="text-center mb-12">
+            <p className="hm-eyebrow mb-4">Examples</p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+              Everyday work we automate.
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Illustrative examples with fictional data, so you can see what a
+              finished workflow looks like.
+            </p>
+          </Reveal>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            {exampleBuilds.map((build, i) => (
+              <Reveal key={build.id} index={i} className="h-full">
+                <ExampleCard build={build} />
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Illustrative numbers */}
+      <section className="py-14 bg-white" aria-label="What a finished automation can look like">
+        <div className="container mx-auto px-4 max-w-5xl">
           <Reveal>
-            <h2 className="text-4xl font-bold text-center mb-12 text-gray-900">
-              Three ways we help you automate.
+            <div className="hm-stats">
+              <div className="hm-stat">
+                <p className="hm-stat__num"><CountUp to={40} /></p>
+                <p className="hm-stat__label">invoices read, checked and filed every week without retyping</p>
+              </div>
+              <div className="hm-stat">
+                <p className="hm-stat__num"><CountUp to={6} /></p>
+                <p className="hm-stat__label">hours of manual data entry handed back to the team</p>
+              </div>
+              <div className="hm-stat">
+                <p className="hm-stat__num"><CountUp to={100} suffix="%" /></p>
+                <p className="hm-stat__label">approved by a person before anything is final</p>
+              </div>
+            </div>
+            <p className="mt-3 text-center text-xs text-gray-500">
+              Illustrative example for a small finance team. Your numbers depend on your volume and your process.
+            </p>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* How it works + pricing */}
+      <section className="py-16 bg-white" aria-label="How it works">
+        <div className="container mx-auto px-4">
+          <Reveal className="text-center mb-12">
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+              You bring the problem. We bring the fix.
             </h2>
           </Reveal>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {HELP_CARDS.map((card, i) => (
-              <Reveal key={card.title} index={i} className="h-full">
-                <div className="surface-card help-card bg-white rounded-lg shadow-sm border border-gray-200 p-8 h-full flex flex-col">
-                  <HelpCardIcon kind={card.icon} />
-                  <h3 className="text-xl font-semibold text-gray-900 mt-5 mb-4">
-                    {card.title}
-                  </h3>
-                  <p className="text-gray-600 mb-6 leading-relaxed flex-1">
-                    {card.body}
-                  </p>
-                  <Link
-                    href={card.href}
-                    className="text-gray-900 font-semibold hover:text-gray-700 inline-flex items-center arrow-link"
-                  >
-                    {card.cta}
-                    <svg className="arrow ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </Link>
+
+          <StepsRail steps={HOW_IT_WORKS} />
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto mt-14">
+            {PRICING.map((tier, i) => (
+              <Reveal key={tier.name} index={i} className="h-full">
+                <div className="surface-card bg-white rounded-lg border border-gray-200 shadow-sm p-6 h-full">
+                  <p className="text-sm font-semibold text-gray-500 mb-2">{tier.name}</p>
+                  <p className="text-2xl font-bold text-gray-900 mb-3">{tier.price}</p>
+                  <p className="text-gray-600 text-sm leading-relaxed">{tier.detail}</p>
                 </div>
               </Reveal>
             ))}
+          </div>
+
+          <Reveal delayMs={120} className="text-center mt-8">
+            <Link
+              href="/services"
+              className="text-base font-semibold text-gray-900 hover:text-gray-700 inline-flex items-center arrow-link"
+            >
+              See services and full pricing
+              <span aria-hidden className="arrow ml-1">
+                →
+              </span>
+            </Link>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* What automates well */}
+      <section className="py-16 bg-gray-50" aria-label="What automates well">
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto">
+            <Reveal>
+              <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+                What makes a good first automation?
+              </h2>
+              <p className="text-lg text-gray-600 mb-6">
+                The best candidates are boring, frequent, and easy to check.
+                If most of these are true for your work, it is worth a look:
+              </p>
+            </Reveal>
+            <ul className="space-y-3 text-gray-700 text-lg leading-relaxed list-disc pl-6">
+              {GOOD_FIRST_AUTOMATIONS.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+            <Reveal delayMs={120} className="mt-8">
+              <Link
+                href="/contact"
+                className="text-base font-semibold text-gray-900 hover:text-gray-700 inline-flex items-center arrow-link"
+              >
+                Not sure yours qualifies? Tell us the problem
+                <span aria-hidden className="arrow ml-1">
+                  →
+                </span>
+              </Link>
+            </Reveal>
           </div>
         </div>
       </section>

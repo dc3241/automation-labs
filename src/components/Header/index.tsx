@@ -11,12 +11,11 @@ function pathMatchesHref(pathname: string | null, href: string) {
 }
 
 const NAV_LINKS = [
-  { href: '/', label: 'Home' },
   { href: '/services', label: 'Services' },
   { href: '/projects', label: 'Projects' },
+  { href: '/consulting', label: 'Consulting' },
   { href: '/blog', label: 'Blog' },
   { href: '/newsletter', label: 'Newsletter' },
-  { href: '/contact', label: 'Contact' },
 ] as const;
 
 export default function Header() {
@@ -80,6 +79,15 @@ export default function Header() {
               </Link>
             ))}
           </nav>
+
+          <div className="hidden md:block flex-shrink-0">
+            <Link
+              href="/contact"
+              className="btn-press bg-black text-white px-5 py-2 rounded-lg text-sm font-semibold hover:bg-gray-800 inline-flex items-center"
+            >
+              Tell us the problem
+            </Link>
+          </div>
 
           <div className="flex-shrink-0 md:hidden">
             <button
@@ -148,6 +156,14 @@ export default function Header() {
                   {label}
                 </Link>
               ))}
+              <Link
+                href="/contact"
+                className="block mt-2 bg-black text-white text-center px-3 py-2.5 rounded-md text-base font-semibold hover:bg-gray-800"
+                onClick={() => setIsMobileMenuOpen(false)}
+                tabIndex={isMobileMenuOpen ? 0 : -1}
+              >
+                Tell us the problem
+              </Link>
             </div>
           </div>
         </div>
