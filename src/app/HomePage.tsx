@@ -3,7 +3,11 @@
 import Link from "next/link";
 import { useState } from "react";
 import { BuildTeaserCard } from "@/components/builds/BuildCaseStudy";
-import { HeroFlowDiagram } from "@/components/HeroFlowDiagram";
+import { CountUp } from "@/components/home/CountUp";
+import { ExampleCard } from "@/components/home/ExampleCard";
+import { HeroDemo } from "@/components/home/HeroDemo";
+import { StepsRail } from "@/components/home/StepsRail";
+import "@/components/home/home-motion.css";
 import { Reveal } from "@/components/Reveal";
 import { builds, getBuildBySlug, type Build } from "@/data/builds";
 import {
@@ -124,15 +128,13 @@ export default function HomePage() {
       {/* Hero Section */}
       <section className="hero-atmosphere bg-white py-16 lg:py-20">
         <div className="hero-atmosphere__wash" aria-hidden />
-        <div className="hero-atmosphere__dots" aria-hidden />
+        <div className="hm-grid" aria-hidden />
         <div className="hero-atmosphere__content container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center max-w-6xl mx-auto">
             <div>
-              <p className="text-gray-600 text-lg mb-6">
-                Automation for small business teams.
-              </p>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                Tell us what&apos;s eating your team&apos;s week. We&apos;ll automate it.
+              <p className="hm-eyebrow mb-6">Automation for small business teams</p>
+              <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6 leading-[1.08]">
+                Tell us what&apos;s eating your team&apos;s week. We&apos;ll <span className="hm-mark">automate it.</span>
               </h1>
               <p className="text-lg sm:text-xl text-gray-600 mb-6 leading-relaxed">
                 We build the repetitive work small business teams do every day
@@ -168,7 +170,7 @@ export default function HomePage() {
                 Fixed quote before any work begins. Projects start at $1,500.
               </p>
             </div>
-            <HeroFlowDiagram />
+            <HeroDemo />
           </div>
         </div>
       </section>
@@ -177,9 +179,7 @@ export default function HomePage() {
       <section className="py-16 bg-gray-50" aria-label="Everyday work we automate">
         <div className="container mx-auto px-4">
           <Reveal className="text-center mb-12">
-            <p className="text-sm font-semibold uppercase tracking-wide text-gray-500 mb-3">
-              Examples
-            </p>
+            <p className="hm-eyebrow mb-4">Examples</p>
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
               Everyday work we automate.
             </h2>
@@ -191,9 +191,36 @@ export default function HomePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {exampleBuilds.map((build, i) => (
-              <BuildTeaserCard key={build.id} build={build} index={i} />
+              <Reveal key={build.id} index={i} className="h-full">
+                <ExampleCard build={build} />
+              </Reveal>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Illustrative numbers */}
+      <section className="py-14 bg-white" aria-label="What a finished automation can look like">
+        <div className="container mx-auto px-4 max-w-5xl">
+          <Reveal>
+            <div className="hm-stats">
+              <div className="hm-stat">
+                <p className="hm-stat__num"><CountUp to={40} /></p>
+                <p className="hm-stat__label">invoices read, checked and filed every week without retyping</p>
+              </div>
+              <div className="hm-stat">
+                <p className="hm-stat__num"><CountUp to={6} /></p>
+                <p className="hm-stat__label">hours of manual data entry handed back to the team</p>
+              </div>
+              <div className="hm-stat">
+                <p className="hm-stat__num"><CountUp to={100} suffix="%" /></p>
+                <p className="hm-stat__label">approved by a person before anything is final</p>
+              </div>
+            </div>
+            <p className="mt-3 text-center text-xs text-gray-500">
+              Illustrative example for a small finance team. Your numbers depend on your volume and your process.
+            </p>
+          </Reveal>
         </div>
       </section>
 
@@ -206,21 +233,7 @@ export default function HomePage() {
             </h2>
           </Reveal>
 
-          <ol className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            {HOW_IT_WORKS.map((step, i) => (
-              <Reveal as="li" key={step.title} index={i} className="flex gap-4">
-                <span className="w-9 h-9 rounded-full bg-gray-900 text-white text-sm font-bold flex items-center justify-center shrink-0">
-                  {i + 1}
-                </span>
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-1">
-                    {step.title}
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed">{step.body}</p>
-                </div>
-              </Reveal>
-            ))}
-          </ol>
+          <StepsRail steps={HOW_IT_WORKS} />
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto mt-14">
             {PRICING.map((tier, i) => (
