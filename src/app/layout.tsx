@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { siteUrl } from "@/lib/site";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -12,12 +13,21 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
     default: "Automation Labs",
     template: "%s | Automation Labs",
   },
   description:
     "Automation Labs helps SMB operators automate their work with smart tools, smart workflows, and custom solutions — across HR, Sales, Marketing, Ops, Finance, and Customer Service.",
+  // Resolves to each page's own URL; pages with their own canonical override it.
+  alternates: { canonical: "./" },
+  openGraph: {
+    siteName: "Automation Labs",
+    type: "website",
+    locale: "en_US",
+  },
+  twitter: { card: "summary_large_image" },
 };
 
 export default function RootLayout({

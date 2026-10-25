@@ -18,9 +18,11 @@ export const metadata: Metadata = {
     title: "Consultation | Automation Labs",
     description,
     type: "website",
+    images: ["/opengraph-image.png"],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
+    images: ["/twitter-image.png"],
   },
 };
 
