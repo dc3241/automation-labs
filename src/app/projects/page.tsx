@@ -4,6 +4,8 @@ import { BuildIndexCard } from "@/components/builds/BuildCaseStudy";
 import { builds } from "@/data/builds";
 
 export const metadata: Metadata = {
+  // Agency pages are hidden while the site focuses on Lab Notes (11/2026).
+  robots: { index: false, follow: false },
   title: "Builds",
   description:
     "Internal tools and workflow automations for SMB teams. Open a build for the problem, how it works, and who it is for — client knowledge hubs, social content systems, revenue dashboards, and more.",

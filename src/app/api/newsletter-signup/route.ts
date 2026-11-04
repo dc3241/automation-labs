@@ -1,215 +1,129 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from "next/server";
+import { SUBSCRIBER_COOKIE, normalizeSource } from "@/lib/newsletter";
 
-interface NewsletterSignupRequest {
-  email: string;
-  department?: string;
-  company?: string;
-  role?: string;
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const BEEHIIV_API = "https://api.beehiiv.com/v2";
+
+function withSubscriberCookie(res: NextResponse) {
+  res.cookies.set(SUBSCRIBER_COOKIE, "1", {
+    httpOnly: true,
+    sameSite: "lax",
+    secure: process.env.NODE_ENV === "production",
+    path: "/",
+    maxAge: 60 * 60 * 24 * 365,
+  });
+  return res;
 }
 
-interface BeehiivResponse {
-  data?: any;
-  error?: {
-    message: string;
-    code: string;
-  };
+/** Best effort: tagging must never block or fail a signup. */
+async function addTags(
+  apiKey: string,
+  publicationId: string,
+  subscriptionId: string,
+  tags: string[]
+) {
+  try {
+    await fetch(
+      `${BEEHIIV_API}/publications/${publicationId}/subscriptions/${subscriptionId}/tags`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${apiKey}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ tags }),
+      }
+    );
+  } catch (error) {
+    console.error("Beehiiv tagging failed", error);
+  }
 }
 
 export async function POST(request: NextRequest) {
-  console.log('=== Newsletter Signup API Called ===');
-  console.log('Request method:', request.method);
-  console.log('Request URL:', request.url);
-  
+  let body: { email?: unknown; source?: unknown };
   try {
-    // Parse request body
-    const body: NewsletterSignupRequest = await request.json();
-    const { email, department, company, role } = body;
-    
-    console.log('Request body:', { email, department, company, role });
+    body = await request.json();
+  } catch {
+    return NextResponse.json({ error: "Invalid request." }, { status: 400 });
+  }
 
-    // Validate required fields
-    if (!email) {
-      return NextResponse.json(
-        { error: 'Email is required' },
-        { status: 400 }
-      );
-    }
+  const email = typeof body.email === "string" ? body.email.trim() : "";
+  if (!EMAIL_RE.test(email)) {
+    return NextResponse.json(
+      { error: "Please enter a valid email address." },
+      { status: 400 }
+    );
+  }
+  const source = normalizeSource(body.source);
 
-    // Validate email format
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      return NextResponse.json(
-        { error: 'Please enter a valid email address' },
-        { status: 400 }
-      );
-    }
+  const apiKey = process.env.BEEHIIV_API_KEY;
+  const publicationId = process.env.BEEHIIV_PUBLICATION_ID;
+  if (!apiKey || !publicationId) {
+    console.error("Newsletter signup: Beehiiv env vars are not set");
+    return NextResponse.json(
+      { error: "Signup is temporarily unavailable. Please try again later." },
+      { status: 500 }
+    );
+  }
 
-    // Check environment variables with detailed debugging
-    const apiKey = process.env.BEEHIIV_API_KEY;
-    const publicationId = process.env.BEEHIIV_PUBLICATION_ID;
-
-    console.log('=== Environment Variables Debug ===');
-    console.log('BEEHIIV_API_KEY exists:', !!apiKey);
-    console.log('BEEHIIV_API_KEY length:', apiKey ? apiKey.length : 0);
-    console.log('BEEHIIV_API_KEY first 10 chars:', apiKey ? apiKey.substring(0, 10) + '...' : 'undefined');
-    console.log('BEEHIIV_PUBLICATION_ID exists:', !!publicationId);
-    console.log('BEEHIIV_PUBLICATION_ID value:', publicationId);
-    console.log('All process.env keys:', Object.keys(process.env).filter(key => key.includes('BEEHIIV')));
-    console.log('===================================');
-
-    if (!apiKey || !publicationId) {
-      console.error('Missing Beehiiv environment variables:');
-      console.error('- BEEHIIV_API_KEY missing:', !apiKey);
-      console.error('- BEEHIIV_PUBLICATION_ID missing:', !publicationId);
-      return NextResponse.json(
-        { 
-          error: 'Server configuration error - Missing environment variables',
-          debug: {
-            apiKeyExists: !!apiKey,
-            publicationIdExists: !!publicationId
-          }
-        },
-        { status: 500 }
-      );
-    }
-
-    // Prepare request body for Beehiiv with correct format
-    const beehiivBody: any = {
-      email: email,
-      reactivate_existing: false,
-      send_welcome_email: true,
-      utm_source: 'website',
-      utm_medium: 'organic',
-      utm_campaign: 'newsletter_signup'
-    };
-
-    const validDepartments = [
-      'hr',
-      'sales',
-      'marketing',
-      'operations',
-      'finance',
-      'customer-service',
-      'cross-functional',
-    ];
-
-    if (department && !validDepartments.includes(department)) {
-      return NextResponse.json(
-        { error: 'Invalid department' },
-        { status: 400 }
-      );
-    }
-
-    if (department || company || role) {
-      beehiivBody.custom_fields = {};
-      if (department) beehiivBody.custom_fields.primary_department = department;
-      if (company) beehiivBody.custom_fields.company = company;
-      if (role) beehiivBody.custom_fields.role = role;
-    }
-
-    if (department) {
-      beehiivBody.tags = ['newsletter-subscriber', `department-${department}`];
-    }
-
-    // Make API call to Beehiiv
-    console.log('=== Making Beehiiv API Call ===');
-    console.log('URL:', `https://api.beehiiv.com/v2/publications/${publicationId}/subscriptions`);
-    console.log('Request body:', beehiivBody);
-    
+  try {
     const response = await fetch(
-      `https://api.beehiiv.com/v2/publications/${publicationId}/subscriptions`,
+      `${BEEHIIV_API}/publications/${publicationId}/subscriptions`,
       {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Authorization': `Bearer ${apiKey}`,
-          'Content-Type': 'application/json',
+          Authorization: `Bearer ${apiKey}`,
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(beehiivBody),
+        body: JSON.stringify({
+          email,
+          reactivate_existing: false,
+          send_welcome_email: true,
+          utm_source: "website",
+          utm_medium: "organic",
+          // The pack keyword or page name, so Beehiiv shows which video or page converts.
+          utm_campaign: source,
+        }),
       }
     );
 
-    console.log('Beehiiv API response status:', response.status);
-    console.log('Beehiiv API response headers:', Object.fromEntries(response.headers.entries()));
-    
-    // Get the full response text for debugging
-    const responseText = await response.text();
-    console.log('Beehiiv API response body:', responseText);
-    
-    // Try to parse as JSON, but handle non-JSON responses
-    let responseData: BeehiivResponse;
-    try {
-      responseData = JSON.parse(responseText);
-    } catch (error) {
-      console.error('Failed to parse Beehiiv response as JSON:', error);
-      responseData = { error: { message: responseText, code: 'PARSE_ERROR' } };
-    }
-    console.log('Beehiiv API response data:', responseData);
-
-    // Handle different response statuses
-    if (response.ok) {
-      return NextResponse.json(
-        { 
-          success: true, 
-          message: 'Thanks for subscribing! Check your email to confirm.' 
-        },
-        { status: 200 }
+    // Already on the list: treat as success so the pack still unlocks.
+    if (response.status === 409) {
+      return withSubscriberCookie(
+        NextResponse.json({ success: true, message: "You're already on the list." })
       );
     }
 
-    // Handle specific error cases
-    switch (response.status) {
-      case 409:
-        return NextResponse.json(
-          { error: 'This email is already subscribed to our newsletter.' },
-          { status: 409 }
-        );
-      case 429:
-        return NextResponse.json(
-          { error: 'Too many requests. Please try again later.' },
-          { status: 429 }
-        );
-      case 401:
-        console.error('Beehiiv API authentication failed');
-        return NextResponse.json(
-          { error: 'Server configuration error' },
-          { status: 500 }
-        );
-      case 400:
-        // Handle 400 Bad Request with specific error message
-        const errorMessage = responseData?.error?.message || responseText || 'Invalid request format';
-        console.error('Beehiiv API 400 error:', errorMessage);
-        return NextResponse.json(
-          { 
-            error: `Beehiiv API error: ${errorMessage}`,
-            details: responseData
-          },
-          { status: 400 }
-        );
-      default:
-        console.error('Beehiiv API error:', response.status, responseData);
-        const defaultErrorMessage = responseData?.error?.message || responseText || 'Something went wrong. Please try again.';
-        return NextResponse.json(
-          { 
-            error: defaultErrorMessage,
-            details: responseData
-          },
-          { status: 500 }
-        );
+    if (!response.ok) {
+      console.error("Beehiiv signup failed", response.status, await response.text());
+      const error =
+        response.status === 429
+          ? "Too many requests. Please try again in a minute."
+          : "Something went wrong. Please try again.";
+      return NextResponse.json({ error }, { status: response.status === 429 ? 429 : 500 });
     }
 
+    const data = (await response.json().catch(() => null)) as
+      | { data?: { id?: string } }
+      | null;
+    const subscriptionId = data?.data?.id;
+    if (subscriptionId) {
+      await addTags(apiKey, publicationId, subscriptionId, [
+        "lab-notes",
+        `source-${source}`,
+      ]);
+    }
+
+    return withSubscriberCookie(
+      NextResponse.json({
+        success: true,
+        message: "You're in. Check your inbox to confirm.",
+      })
+    );
   } catch (error) {
-    console.error('Newsletter signup error:', error);
-    
-    // Handle network errors
-    if (error instanceof TypeError && error.message.includes('fetch')) {
-      return NextResponse.json(
-        { error: 'Connection error. Please check your internet and try again.' },
-        { status: 500 }
-      );
-    }
-
+    console.error("Newsletter signup error", error);
     return NextResponse.json(
-      { error: 'Something went wrong. Please try again.' },
+      { error: "Connection error. Please try again." },
       { status: 500 }
     );
   }

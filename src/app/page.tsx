@@ -3,10 +3,10 @@ import HomePage from "./HomePage";
 import { siteUrl } from "@/lib/site";
 
 const description =
-  "Tell us the repetitive work eating your team's week. We build the automation: invoices, applications, lead research. Fixed quotes from $1,500.";
+  "Useful AI and Claude tricks you can use tonight, new tools with honest prices, and free prompt packs. Lab Notes: one email a week.";
 
 export const metadata: Metadata = {
-  title: { absolute: "Automation Labs | Business Automation for Small Teams" },
+  title: { absolute: "Automation Labs | Useful AI and Claude tricks, one email a week" },
   description,
 };
 

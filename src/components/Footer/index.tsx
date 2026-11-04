@@ -15,36 +15,26 @@ export default function Footer() {
             </h3>
             <ul className="space-y-3">
               <li>
-                <Link href="/services" className={linkClass}>
-                  Services
+                <Link href="/plays" className={linkClass}>
+                  Plays
                 </Link>
               </li>
               <li>
-                <Link href="/projects" className={linkClass}>
-                  Projects
+                <Link href="/get" className={linkClass}>
+                  Free packs
                 </Link>
               </li>
               <li>
-                <Link href="/consulting" className={linkClass}>
-                  Consultation
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact" className={linkClass}>
-                  Contact
-                </Link>
-              </li>
-              <li>
-                <Link href="/blog" className={linkClass}>
-                  Blog
+                <Link href="/tools" className={linkClass}>
+                  Tools
                 </Link>
               </li>
               <li>
                 <Link href="/newsletter" className={linkClass}>
-                  Newsletter
+                  Lab Notes
                 </Link>
               </li>
-            </ul>
+              </ul>
           </div>
 
           {/* LEGAL Column */}

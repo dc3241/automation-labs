@@ -3,6 +3,8 @@ import { Suspense } from "react";
 import ContactPage from "./ContactPage";
 
 export const metadata: Metadata = {
+  // Agency pages are hidden while the site focuses on Lab Notes (11/2026).
+  robots: { index: false, follow: false },
   title: "Work With Us",
   description:
     "Tell us about the automation you need. We help SMBs build custom internal tools and integrate the workflows that off-the-shelf tools don't solve.",
