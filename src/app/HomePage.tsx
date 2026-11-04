@@ -2,9 +2,11 @@
 import { PackCard, PlayCard, ToolCard } from "@/components/content/Cards";
 import { EmailCapture } from "@/components/EmailCapture";
 import { Reveal } from "@/components/Reveal";
+import { VideoCarousel } from "@/components/VideoCarousel";
 import { packSummaries } from "@/content/packs";
 import { plays } from "@/content/plays";
 import { tools } from "@/content/tools";
+import { videos } from "@/content/videos";
 import { NEWSLETTER } from "@/lib/newsletter";
 
 export default function HomePage() {
@@ -34,11 +36,11 @@ export default function HomePage() {
       </section>
 
       {/* Latest plays */}
-      <section className="border-t border-gray-200 bg-gray-50 py-16" aria-label="Latest plays">
+      <section className="border-t border-gray-200 bg-gray-50 py-16" aria-label="Latest videos">
         <div className="container mx-auto max-w-6xl px-4">
           <Reveal className="mb-10 flex flex-wrap items-end justify-between gap-4">
             <div>
-              <p className="hm-eyebrow mb-4">Latest plays</p>
+              <p className="hm-eyebrow mb-4">Latest videos</p>
               <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">
                 From the videos, step by step.
               </h2>
@@ -47,13 +49,17 @@ export default function HomePage() {
               All plays <span className="arrow">→</span>
             </Link>
           </Reveal>
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {latestPlays.map((play, i) => (
-              <Reveal key={play.slug} index={i} className="h-full">
-                <PlayCard play={play} />
-              </Reveal>
-            ))}
-          </div>
+          {videos.length > 0 ? (
+            <VideoCarousel videos={videos.slice(0, 12)} />
+          ) : (
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {latestPlays.map((play, i) => (
+                <Reveal key={play.slug} index={i} className="h-full">
+                  <PlayCard play={play} />
+                </Reveal>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
