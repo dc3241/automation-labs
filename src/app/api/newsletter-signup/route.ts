@@ -117,7 +117,7 @@ export async function POST(request: NextRequest) {
     return withSubscriberCookie(
       NextResponse.json({
         success: true,
-        message: "You're in. Check your inbox to confirm.",
+        message: "You're in. Lab Notes lands in your inbox once a week.",
       })
     );
   } catch (error) {

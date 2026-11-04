@@ -48,7 +48,7 @@ export function EmailCapture({
         return;
       }
       setStatus("success");
-      setMessage(data.message || "You're in. Check your inbox to confirm.");
+      setMessage(data.message || "You're in. Lab Notes lands in your inbox once a week.");
       setEmail("");
       if (refreshOnSuccess) router.refresh();
     } catch {
