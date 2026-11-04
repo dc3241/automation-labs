@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import "./globals.css";
+import "@/components/home/home-motion.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { siteUrl } from "@/lib/site";
@@ -13,7 +14,7 @@ export const metadata: Metadata = {
     template: "%s | Automation Labs",
   },
   description:
-    "Automation Labs helps SMB operators automate their work with smart tools, smart workflows, and custom solutions — across HR, Sales, Marketing, Ops, Finance, and Customer Service.",
+    "Useful AI and Claude tricks, new tools with honest prices, and free prompt packs. Get Lab Notes, one email a week.",
   // Resolves to each page's own URL; pages with their own canonical override it.
   alternates: { canonical: "./" },
   openGraph: {

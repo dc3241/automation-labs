@@ -5,6 +5,8 @@ import ServicesPage from "./ServicesPage";
 const description = `A ${CONSULTING_PRICE_LABEL} consultation, workflow automation, and custom internal tools for SMB teams.`;
 
 export const metadata: Metadata = {
+  // Agency pages are hidden while the site focuses on Lab Notes (11/2026).
+  robots: { index: false, follow: false },
   title: "Services",
   description,
   openGraph: {

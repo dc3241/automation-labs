@@ -12,6 +12,8 @@ import {
 const description = `A ${CONSULTING_DURATION_LABEL} consultation on one problem. ${CONSULTING_PRICE_LABEL}, paid when you book. You leave with a recommended route.`;
 
 export const metadata: Metadata = {
+  // Agency pages are hidden while the site focuses on Lab Notes (11/2026).
+  robots: { index: false, follow: false },
   title: "Consultation",
   description,
   openGraph: {

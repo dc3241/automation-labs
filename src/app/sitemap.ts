@@ -1,32 +1,30 @@
 import type { MetadataRoute } from "next";
-import { builds } from "@/data/builds";
+import { packs } from "@/content/packs";
+import { plays } from "@/content/plays";
 import { siteUrl } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const routes = [
-    "",
-    "/services",
-    "/consulting",
-    "/blog",
-    "/newsletter",
-    "/contact",
-    "/projects",
+  const now = new Date();
+  const routes = ["", "/plays", "/get", "/tools", "/newsletter"];
+
+  return [
+    ...routes.map((route) => ({
+      url: `${siteUrl}${route}`,
+      lastModified: now,
+      changeFrequency: "weekly" as const,
+      priority: route === "" ? 1 : 0.8,
+    })),
+    ...plays.map((play) => ({
+      url: `${siteUrl}/plays/${play.slug}`,
+      lastModified: new Date(play.publishedOn),
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    })),
+    ...packs.map((pack) => ({
+      url: `${siteUrl}/get/${pack.keyword}`,
+      lastModified: new Date(pack.publishedOn),
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+    })),
   ];
-
-  const pages = routes.map((route) => ({
-    url: `${siteUrl}${route}`,
-    lastModified: new Date(),
-    changeFrequency: route === "" ? ("weekly" as const) : ("monthly" as const),
-    priority:
-      route === "" ? 1 : route === "/services" || route === "/consulting" ? 0.9 : 0.7,
-  }));
-
-  const buildPages = builds.map((build) => ({
-    url: `${siteUrl}/projects/${build.slug}`,
-    lastModified: new Date(),
-    changeFrequency: "monthly" as const,
-    priority: 0.8,
-  }));
-
-  return [...pages, ...buildPages];
 }
