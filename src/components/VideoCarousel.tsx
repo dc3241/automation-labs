@@ -100,18 +100,20 @@ export function VideoCarousel({ videos }: { videos: Video[] }) {
                 setActive(video);
               }}
               className="group relative block aspect-[9/16] w-full overflow-hidden rounded-xl bg-gray-900 text-left shadow-sm ring-1 ring-gray-200"
-              aria-label={`Play video: ${video.title}`}
+              aria-label={video.title ? `Play video: ${video.title}` : "Play video"}
             >
               <Thumb id={video.youtubeId} />
-              <span className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
+              <span className={`absolute inset-0 bg-gradient-to-t ${video.title ? "from-black/80 via-black/10" : "from-black/30 via-transparent"} to-transparent`} />
               <span className="absolute left-1/2 top-1/2 flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white/95 shadow-lg transition group-hover:scale-110">
                 <svg className="ml-1 h-6 w-6 text-black" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
                   <path d="M8 5v14l11-7z" />
                 </svg>
               </span>
-              <span className="absolute inset-x-0 bottom-0 p-3 text-sm font-semibold leading-snug text-white">
-                {video.title}
-              </span>
+              {video.title && (
+                <span className="absolute inset-x-0 bottom-0 p-3 text-sm font-semibold leading-snug text-white">
+                  {video.title}
+                </span>
+              )}
             </button>
           </div>
         ))}
@@ -145,7 +147,7 @@ export function VideoCarousel({ videos }: { videos: Video[] }) {
           className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 p-4"
           role="dialog"
           aria-modal="true"
-          aria-label={active.title}
+          aria-label={active.title ?? "Video"}
           onClick={close}
         >
           <div
@@ -164,7 +166,7 @@ export function VideoCarousel({ videos }: { videos: Video[] }) {
             <div className="aspect-[9/16] max-h-[78vh] w-full overflow-hidden rounded-xl bg-black">
               <iframe
                 src={`https://www.youtube-nocookie.com/embed/${active.youtubeId}?autoplay=1&rel=0&playsinline=1`}
-                title={active.title}
+                title={active.title ?? "Video"}
                 className="h-full w-full"
                 allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
                 allowFullScreen

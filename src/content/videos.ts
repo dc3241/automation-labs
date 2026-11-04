@@ -12,19 +12,19 @@
 export type Video = {
   /** YouTube video ID, e.g. "dQw4w9WgXcQ". */
   youtubeId: string;
-  title: string;
+  /** Optional. Shown on the card and used for accessibility labels. */
+  title?: string;
   /** Slug of the matching play, to link "Read the steps". */
   play?: string;
-  publishedOn: string;
+  publishedOn?: string;
 };
 
 export const videos: Video[] = [
-  // {
-  //   youtubeId: "PASTE_ID_HERE",
-  //   title: "Delete yourself from the internet in one afternoon",
-  //   play: "delete-yourself-from-the-internet",
-  //   publishedOn: "2026-11-03",
-  // },
+  { youtubeId: "qeeEffpZOt4" },
+  { youtubeId: "COx11V2rG2E" },
+  { youtubeId: "JHMpx4IHuSs" },
+  // Add titles and a matching play when known, e.g.:
+  // { youtubeId: "XXXXXXXXXXX", title: "Delete yourself from the internet in one afternoon", play: "delete-yourself-from-the-internet" },
 ];
 
 export function youtubeWatchUrl(id: string): string {
