@@ -5,7 +5,14 @@ import { siteUrl } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
-  const routes = ["", "/plays", "/get", "/tools", "/newsletter"];
+  const routes = [
+    "",
+    "/plays",
+    "/get",
+    "/tools",
+    "/newsletter",
+    "/100-ways-to-make-money-with-ai",
+  ];
 
   return [
     ...routes.map((route) => ({

@@ -15,6 +15,7 @@ const NAV_LINKS = [
   { href: '/get', label: 'Free packs' },
   { href: '/tools', label: 'Tools' },
   { href: '/newsletter', label: 'Lab Notes' },
+  { href: '/100-ways-to-make-money-with-ai', label: 'Free Guide' },
 ] as const;
 
 export default function Header() {

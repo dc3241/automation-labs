@@ -25,6 +25,11 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/100-ways-to-make-money-with-ai" className={linkClass}>
+                  Free Guide: 100 Ways to Make Money with AI
+                </Link>
+              </li>
+              <li>
                 <Link href="/tools" className={linkClass}>
                   Tools
                 </Link>
