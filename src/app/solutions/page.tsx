@@ -3,9 +3,9 @@ import Link from "next/link";
 import { solutions } from "@/content/solutions";
 
 export const metadata: Metadata = {
-  title: "Solutions: back-office automation for HR and finance",
+  title: "Solutions: marketing, social media and lead generation systems",
   description:
-    "Invoice processing, hiring pipeline and onboarding automations we build for your team. A person approves every decision.",
+    "Custom lead finding, social content, follow-up and Claude marketing skills built for your team. A person approves everything that goes out.",
   alternates: { canonical: "/solutions" },
 };
 
@@ -15,14 +15,14 @@ export default function SolutionsPage() {
       <div className="container mx-auto max-w-6xl px-4">
         <p className="hm-eyebrow mb-6">Solutions</p>
         <h1 className="mb-4 text-4xl font-bold text-gray-900 sm:text-5xl">
-          Back-office automation, built for your team.
+          Marketing systems, built for your team.
         </h1>
         <p className="mb-12 max-w-2xl text-lg text-gray-600">
-          Internal tools for finance and HR. They do the repetitive work and flag what needs
-          attention. A person makes every decision.
+          Custom tools for lead generation, social media and marketing. They do the repetitive
+          work and flag what needs attention. A person approves everything that goes out.
         </p>
 
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
           {solutions.map((s) => (
             <Link
               key={s.slug}

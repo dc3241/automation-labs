@@ -9,4 +9,4 @@
 
 Query leads by source: see the example at the bottom of the migration file.
 
-Not included yet: email notification for new inquiries (they appear only in `/admin/contacts`), and the Claude skills section.
+Not included yet: email notification for new inquiries (they appear only in `/admin/contacts`). Claude skills are offered as the "Custom Claude marketing skills" entry in `solutions.ts`, not a separate section.
