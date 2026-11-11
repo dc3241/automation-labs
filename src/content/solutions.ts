@@ -1,6 +1,7 @@
 /**
- * Solutions: back-office automations we build for companies. Each entry becomes
- * a landing page at /solutions/<slug> with its own inquiry form.
+ * Solutions: custom marketing, social media and lead generation systems we build
+ * for companies. Each entry becomes a landing page at /solutions/<slug> with its
+ * own inquiry form.
  *
  * Rules for this file:
  * - No invented results. No customer names, logos, testimonials or ROI numbers
@@ -21,7 +22,7 @@ export type ExampleTone = "ok" | "warn" | "error";
 export type Solution = {
   slug: string;
   name: string;
-  department: "Finance" | "HR";
+  department: "Lead generation" | "Social media" | "Marketing";
   /** One line under the page title. */
   tagline: string;
   /** Meta description, under ~160 characters. */
@@ -50,302 +51,382 @@ export type Solution = {
 
 export const solutions: Solution[] = [
   {
-    slug: "invoice-automation",
-    name: "Invoice and accounts payable automation",
-    department: "Finance",
+    slug: "local-lead-finder",
+    name: "Local lead finder",
+    department: "Lead generation",
     tagline:
-      "Supplier invoices go in as PDFs. Checked, organized entries come out for someone to approve.",
+      "Name a business type and an area. Get a cleaned, scored list of prospects your team can actually contact.",
     summary:
-      "We read supplier invoices, check the math, catch duplicates and missing fields, and hand a person a clean approval queue instead of data entry.",
+      "A custom prospecting system that builds targeted lists of local businesses, removes duplicates, scores them against your ideal customer and queues them for review.",
     forWho: [
-      "Companies that receive a steady stream of supplier invoices and retype them into QuickBooks, Xero or an ERP",
-      "Contractors, distributors, logistics and property management teams, where invoices arrive from many suppliers in many formats",
-      "Teams that want less data entry without giving up the final say on what gets paid",
+      "Agencies and service businesses that sell to local companies and build prospect lists by hand",
+      "Sales teams that want a repeatable way to find the right businesses in a new city or niche",
+      "Founders who know who their customer is but lose hours copying details into spreadsheets",
     ],
     problem: {
-      heading: "Most of the work is retyping, and the mistakes hide in it",
-      body: "Someone opens each invoice, copies the vendor, number, dates and totals into the accounting system, and hopes nothing was wrong on the invoice to begin with. Totals that do not add up and the same invoice arriving twice are easy to miss when you are keying in a stack of them.",
+      heading: "Building a good list is slow, and most lists are stale or full of bad fits",
+      body: "Someone searches map listings and websites, copies names and contact details into a sheet, and guesses which businesses are worth a message. Duplicates, closed businesses and poor fits stay in the list, and nobody can say why a prospect was chosen.",
     },
     steps: [
       {
-        title: "Invoices arrive",
-        body: "From an upload page or an inbox you already use. Text PDFs read directly; scanned invoices need an extra OCR step, which we confirm on your real documents first.",
+        title: "We define your ideal customer",
+        body: "Business types, areas, size signals and the things that make a prospect a bad fit, written down once so every run uses the same rules.",
       },
       {
-        title: "We read the fields",
-        body: "Vendor, invoice number, dates, line items, tax and total, pulled into a structured record.",
+        title: "We collect public business details",
+        body: "Business names, categories, addresses, websites and the contact details those businesses publish themselves. We tell you which sources are used before anything runs.",
       },
       {
-        title: "We run checks",
-        body: "Do the line items add up, does subtotal plus tax equal the total, is a field missing, is the due date before the invoice date, have we already seen this invoice from this vendor. Your own rules, such as approval thresholds, are added here.",
+        title: "We clean and de-duplicate",
+        body: "Duplicates merged, closed or unreachable businesses removed, and every email address checked for basic validity before it reaches your list.",
       },
       {
-        title: "A person approves",
-        body: "Clean invoices wait for one-click approval. Anything flagged shows exactly what is wrong and what to fix. Nothing is approved or paid without a person.",
+        title: "We score against your criteria",
+        body: "Each prospect is checked against your rules, such as no website, a thin online presence or a category you serve, and the reason for each score is shown.",
       },
       {
-        title: "It goes where you work",
-        body: "Approved invoices export to a spreadsheet or are pushed into your accounting system, depending on what you use.",
+        title: "A person reviews and decides",
+        body: "Your team approves the list in a review screen, then exports it to a spreadsheet or your CRM. Nothing is contacted automatically.",
       },
     ],
     included: [
-      "An invoice intake and review screen, set up in your own cloud account",
-      "Extraction and checks tuned on a sample of your real invoices",
-      "Your approval rules and a clear list of what gets flagged and why",
-      "An export or integration for your accounting system",
+      "A prospecting tool set up in your own account, tuned to your ideal customer",
+      "Cleaning, de-duplication and email validity checks",
+      "A scoring rule set with the reason shown for every score",
+      "A review screen and an export to a spreadsheet or your CRM",
       "A short runbook and a handover call",
     ],
     notIncluded: [
-      "Paying invoices. The system never moves money.",
-      "Replacing your accounting software",
-      "Guaranteed accuracy before we have tested on your invoices",
+      "Sending messages. This system builds and scores the list; people decide who is contacted.",
+      "Legal advice. Rules on collecting and using business contact data differ by country and by source.",
+      "Guaranteed list size or reply rates",
     ],
     example: {
-      title: "Example: what the review screen flags",
+      title: "Example: what the review screen shows",
       caption:
-        "Fictional invoices and vendors, shown only to illustrate the checks. Not client data.",
+        "Fictional businesses, shown only to illustrate the format. Not real prospects or client data.",
       rows: [
-        { label: "Invoice 1 · Fictional Supply Co.", value: "All checks passed", tone: "ok" },
-        {
-          label: "Invoice 2 · Sample Office Depot",
-          value: "Subtotal plus tax is 963.83 but the stated total is 999.99",
-          tone: "error",
-        },
-        {
-          label: "Invoice 3 · Fictional Supply Co.",
-          value: "Invoice number already in the system from this vendor",
-          tone: "error",
-        },
-        { label: "Invoice 4 · Example Medical Supply", value: "Invoice number is missing", tone: "error" },
-        { label: "Invoice 5 · Sample Freight LLC", value: "Total is above the approval threshold", tone: "warn" },
+        { label: "Sample Roofing Co. · fictional", value: "Fits: roofing category, 4.6 rating, website is a single page", tone: "ok" },
+        { label: "Example Roof & Gutter · fictional", value: "Possible duplicate of Sample Roofing Co. (same phone number)", tone: "warn" },
+        { label: "Placeholder Roofing LLC · fictional", value: "Listing marked permanently closed. Removed.", tone: "error" },
+        { label: "Demo Exteriors · fictional", value: "No email found. Phone only.", tone: "warn" },
       ],
     },
     faq: [
       {
-        q: "Will it pay invoices automatically?",
-        a: "No. A person approves every invoice. The system decides what needs attention, not what gets paid.",
+        q: "Does it send emails or messages?",
+        a: "No. It builds and scores lists. Anything sent to a prospect is sent by your team, from your own accounts.",
       },
       {
-        q: "How accurate is it?",
-        a: "We do not quote a number before we have seen your invoices. In a pilot we run it on a sample of your real documents, measure each field, and set what is flagged for review based on those results.",
+        q: "Is collecting this data allowed?",
+        a: "It depends on the source and on where you and your prospects are. Sources can have their own terms, and laws such as CAN-SPAM, GDPR and CCPA apply to how contact data is used. We tell you exactly what sources we use, and you should confirm your obligations with your own counsel.",
       },
       {
-        q: "Where does our data go?",
-        a: "We set it up in your own cloud account, so your invoices stay with you. If an AI model is used to read the invoices, the invoice text is sent to that provider, and we agree the data terms with you before anything runs. Companies that cannot send documents out can use a self-hosted option, with the trade-offs explained up front.",
+        q: "How many leads will it find?",
+        a: "We do not quote a number in advance. Search sources cap how many results one search returns, so we cover larger areas by splitting them up, and we tell you how complete the result is.",
       },
       {
-        q: "Do we have to change accounting software?",
-        a: "No. It sits in front of what you already use.",
-      },
-      {
-        q: "What if our invoices are scans or photos?",
-        a: "That works through an extra OCR step. It is less reliable than text PDFs, and we test it on your actual scans before promising anything.",
+        q: "Where does the data live?",
+        a: "In your own account. We do not keep a copy of your lists.",
       },
     ],
     qualifiers: [
       {
-        id: "invoices_per_month",
-        label: "Roughly how many invoices do you process each month?",
-        options: ["Under 50", "50–200", "200–1,000", "1,000+", "Not sure"],
+        id: "target_type",
+        label: "Who do you sell to?",
+        options: ["Local service businesses", "Restaurants and retail", "Professional services", "Other"],
       },
       {
-        id: "accounting_system",
-        label: "What do you enter them into today?",
-        options: ["QuickBooks", "Xero", "NetSuite", "Sage", "Another system", "Spreadsheets"],
+        id: "list_use",
+        label: "Where will the list go?",
+        options: ["A spreadsheet", "HubSpot", "Salesforce", "Another CRM", "Not sure yet"],
       },
     ],
     engagement:
-      "A fixed-fee pilot on a month of your real invoices first, then optional monthly support.",
+      "A fixed-fee pilot for one niche and one area, reviewed with you on real output, then optional monthly support.",
   },
   {
-    slug: "hiring-assistant",
-    name: "Hiring pipeline assistant",
-    department: "HR",
+    slug: "social-content-pipeline",
+    name: "Social content pipeline",
+    department: "Social media",
     tagline:
-      "Resumes in, organized candidate summaries out. A person makes every hiring decision.",
+      "Ideas to scheduled posts in your own brand voice. A person approves every post before it goes out.",
     summary:
-      "We turn resumes into consistent, comparable candidate summaries against your job requirements and keep your pipeline organized. People make every decision.",
+      "A custom content system that drafts posts in your brand voice, adapts them per platform, queues them for approval and schedules them from a tool you own.",
     forWho: [
-      "Small and mid-sized companies hiring regularly and managing applicants in email and spreadsheets",
-      "Hiring managers who spend hours reading resumes in different formats",
-      "HR teams that want a consistent first-pass summary without an automated yes or no",
+      "Businesses and creators posting on several platforms who lose time rewriting the same idea for each one",
+      "Teams where one person carries all the content work and posting stalls when they are busy",
+      "Agencies that want consistent drafts for clients without losing the final edit",
     ],
     problem: {
-      heading: "Reading resumes takes hours, and no two get read the same way",
-      body: "Resumes arrive in every format. Each gets a different amount of attention depending on the day, and the pipeline lives in an inbox and a spreadsheet nobody fully trusts.",
+      heading: "Posting consistently is mostly rewriting, formatting and remembering",
+      body: "One idea has to become a post for each platform, in the right length and tone, then be scheduled somewhere. When the person doing it is busy, the calendar goes quiet and the brand voice drifts.",
     },
     steps: [
       {
-        title: "Resumes come in",
-        body: "From your inbox, your applicant tracking system or an upload page.",
+        title: "We capture your brand voice",
+        body: "Your audience, offers, tone and the things you never say, written into a brand file the drafts are held to. We build it from your real posts and website.",
       },
       {
-        title: "We parse and summarize",
-        body: "Each resume becomes a consistent record: experience, skills, dates, and a short summary, set against the requirements you wrote for the role.",
+        title: "You drop in an idea",
+        body: "A topic, a link, a rough note or a transcript. That is the only input your team has to supply.",
       },
       {
-        title: "You get an organized view",
-        body: "Candidates side by side with the evidence from their resume for each requirement, so reviewers can check it in seconds instead of trusting it.",
+        title: "We draft per platform",
+        body: "One idea becomes a version for each channel you use, with the length, format and tone each one needs.",
       },
       {
-        title: "People decide",
-        body: "The assistant never rejects or advances anyone. Every decision is made and recorded by a person.",
+        title: "A person approves",
+        body: "Drafts land in a review queue. Edit, approve or reject. Nothing is posted without an approval.",
       },
       {
-        title: "Status and scheduling stay tidy",
-        body: "Stage tracking and interview reminders, so nobody waits in silence.",
+        title: "Approved posts are scheduled",
+        body: "Posts publish on your calendar from a scheduler set up in your own cloud account, with failures flagged instead of silently dropped.",
       },
     ],
     included: [
-      "Resume parsing and a consistent candidate summary per role",
-      "Requirements you define, with the supporting evidence shown for each",
-      "A pipeline view your team can use day to day",
-      "A record of what was summarized and what people decided",
+      "A brand voice file built from your own content",
+      "A drafting and review workflow for the platforms you choose",
+      "A scheduler running in your own cloud account, connected to your accounts",
+      "Retry and failure alerts so missed posts are visible",
       "A runbook and a handover call",
     ],
     notIncluded: [
-      "Automatic rejection or ranking that decides who gets an interview",
-      "Legal advice. Rules on automated hiring tools vary by location, so we design for human decision-making and you should confirm your obligations with your own counsel.",
-      "Sourcing or messaging candidates for you",
+      "Posting without approval",
+      "Creating graphics or video unless scoped separately",
+      "Guaranteed reach, followers or engagement",
+      "Managing your accounts for you",
     ],
     example: {
-      title: "Example: a candidate summary",
+      title: "Example: one idea, drafted per platform",
       caption:
-        "Fictional candidate and role, shown only to illustrate the format. Not a real person.",
+        "Fictional business and posts, shown only to illustrate the format. Not client content.",
       rows: [
-        { label: "Role requirement · 3+ years in a supervisory role", value: "Met: 4 years as a shift supervisor (resume, work history)", tone: "ok" },
-        { label: "Role requirement · Forklift certification", value: "Not stated on the resume. Ask the candidate.", tone: "warn" },
-        { label: "Role requirement · Inventory software experience", value: "Met: names two systems (resume, skills)", tone: "ok" },
-        { label: "Decision", value: "Left for the hiring manager", tone: "warn" },
+        { label: "Idea", value: "Three questions to ask before hiring a landscaper (fictional)" },
+        { label: "LinkedIn draft", value: "Longer version with a short list. Waiting for approval.", tone: "warn" },
+        { label: "X draft", value: "Short thread, three posts. Approved, scheduled for Tuesday.", tone: "ok" },
+        { label: "Instagram draft", value: "Caption ready. Needs an image from your team.", tone: "warn" },
       ],
     },
     faq: [
       {
-        q: "Does it decide who we interview?",
-        a: "No. It summarizes and organizes. People make every decision, and nothing is rejected automatically.",
+        q: "Will it sound like us?",
+        a: "That is what the brand voice file is for, and we test it on your real topics before launch. You will still edit. The goal is a draft that needs light edits, not none.",
       },
       {
-        q: "Is this legal?",
-        a: "Rules on automated tools in hiring differ by city and state and are still changing, and some require audits or notices. We design this so people make the decisions, and you should confirm your specific obligations with your own counsel.",
+        q: "Does it post on its own?",
+        a: "No. Every post waits for a person to approve it.",
       },
       {
-        q: "Where do resumes go?",
-        a: "We set it up in your own cloud account. If an AI model reads the resumes, the text is sent to that provider under data terms we agree with you first. Resumes contain personal information, so we keep what is stored to a minimum and set a retention period with you.",
+        q: "Which platforms work?",
+        a: "It depends on what the scheduler supports and on each platform's own rules for connecting accounts. Tell us your channels on the inquiry form and we will say honestly what is possible.",
       },
       {
-        q: "Does it work with our applicant tracking system?",
-        a: "That depends on the system. Tell us what you use on the inquiry form and we will say honestly what is possible.",
+        q: "Where do our posts and account connections live?",
+        a: "In your own cloud account. If an AI model writes the drafts, the text you provide is sent to that provider under data terms we agree with you first.",
       },
     ],
     qualifiers: [
       {
-        id: "applicants_per_month",
-        label: "Roughly how many applications do you review each month?",
-        options: ["Under 25", "25–100", "100–500", "500+", "Not sure"],
+        id: "platforms",
+        label: "Where do you post most?",
+        options: ["LinkedIn", "Instagram", "X", "Several of these", "Not sure yet"],
       },
       {
-        id: "applicant_system",
-        label: "Where do applications live today?",
-        options: ["Email and spreadsheets", "Greenhouse", "Lever", "BambooHR", "Another system"],
+        id: "posts_per_week",
+        label: "How many posts do you want out each week?",
+        options: ["1–3", "4–7", "8–15", "15+"],
       },
     ],
     engagement:
-      "A fixed-fee pilot on one open role, then optional monthly support.",
+      "A fixed-fee pilot for one brand and up to three platforms, then optional monthly support.",
   },
   {
-    slug: "onboarding-assistant",
-    name: "Onboarding and HR policy assistant",
-    department: "HR",
+    slug: "lead-follow-up",
+    name: "Lead follow-up and reactivation",
+    department: "Lead generation",
     tagline:
-      "New hires get a clear checklist and instant answers from your own handbook. Internal only.",
+      "Every new and cold lead gets a timely, personal follow-up draft. You approve what is sent.",
     summary:
-      "An internal assistant that guides new hires through onboarding and answers policy questions from your own handbook, inside Slack or Teams. It never talks to customers.",
+      "A custom system that drafts personal follow-ups for new inquiries and old leads from your own mailbox, tracks who has replied and flags who needs a person.",
     forWho: [
-      "Companies onboarding new hires with scattered documents, emails and reminders",
-      "HR and office managers who answer the same policy questions every week",
-      "Teams that keep their handbook in Google Drive, SharePoint or a PDF and want people to actually use it",
+      "Businesses with a pile of past inquiries, quotes or contacts that nobody followed up on",
+      "Teams where new leads wait hours or days for a first reply",
+      "Owners who want every lead touched without sending a generic blast",
     ],
     problem: {
-      heading: "The same questions, the same reminders, every new hire",
-      body: "Time off, benefits, equipment, who to ask. Each new hire sends the same questions, and onboarding steps depend on someone remembering to send them.",
+      heading: "Leads go cold because follow-up depends on someone remembering",
+      body: "A form comes in, a quote goes out, and the next step lives in someone's head. Older leads sit in a spreadsheet or inbox. Nobody has time to write a thoughtful message to each one.",
     },
     steps: [
       {
-        title: "We set up the onboarding checklist",
-        body: "Tasks, documents and reminders for each role, released over time so new hires are not buried on day one.",
+        title: "We gather your leads",
+        body: "New inquiries and a past list from a spreadsheet, CRM or inbox, with each lead's history and last contact.",
       },
       {
-        title: "We connect your handbook",
-        body: "Your policies and documents become the only source the assistant answers from.",
+        title: "We segment them",
+        body: "New, quoted but quiet, past customers and unknown, so each group gets the right kind of message.",
       },
       {
-        title: "New hires ask, and get sourced answers",
-        body: "Answers point to the exact policy they came from. If the handbook does not cover it, the assistant says so and routes the question to a person instead of guessing.",
+        title: "We draft a personal follow-up",
+        body: "Each draft uses what you actually know about the lead and your offer, in your voice. It does not invent history or claims.",
       },
       {
-        title: "HR sees what is missing",
-        body: "Unanswered and repeated questions show where the handbook is unclear.",
+        title: "A person approves and sends",
+        body: "Drafts wait in a review queue. Approved messages go from your own mailbox, with a clear way for anyone to opt out.",
+      },
+      {
+        title: "Replies and stragglers are tracked",
+        body: "Replies are flagged for a person, opt-outs are honored automatically, and leads with no reply are scheduled for one more touch, not an endless sequence.",
       },
     ],
     included: [
-      "An onboarding checklist and reminder sequence for each role",
-      "A handbook assistant in Slack or Teams, limited to your documents",
-      "Answers that cite the policy they came from",
-      "A list of questions it could not answer, for HR to review",
+      "Lead intake from a form, spreadsheet, CRM or inbox you already use",
+      "Segments and follow-up drafts tuned to your offer and voice",
+      "A review queue and sending from your own mailbox",
+      "Opt-out handling and a cap on how often a lead is contacted",
       "A runbook and a handover call",
     ],
     notIncluded: [
-      "Anything that talks to your customers. This is internal only.",
-      "Legal or benefits advice. It repeats what your documents say and points to a person for anything else.",
-      "Making policy decisions",
+      "Buying lists, new domains or warmed-up sending inboxes for mass cold email",
+      "Messages sent without a person approving them",
+      "Legal advice. Email rules differ by location, so confirm your obligations with your own counsel.",
+      "Guaranteed replies or booked meetings",
     ],
     example: {
-      title: "Example: an answer from the handbook",
+      title: "Example: the follow-up queue",
       caption:
-        "Fictional company and policy, shown only to illustrate the format. Not client data.",
+        "Fictional leads, shown only to illustrate the format. Not client data.",
       rows: [
-        { label: "Question", value: "How many days do I have to submit an expense report?" },
-        { label: "Answer", value: "Within 30 days of the purchase (Expense Policy, section 2).", tone: "ok" },
-        { label: "Question", value: "Can I work from another state for a month?" },
-        {
-          label: "Answer",
-          value: "The handbook does not cover this. Sent to HR to answer.",
-          tone: "warn",
-        },
+        { label: "New inquiry · fictional lead A", value: "Draft ready: reply to the question they asked", tone: "ok" },
+        { label: "Quote sent 3 weeks ago · fictional lead B", value: "Draft ready: short check-in, no reply since the quote", tone: "ok" },
+        { label: "Past customer · fictional lead C", value: "No recent history. Draft held for a person to review.", tone: "warn" },
+        { label: "Fictional lead D", value: "Opted out. Removed from all follow-ups.", tone: "error" },
       ],
     },
     faq: [
       {
-        q: "Will it make up answers?",
-        a: "It is limited to your documents and cites where each answer came from. When the answer is not there, it says so and hands the question to a person. We test this on your real questions before launch.",
+        q: "Does it send emails by itself?",
+        a: "No. A person approves messages before they are sent from your mailbox.",
       },
       {
-        q: "Does it ever talk to customers?",
-        a: "No. This is an internal tool for your employees.",
+        q: "Is this cold email?",
+        a: "It is for people who already know you: inquiries, quotes and past customers. It is not built for mass outreach to strangers.",
       },
       {
-        q: "Where does our handbook go?",
-        a: "We set it up in your own cloud account. If an AI model is used, relevant passages are sent to that provider under data terms we agree with you first.",
+        q: "Could it say something wrong about a lead?",
+        a: "It only uses what is in your records, and a person reads every draft. Where the history is thin, it keeps the message general or holds it for review.",
       },
       {
-        q: "What if our policies are out of date?",
-        a: "Then the assistant repeats out-of-date answers. Part of the pilot is flagging where your documents conflict or are unclear.",
+        q: "Where do our leads and messages live?",
+        a: "In your own accounts. If an AI model writes the drafts, the lead details used for a draft are sent to that provider under data terms we agree with you first.",
       },
     ],
     qualifiers: [
       {
-        id: "hires_per_year",
-        label: "Roughly how many people do you onboard each year?",
-        options: ["Under 5", "5–20", "20–100", "100+", "Not sure"],
+        id: "lead_volume",
+        label: "Roughly how many leads sit unfollowed today?",
+        options: ["Under 100", "100–500", "500–2,000", "2,000+", "Not sure"],
       },
       {
-        id: "chat_tool",
-        label: "Where does your team chat?",
-        options: ["Slack", "Microsoft Teams", "Neither"],
+        id: "lead_source",
+        label: "Where do your leads live?",
+        options: ["A spreadsheet", "HubSpot", "Another CRM", "Email only", "Website forms"],
       },
     ],
     engagement:
-      "A fixed-fee pilot for one team or one onboarding flow, then optional monthly support.",
+      "A fixed-fee pilot on one lead list, reviewed with you on real drafts, then optional monthly support.",
+  },
+  {
+    slug: "marketing-skill-pack",
+    name: "Custom Claude marketing skills",
+    department: "Marketing",
+    tagline:
+      "A set of Claude skills trained on your brand, offers and audience, so your team gets on-brand marketing work in minutes.",
+    summary:
+      "We build custom Claude skills for your team: copywriting, SEO, social and email workflows that already know your brand, offers and audience.",
+    forWho: [
+      "Marketing teams and owners already using Claude who rewrite the same context into every prompt",
+      "Small teams that want consistent copy and content without hiring more people",
+      "Agencies that want a repeatable on-brand process for each client",
+    ],
+    problem: {
+      heading: "Generic AI output needs heavy editing, and every prompt starts from zero",
+      body: "Most people re-explain their brand and offer each time, and get generic copy back. Results depend on who wrote the prompt, so quality varies from person to person and week to week.",
+    },
+    steps: [
+      {
+        title: "We learn your brand",
+        body: "We read your site, past campaigns and best-performing content, and interview you on your audience, offers and what you refuse to say.",
+      },
+      {
+        title: "We choose the skills you need",
+        body: "Which tasks eat your time: landing page copy, blog outlines, social posts, email sequences, SEO checks. We start from proven open-source marketing skills and rewrite them for you.",
+      },
+      {
+        title: "We build and test on your real work",
+        body: "Each skill is tested on real tasks from your business until the output needs light editing, and we show you where it still falls short.",
+      },
+      {
+        title: "We hand it over and train your team",
+        body: "Installed in your Claude account, with a short guide for each skill and a live session so your team can use them from day one.",
+      },
+    ],
+    included: [
+      "A brand and offer knowledge file every skill draws on",
+      "Three to six skills chosen for your biggest time sinks",
+      "Testing on your real tasks, with the results shared",
+      "A guide for each skill and a team training session",
+      "One round of revisions after your team has used them",
+    ],
+    notIncluded: [
+      "A Claude subscription. Your team needs its own account.",
+      "Guaranteed rankings, traffic, conversions or revenue",
+      "Publishing or sending anything for you",
+    ],
+    example: {
+      title: "Example: what a skill takes in and returns",
+      caption:
+        "Fictional business and skill, shown only to illustrate the format. Not client work.",
+      rows: [
+        { label: "Skill", value: "Landing page copy for a fictional plumbing company" },
+        { label: "You provide", value: "The service, the city and the offer", tone: "ok" },
+        { label: "It already knows", value: "Brand voice, audience, guarantees you can truthfully make, words to avoid", tone: "ok" },
+        { label: "You get", value: "A draft page with headline options. A person edits and approves.", tone: "warn" },
+      ],
+    },
+    faq: [
+      {
+        q: "What is a Claude skill?",
+        a: "A saved set of instructions and reference material that Claude loads when a task calls for it, so your team does not rewrite the same context into every prompt.",
+      },
+      {
+        q: "Where does our brand information go?",
+        a: "The skills live in your own Claude account. Anything your team runs through them follows the data terms of your Claude plan.",
+      },
+      {
+        q: "Will the output be ready to publish?",
+        a: "Treat it as a strong first draft. A person should always review it, check any claim, and approve it.",
+      },
+      {
+        q: "Do we need to be technical?",
+        a: "No. We handle setup, and your team uses the skills by describing the task in plain language.",
+      },
+    ],
+    qualifiers: [
+      {
+        id: "claude_use",
+        label: "Does your team use Claude today?",
+        options: ["Yes, daily", "Occasionally", "Not yet"],
+      },
+      {
+        id: "marketing_focus",
+        label: "Where does your team lose the most marketing time?",
+        options: ["Website and landing page copy", "Social content", "Email", "SEO and blog content", "Several of these"],
+      },
+    ],
+    engagement:
+      "A fixed-fee build for one brand, then optional monthly updates as your offers change.",
   },
 ];
 
