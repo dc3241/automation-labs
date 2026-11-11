@@ -145,6 +145,7 @@ export const solutions: Solution[] = [
     ],
     engagement:
       "A fixed-fee pilot on one of your lists, reviewed with you on real output, then optional monthly support.",
+    startingAt: "Pilots start at $2,500, then $500/month support",
   },
   {
     slug: "social-content-pipeline",
@@ -241,6 +242,7 @@ export const solutions: Solution[] = [
     ],
     engagement:
       "A fixed-fee pilot for one brand and up to three platforms, then optional monthly support.",
+    startingAt: "Pilots start at $3,500, then $750/month support",
   },
   {
     slug: "lead-follow-up",
@@ -337,6 +339,7 @@ export const solutions: Solution[] = [
     ],
     engagement:
       "A fixed-fee pilot on one lead list, reviewed with you on real drafts, then optional monthly support.",
+    startingAt: "Pilots start at $4,000, then $750/month support",
   },
   {
     slug: "marketing-skill-pack",
@@ -428,6 +431,7 @@ export const solutions: Solution[] = [
     ],
     engagement:
       "A fixed-fee build for one brand, then optional monthly updates as your offers change.",
+    startingAt: "Builds start at $2,500, optional updates $300/month",
   },
 ];
 
