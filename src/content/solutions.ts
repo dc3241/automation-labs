@@ -51,38 +51,38 @@ export type Solution = {
 
 export const solutions: Solution[] = [
   {
-    slug: "local-lead-finder",
-    name: "Local lead finder",
+    slug: "lead-list-builder",
+    name: "Lead list builder",
     department: "Lead generation",
     tagline:
-      "Name a business type and an area. Get a cleaned, scored list of prospects your team can actually contact.",
+      "Bring the sources you are allowed to use. Get back a cleaned, de-duplicated, scored prospect list your team can review.",
     summary:
-      "A custom prospecting system that builds targeted lists of local businesses, removes duplicates, scores them against your ideal customer and queues them for review.",
+      "A custom system that cleans, de-duplicates and scores prospect lists from sources you provide, then queues them for your team to review and export.",
     forWho: [
-      "Agencies and service businesses that sell to local companies and build prospect lists by hand",
-      "Sales teams that want a repeatable way to find the right businesses in a new city or niche",
-      "Founders who know who their customer is but lose hours copying details into spreadsheets",
+      "Agencies and service businesses that already have prospect data in spreadsheets, a CRM or a licensed provider and spend hours cleaning it",
+      "Sales teams that want one repeatable way to decide which prospects are worth contacting",
+      "Founders who know who their customer is but cannot tell which rows in a messy list are worth a message",
     ],
     problem: {
-      heading: "Building a good list is slow, and most lists are stale or full of bad fits",
-      body: "Someone searches map listings and websites, copies names and contact details into a sheet, and guesses which businesses are worth a message. Duplicates, closed businesses and poor fits stay in the list, and nobody can say why a prospect was chosen.",
+      heading: "Lists arrive messy, and nobody can say why a prospect was chosen",
+      body: "Data comes from a CRM export, a purchased list, a trade show sheet or a data provider. It is full of duplicates, closed businesses and poor fits, and sorting it by hand eats hours that should go to selling.",
     },
     steps: [
       {
         title: "We define your ideal customer",
-        body: "Business types, areas, size signals and the things that make a prospect a bad fit, written down once so every run uses the same rules.",
+        body: "Business types, size signals and the things that make a prospect a bad fit, written down once so every list is judged by the same rules.",
       },
       {
-        title: "We collect public business details",
-        body: "Business names, categories, addresses, websites and the contact details those businesses publish themselves. We tell you which sources are used before anything runs.",
+        title: "You provide the data",
+        body: "From your CRM, a spreadsheet, a data provider you have an account with, or any source you have the right to use. You choose the sources. We build the tooling, not the collection.",
       },
       {
         title: "We clean and de-duplicate",
-        body: "Duplicates merged, closed or unreachable businesses removed, and every email address checked for basic validity before it reaches your list.",
+        body: "Duplicates merged, obviously broken records flagged, and email addresses checked for basic validity before they reach your list.",
       },
       {
         title: "We score against your criteria",
-        body: "Each prospect is checked against your rules, such as no website, a thin online presence or a category you serve, and the reason for each score is shown.",
+        body: "Each prospect is checked against your rules, and the reason for each score is shown so your team can trust it or overrule it.",
       },
       {
         title: "A person reviews and decides",
@@ -90,40 +90,41 @@ export const solutions: Solution[] = [
       },
     ],
     included: [
-      "A prospecting tool set up in your own account, tuned to your ideal customer",
-      "Cleaning, de-duplication and email validity checks",
+      "A list-cleaning and scoring tool set up in your own account, tuned to your ideal customer",
+      "De-duplication and email validity checks",
       "A scoring rule set with the reason shown for every score",
       "A review screen and an export to a spreadsheet or your CRM",
       "A short runbook and a handover call",
     ],
     notIncluded: [
-      "Sending messages. This system builds and scores the list; people decide who is contacted.",
-      "Legal advice. Rules on collecting and using business contact data differ by country and by source.",
-      "Guaranteed list size or reply rates",
+      "Collecting data from websites or services. You supply the data and the right to use it.",
+      "Sending messages. People decide who is contacted.",
+      "Legal advice. Rules on using contact data differ by country and by source.",
+      "Guaranteed list quality or reply rates",
     ],
     example: {
       title: "Example: what the review screen shows",
       caption:
         "Fictional businesses, shown only to illustrate the format. Not real prospects or client data.",
       rows: [
-        { label: "Sample Roofing Co. · fictional", value: "Fits: roofing category, 4.6 rating, website is a single page", tone: "ok" },
+        { label: "Sample Roofing Co. · fictional", value: "Fits: roofing category, 10–49 employees, valid email", tone: "ok" },
         { label: "Example Roof & Gutter · fictional", value: "Possible duplicate of Sample Roofing Co. (same phone number)", tone: "warn" },
-        { label: "Placeholder Roofing LLC · fictional", value: "Listing marked permanently closed. Removed.", tone: "error" },
-        { label: "Demo Exteriors · fictional", value: "No email found. Phone only.", tone: "warn" },
+        { label: "Placeholder Roofing LLC · fictional", value: "Email address is malformed. Held back.", tone: "error" },
+        { label: "Demo Exteriors · fictional", value: "No email in the source data. Phone only.", tone: "warn" },
       ],
     },
     faq: [
       {
+        q: "Where does the data come from?",
+        a: "From you. You choose and supply the sources, such as your CRM, past customers, a spreadsheet or a data provider you have an account with. We do not scrape websites or services, and we will not build collection from a source whose terms forbid it.",
+      },
+      {
         q: "Does it send emails or messages?",
-        a: "No. It builds and scores lists. Anything sent to a prospect is sent by your team, from your own accounts.",
+        a: "No. It cleans and scores lists. Anything sent to a prospect is sent by your team, from your own accounts.",
       },
       {
-        q: "Is collecting this data allowed?",
-        a: "It depends on the source and on where you and your prospects are. Sources can have their own terms, and laws such as CAN-SPAM, GDPR and CCPA apply to how contact data is used. We tell you exactly what sources we use, and you should confirm your obligations with your own counsel.",
-      },
-      {
-        q: "How many leads will it find?",
-        a: "We do not quote a number in advance. Search sources cap how many results one search returns, so we cover larger areas by splitting them up, and we tell you how complete the result is.",
+        q: "Is using this data allowed?",
+        a: "That depends on the source and on where you and your prospects are. Laws such as CAN-SPAM, GDPR and CCPA apply to how contact data is used, and sources have their own terms. Confirm your obligations with your own counsel.",
       },
       {
         q: "Where does the data live?",
@@ -132,18 +133,18 @@ export const solutions: Solution[] = [
     ],
     qualifiers: [
       {
-        id: "target_type",
-        label: "Who do you sell to?",
-        options: ["Local service businesses", "Restaurants and retail", "Professional services", "Other"],
+        id: "data_source",
+        label: "Where does your prospect data come from today?",
+        options: ["Our CRM", "Spreadsheets", "A data provider we pay for", "Purchased or licensed lists", "We do not have any yet"],
       },
       {
         id: "list_use",
-        label: "Where will the list go?",
+        label: "Where will the finished list go?",
         options: ["A spreadsheet", "HubSpot", "Salesforce", "Another CRM", "Not sure yet"],
       },
     ],
     engagement:
-      "A fixed-fee pilot for one niche and one area, reviewed with you on real output, then optional monthly support.",
+      "A fixed-fee pilot on one of your lists, reviewed with you on real output, then optional monthly support.",
   },
   {
     slug: "social-content-pipeline",
