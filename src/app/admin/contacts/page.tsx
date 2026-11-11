@@ -545,6 +545,18 @@ export default function AdminContacts() {
                       </div>
                     )}
 
+                    {(submission.solution_slug || submission.utm_source || submission.referrer) && (
+                      <div className="mb-4 text-sm text-gray-700">
+                        {submission.solution_slug && <p>Solution: {submission.solution_slug}</p>}
+                        {(submission.utm_source || submission.utm_medium || submission.utm_campaign || submission.utm_content) && (
+                          <p>
+                            UTM: {[submission.utm_source, submission.utm_medium, submission.utm_campaign, submission.utm_content].filter(Boolean).join(' / ')}
+                          </p>
+                        )}
+                        {submission.referrer && <p>Referrer: {submission.referrer}</p>}
+                      </div>
+                    )}
+
                     <div className="mb-4">
                       <p className="text-sm text-gray-600 mb-2">Full message</p>
                       <div className="bg-gray-50 rounded-lg p-4">

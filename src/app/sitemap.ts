@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { packs } from "@/content/packs";
 import { plays } from "@/content/plays";
+import { solutions } from "@/content/solutions";
 import { siteUrl } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -10,6 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/plays",
     "/get",
     "/tools",
+    "/solutions",
     "/newsletter",
     "/100-ways-to-make-money-with-ai",
   ];
@@ -24,6 +26,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...plays.map((play) => ({
       url: `${siteUrl}/plays/${play.slug}`,
       lastModified: new Date(play.publishedOn),
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    })),
+    ...solutions.map((s) => ({
+      url: `${siteUrl}/solutions/${s.slug}`,
+      lastModified: now,
       changeFrequency: "monthly" as const,
       priority: 0.7,
     })),
