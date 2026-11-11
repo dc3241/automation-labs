@@ -5,6 +5,7 @@ import "./globals.css";
 import "@/components/home/home-motion.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import AttributionCapture from "@/components/AttributionCapture";
 import { siteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -35,6 +36,7 @@ export default function RootLayout({
       <body
         className={`${GeistSans.variable} ${GeistMono.variable} antialiased min-h-screen flex flex-col font-sans`}
       >
+        <AttributionCapture />
         <Header />
         <main className="flex-1 pt-16">
           {children}

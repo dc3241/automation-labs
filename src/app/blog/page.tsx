@@ -115,7 +115,7 @@ export default async function Blog() {
                   Posts are unavailable right now
                 </h3>
                 <div className="mt-2 text-sm text-red-700">
-                  <p>Please check back soon. In the meantime, see our <Link href="/projects" className="underline">example builds</Link>.</p>
+                  <p>Please check back soon. In the meantime, see our <Link href="/solutions" className="underline">solutions</Link>.</p>
                   {process.env.NODE_ENV === 'development' && <p className="mt-2">{error}</p>}
                   {process.env.NODE_ENV === 'development' && debug && (
                     <details className="mt-2">
@@ -184,7 +184,7 @@ export default async function Blog() {
                     New posts are on the way
                   </h3>
                   <div className="mt-2 text-sm text-yellow-700">
-                    <p>We are writing the first batch. In the meantime, see what we build on the <Link href="/projects" className="underline">projects page</Link> or <Link href="/newsletter" className="underline">join the newsletter</Link>.</p>
+                    <p>We are writing the first batch. In the meantime, see what we build on the <Link href="/solutions" className="underline">solutions page</Link> or <Link href="/newsletter" className="underline">join the newsletter</Link>.</p>
                   </div>
                 </div>
               </div>

@@ -136,6 +136,14 @@ export interface ContactSubmission {
   team_users?: string;
   must_have_integrations?: string;
   loom_url?: string;
+  solution_slug?: string | null;
+  qualifiers?: Record<string, string> | null;
+  utm_source?: string | null;
+  utm_medium?: string | null;
+  utm_campaign?: string | null;
+  utm_content?: string | null;
+  referrer?: string | null;
+  landing_path?: string | null;
   message: string;
   status: 'new' | 'replied' | 'closed';
   created_at: string;
