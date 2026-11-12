@@ -342,6 +342,103 @@ export const solutions: Solution[] = [
     startingAt: "Pilots start at $4,000, then $750/month support",
   },
   {
+    slug: "competitor-growth-teardown",
+    name: "Competitor growth teardown",
+    department: "Marketing",
+    tagline:
+      "See how a competitor actually grew, in date order, from public evidence. Leave with plays to copy and plays to skip.",
+    summary:
+      "A dated history of how a competitor grew, built from public data and compared with your own numbers, ending in ranked marketing plays and one to start this week.",
+    forWho: [
+      "Founders and marketers who keep hearing that a competitor is growing fast but cannot say why",
+      "Teams choosing where to spend marketing effort and wanting evidence instead of guesses",
+      "Agencies preparing for a pitch or a new client who need a fast read on the market",
+    ],
+    problem: {
+      heading: "Everyone copies what a competitor looks like today, not how it got there",
+      body: "A competitor's site and ads show where they ended up. What matters is the order of events: which launch, price change, campaign or channel lined up with their growth. Piecing that together by hand takes days and is easy to get wrong.",
+    },
+    steps: [
+      {
+        title: "We agree on the target and your goal",
+        body: "Which company, which competitors to compare, your stage, and the channels your team has the capacity to run.",
+      },
+      {
+        title: "We build the timeline",
+        body: "Traffic and brand-search estimates by month, with every dated move from public sources placed on it: launches, pricing changes, ads, new pages, tools added to their site, job posts and press.",
+      },
+      {
+        title: "We separate evidence from guesses",
+        body: "Every finding is labeled as observed, inferred or not found, with a source and date. A move before a jump is treated as a lead, not proof of cause.",
+      },
+      {
+        title: "We compare it with your numbers",
+        body: "If you share your search and analytics data, we line your growth up against theirs, stage by stage, and show where you are behind or already ahead.",
+      },
+      {
+        title: "You get ranked plays",
+        body: "Ideas worth copying, ideas to skip, and the one to start this week, each with the next step to run it.",
+      },
+    ],
+    included: [
+      "A dated growth timeline for one target company, in a report your team can keep",
+      "A log of the moves behind it, each with a source and a date",
+      "A side-by-side with up to three competitors on the full version",
+      "A comparison with your own analytics, if you choose to share them",
+      "Ranked plays with a clear first step, and a walkthrough call",
+    ],
+    notIncluded: [
+      "Buying through a competitor's funnel, signing up under a false pretense, or booking demos with them. We use public evidence only.",
+      "Contacting a competitor's staff or customers, or building lists of individuals",
+      "Proof of what caused their growth. Timing is a lead, not a verdict.",
+      "Guaranteed results from running the plays",
+    ],
+    example: {
+      title: "Example: what a finding looks like",
+      caption:
+        "Fictional company and findings, shown only to illustrate the format. Not a real analysis.",
+      rows: [
+        { label: "Traffic stepped up in March (fictional)", value: "Observed: estimate rose from the prior month, source and date noted", tone: "ok" },
+        { label: "Pricing page changed in February (fictional)", value: "Observed: archived copies show a new plan, linked", tone: "ok" },
+        { label: "A new comparison-page family launched in January (fictional)", value: "Inferred: the pages appear in the sitemap that month. Cause not confirmed.", tone: "warn" },
+        { label: "Paid podcast sponsorships (fictional)", value: "Not found in public sources", tone: "error" },
+      ],
+    },
+    faq: [
+      {
+        q: "Where does the data come from?",
+        a: "Public sources: the company's own site and its archived copies, search and traffic estimates from data providers, public ad libraries, job posts, reviews and press. Traffic figures are third-party estimates, and we label them that way.",
+      },
+      {
+        q: "Does it cost extra for data?",
+        a: "Some traffic and keyword data comes from paid tools. We agree a cap with you before any paid data is pulled, and we never go past it.",
+      },
+      {
+        q: "Will it tell us why they grew?",
+        a: "It shows what they did and when, and which moves lined up with the jumps. Funding, press and seasonality can produce the same jump, so we say where the evidence is thin.",
+      },
+      {
+        q: "Can we just do this ourselves?",
+        a: "Parts of it, yes. The work is in running it carefully, checking the evidence and turning it into a plan for your team. If you want help building what the plays call for, that is a separate pilot.",
+      },
+    ],
+    qualifiers: [
+      {
+        id: "stage",
+        label: "Where is your company today?",
+        options: ["Pre-launch", "Early revenue", "Scaling", "Agency or consultancy"],
+      },
+      {
+        id: "competitor_count",
+        label: "How many competitors would you like compared?",
+        options: ["Just one", "Up to three", "Not sure, help me choose"],
+      },
+    ],
+    engagement:
+      "A fixed-fee, one-time report, with an optional pilot afterwards to build what the plays call for.",
+    startingAt: "Lite teardown $750, full teardown from $1,500",
+  },
+  {
     slug: "marketing-skill-pack",
     name: "Custom Claude marketing skills",
     department: "Marketing",
@@ -365,7 +462,7 @@ export const solutions: Solution[] = [
       },
       {
         title: "We choose the skills you need",
-        body: "Which tasks eat your time: landing page copy, blog outlines, social posts, email sequences, SEO checks. We start from proven open-source marketing skills and rewrite them for you.",
+        body: "Which tasks eat your time: landing page copy, blog outlines, social posts, email sequences, SEO checks, competitor research. We start from proven open-source marketing skills and rewrite them for you.",
       },
       {
         title: "We build and test on your real work",

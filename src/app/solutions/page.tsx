@@ -5,7 +5,7 @@ import { solutions } from "@/content/solutions";
 export const metadata: Metadata = {
   title: "Solutions: marketing, social media and lead generation systems",
   description:
-    "Custom lead finding, social content, follow-up and Claude marketing skills built for your team. A person approves everything that goes out.",
+    "Lead lists, social content, follow-up, competitor research and Claude marketing skills built for your team. A person approves everything that goes out.",
   alternates: { canonical: "/solutions" },
 };
 
@@ -22,7 +22,7 @@ export default function SolutionsPage() {
           work and flag what needs attention. A person approves everything that goes out.
         </p>
 
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {solutions.map((s) => (
             <Link
               key={s.slug}
